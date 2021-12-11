@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/kapusta-seven-front/static/css/main.a617e044.chunk.css",
+    "main.js": "/kapusta-seven-front/static/js/main.d8c326ab.chunk.js",
+    "main.js.map": "/kapusta-seven-front/static/js/main.d8c326ab.chunk.js.map",
+    "runtime-main.js": "/kapusta-seven-front/static/js/runtime-main.adbd6600.js",
+    "runtime-main.js.map": "/kapusta-seven-front/static/js/runtime-main.adbd6600.js.map",
+    "static/js/2.aa0f31b5.chunk.js": "/kapusta-seven-front/static/js/2.aa0f31b5.chunk.js",
+    "static/js/2.aa0f31b5.chunk.js.map": "/kapusta-seven-front/static/js/2.aa0f31b5.chunk.js.map",
+    "static/js/3.2ddb2f43.chunk.js": "/kapusta-seven-front/static/js/3.2ddb2f43.chunk.js",
+    "static/js/3.2ddb2f43.chunk.js.map": "/kapusta-seven-front/static/js/3.2ddb2f43.chunk.js.map",
+    "index.html": "/kapusta-seven-front/index.html",
+    "static/css/main.a617e044.chunk.css.map": "/kapusta-seven-front/static/css/main.a617e044.chunk.css.map",
+    "static/js/2.aa0f31b5.chunk.js.LICENSE.txt": "/kapusta-seven-front/static/js/2.aa0f31b5.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/kapusta-seven-front/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.adbd6600.js",
+    "static/js/2.aa0f31b5.chunk.js",
+    "static/css/main.a617e044.chunk.css",
+    "static/js/main.d8c326ab.chunk.js"
+  ]
+}
