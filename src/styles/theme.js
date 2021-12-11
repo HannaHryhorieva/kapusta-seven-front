@@ -1,7 +1,6 @@
-import { createTheme } from '@mui/material/styles';
-
-import buttonStyles from './themeComponents/buttonStyles';
 import appBarStyles from './themeComponents/appBarStyles';
+import buttonStyles from './themeComponents/buttonStyles';
+import { createTheme } from '@mui/material/styles';
 import tableStyles from './themeComponents/tableStyles';
 
 const themeOptions = {
@@ -46,9 +45,6 @@ const themeOptions = {
       borderRadius: 16,
     },
   },
-  shape: {
-    borderRadius: 16,
-  },
   breakpoints: {
     values: {
       mobile: 0,
@@ -59,7 +55,7 @@ const themeOptions = {
   components: {
     MuiButton: buttonStyles,
     MuiAppBar: appBarStyles,
-    MuiTable: tableStyles,
+    ...tableStyles,
   },
 };
 
