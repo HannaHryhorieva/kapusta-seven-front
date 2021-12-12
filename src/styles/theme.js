@@ -44,6 +44,12 @@ const themeOptions = {
       letterSpacing: '0.02em',
       borderRadius: 16,
     },
+    htmlFontSize: 12,
+    body1: {
+      fontSize: '1rem',
+      lineHeight: 1.17,
+      letterSpacing: '0.04em',
+    },
   },
   breakpoints: {
     values: {

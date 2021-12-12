@@ -1,19 +1,18 @@
 import {
-  // AppBar,
+  Box,
   Button,
   Paper,
   Table,
   TableBody,
-  TableHead,
-  TableRow,
   TableCell,
   TableContainer,
+  TableHead,
+  TableRow,
   Typography,
-  Box,
 } from '@mui/material';
 
-import React from 'react';
 import CustomStyledExampleComponent from './CustomStyledExampleComponent';
+import React from 'react';
 
 function ExampleComponent() {
   return (
@@ -31,7 +30,7 @@ function ExampleComponent() {
           Click
         </Button>
       </Box>
-      <Typography variant="h1">Home</Typography>
+      <Typography variant="button">Home</Typography>
       <Typography variant="body1">Home</Typography>
 
       <CustomStyledExampleComponent />
