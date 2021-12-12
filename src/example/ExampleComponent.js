@@ -1,5 +1,5 @@
 import {
-  AppBar,
+  // AppBar,
   Button,
   Paper,
   Table,
@@ -18,7 +18,7 @@ import CustomStyledExampleComponent from './CustomStyledExampleComponent';
 function ExampleComponent() {
   return (
     <div>
-      <AppBar position="relative">Header</AppBar>
+      {/* <AppBar position="relative">Header</AppBar> */}
       <Box marginTop="20px">
         <Button color="primary" variant="contained">
           Click
