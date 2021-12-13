@@ -13,12 +13,17 @@ import {
 
 import CustomStyledExampleComponent from './CustomStyledExampleComponent';
 import React from 'react';
+import { BtnGoToReports } from '../components/BtnGoToReports/BtnGoToReports'
+import { BtnGoToMain } from '../components/BtnGoToMain/BtnGoToMain'
 
 function ExampleComponent() {
   return (
     <div>
       {/* <AppBar position="relative">Header</AppBar> */}
+      
       <Box marginTop="20px">
+        <BtnGoToReports />
+        <BtnGoToMain/>
         <Button color="primary" variant="contained">
           Click
         </Button>

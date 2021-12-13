@@ -1,5 +1,5 @@
 import s from "./AppBar.module.css";
-import logo from "../../assets/logo.svg"
+import logo from "../../images/icons/logo.svg"
 import { LogoutBtn } from "../LogoutBtn/LogoutBtn"
 
 
