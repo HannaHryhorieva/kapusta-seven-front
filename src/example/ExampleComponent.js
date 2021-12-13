@@ -15,7 +15,6 @@ import React from 'react';
 import { BalanceView } from '../components/BalanceView/BalanceView'
 
 import CustomStyledExampleComponent from './CustomStyledExampleComponent';
-import React from 'react';
 
 function ExampleComponent() {
   return (
