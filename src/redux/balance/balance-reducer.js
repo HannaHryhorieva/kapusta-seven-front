@@ -10,7 +10,7 @@ import {
 
 const balance = createReducer(null, {
   [expenseToBalance]: (state, { payload }) => state.balance - payload,
-  [incomeToBalance]: (state, { payload }) => state.balance - payload,
+  [incomeToBalance]: (state, { payload }) => state.balance + payload,
 });
 
 export default combineReducers({
