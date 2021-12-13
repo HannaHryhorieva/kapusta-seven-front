@@ -3,6 +3,9 @@ body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: '12px';
+  line-height: 1.17;
+  letter-spacing: '0.04em';
 }
 
 code {
