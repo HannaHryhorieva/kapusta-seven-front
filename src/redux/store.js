@@ -15,7 +15,7 @@ import logger from 'redux-logger';
 
 import authReducer from './login/auth-reducer';
 import balanceReducer from './balance/balance-reducer';
-import transactionsReducer from './transaction/transactions-reduser';
+import transactionsReducer from './transaction/transactions-reducer';
 
 const authPersistConfig = {
   key: 'auth',
