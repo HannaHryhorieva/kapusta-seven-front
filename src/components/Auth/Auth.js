@@ -1,36 +1,5 @@
-import {
-  // AppBar,
-  Button,
-  Paper,
-  Table,
-  TableBody,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableContainer,
-  Typography,
-  OutlinedInput,
-  Box,
-} from '@mui/material';
-import { borderRadius } from '@mui/system';
-
-const boxStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  paddingTop: '40px',
-  paddingBottom: '50px',
-  paddingLeft: '20px',
-  paddingRight: '20px',
-  boxShadow: '5px 10px 20px rgba(170, 178, 197, 0.4)',
-  width: '300px',
-  height: '525px',
-  borderRadius: '30px',
-};
-
-// const labelStyle = {
-//   display: 'flex',
-//   flexDirection: 'column',
-// };
+import { Button, Typography, OutlinedInput, Box } from '@mui/material';
+import style from './Auth.module.css';
 
 const inputStyle = {
   width: '250px',
@@ -39,39 +8,51 @@ const inputStyle = {
   borderRadius: '30px',
 };
 
-const textStyle = {
-  alignSelf: 'center',
-};
-
 const buttonStyle = {
   alignSelf: 'center',
   width: '122px',
   height: '40px',
+  marginBottom: '30px',
 };
 
 function Auth() {
   return (
-    <Box sx={boxStyle}>
-      <Typography variant="body1" sx={textStyle}>
-        Вы можете авторизироваться с помощью Google Account:
+    <div className={style.div}>
+      <Typography variant="body1">
+        <p className={style.text}>
+          Вы можете авторизироваться с помощью Google Account:
+        </p>
       </Typography>
       <Button color="secondary" sx={buttonStyle}>
         Google
       </Button>
       <Typography variant="body1">
-        Или зайти с помощью e-mail и пароля, предварительно зарегистрировавшись:
+        <p className={style.text}>
+          Или зайти с помощью e-mail и пароля, предварительно
+          зарегистрировавшись:
+        </p>
       </Typography>
-      <span>Электронная почта:</span>
-      <OutlinedInput placeholder="your@email.com" sx={inputStyle} />
-      <span>Пароль:</span>
-      <OutlinedInput placeholder="Пароль" sx={inputStyle} />
-      <Box>
-        <Button color="primary" variant="contained">
+      <span className={style.span}>Электронная почта:</span>
+      <OutlinedInput
+        placeholder="your@email.com"
+        sx={{ ...inputStyle, marginBottom: '30px' }}
+      />
+      <span className={style.span}>Пароль:</span>
+      <OutlinedInput
+        placeholder="Пароль"
+        sx={{ ...inputStyle, marginBottom: '40px' }}
+      />
+      <div>
+        <Button
+          color="primary"
+          variant="contained"
+          sx={{ marginRight: '10px' }}
+        >
           Войти
         </Button>
         <Button color="secondary">Регистрация</Button>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }
 
