@@ -12,17 +12,16 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-import { BalanceView } from '../components/BalanceView/BalanceView'
+import { BalanceView } from '../components/BalanceView/BalanceView';
 
 import CustomStyledExampleComponent from './CustomStyledExampleComponent';
-import React from 'react';
 
 function ExampleComponent() {
   return (
     <div>
       {/* <AppBar position="relative">Header</AppBar> */}
       <Box marginTop="20px">
-        <BalanceView/>
+        <BalanceView />
         <Button color="primary" variant="contained">
           Click
         </Button>

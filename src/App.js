@@ -1,7 +1,7 @@
 import './App.css';
 
 import { AppBar } from './components/AppBar/AppBar';
-import ExampleComponent from './example/ExampleComponent';
+// import ExampleComponent from './example/ExampleComponent';
 import HomeView from './views/HomeView';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './styles/theme';
