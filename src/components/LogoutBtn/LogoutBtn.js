@@ -1,17 +1,6 @@
 import s from "./LogoutBtn.module.css"
-import logout from "../../assets/logout.svg"
-//import Avatar from '@mui/material/Avatar';
+import logout from "../../images/icons/logout.svg"
 
-// const avatar = {
-//     width: '16px',
-//     height: '16px',
-//     color: '#52555F',
-
-//     fontSize: '12px',
-//     lineHeight: '1.6',
-//     textAlign: 'center'
-
-// }
 const LogoutBtn = () => {
     return (
         <div className={s.container}>
