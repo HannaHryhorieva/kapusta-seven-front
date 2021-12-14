@@ -1,5 +1,7 @@
 import s from './BalanceView.module.css'
 import { useState } from 'react'
+import { Typography, Tooltip } from '@mui/material'
+
 
 const BalanceView = () => {
   const [inputValue, setInputValue] = useState("")
@@ -43,7 +45,13 @@ const BalanceView = () => {
       <div className={ s.container}>
         <p className={ s.title}>Баланс:</p>
         {balance ? <span className={ s.balance}> {balance} UAH</span> : (
-                <form className={s.form} onSubmit={handleSubmit}>
+          <form className={s.form} onSubmit={handleSubmit}>
+            <Tooltip title={
+              <Typography color="inherit">
+                <p style={{marginBottom: '20px'}}>Привет! Для начала работы внеси текущий баланс своего счета!</p>
+                <p style={{fontSize: '14px'}}>Ты не можешь тратить деньги пока их у тебя нет :)</p>
+                </Typography>
+            } arrow leaveDelay='3000'>
       <input
               value={inputValue}
               onChange={handleChange}
@@ -54,6 +62,7 @@ const BalanceView = () => {
         autoFocus
         placeholder="00.00 UAH"
       />
+      </Tooltip>
       <button type="submit" className={s.button}>
         Подтвердить
       </button>
