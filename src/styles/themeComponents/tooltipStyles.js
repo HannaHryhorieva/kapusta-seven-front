@@ -11,7 +11,6 @@ const tooltipStyles = {
         },
         arrow: {
             color: '#031634',
-            transform: 'translate3d(150px, 40px, 0px)'
         },
     }
 }
