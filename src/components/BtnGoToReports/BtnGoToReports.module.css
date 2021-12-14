@@ -1,0 +1,27 @@
+.link {
+  display: flex;
+  align-items: center;
+
+  font-size: 12px;
+
+  text-align: right;
+  letter-spacing: 0.04em;
+
+  color: rgba(82, 85, 95, 0.7);
+}
+
+.img {
+  margin-left: 20px;
+  width: 14px;
+  height: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .link {
+    font-size: 16px;
+  }
+  .img {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -1,6 +1,8 @@
 import './App.css';
 
-import ExampleComponent from './example/ExampleComponent';
+import { AppBar } from './components/AppBar/AppBar';
+// import ExampleComponent from './example/ExampleComponent';
+import HomeView from './views/HomeView';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './styles/theme';
 
@@ -14,7 +16,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <ExampleComponent />
+        <AppBar position="fixed" />
+        {/* <ExampleComponent /> */}
+        <HomeView />
       </div>
     </ThemeProvider>
   );

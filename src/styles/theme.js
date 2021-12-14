@@ -2,6 +2,7 @@ import appBarStyles from './themeComponents/appBarStyles';
 import buttonStyles from './themeComponents/buttonStyles';
 import { createTheme } from '@mui/material/styles';
 import tableStyles from './themeComponents/tableStyles';
+import tooltipStyles from './themeComponents/tooltipStyles';
 
 const themeOptions = {
   palette: {
@@ -44,6 +45,12 @@ const themeOptions = {
       letterSpacing: '0.02em',
       borderRadius: 16,
     },
+    htmlFontSize: 12,
+    body1: {
+      fontSize: '1rem',
+      lineHeight: 1.17,
+      letterSpacing: '0.04em',
+    },
   },
   breakpoints: {
     values: {
@@ -55,6 +62,7 @@ const themeOptions = {
   components: {
     MuiButton: buttonStyles,
     MuiAppBar: appBarStyles,
+    MuiTooltip: tooltipStyles,
     ...tableStyles,
   },
 };

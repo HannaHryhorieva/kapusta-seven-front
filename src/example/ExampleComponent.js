@@ -1,25 +1,35 @@
 import {
-  AppBar,
+  Box,
   Button,
   Paper,
   Table,
   TableBody,
-  TableHead,
-  TableRow,
   TableCell,
   TableContainer,
+  TableHead,
+  TableRow,
   Typography,
-  Box,
 } from '@mui/material';
-
 import React from 'react';
+
+import { BalanceView } from '../components/BalanceView/BalanceView';
+
 import CustomStyledExampleComponent from './CustomStyledExampleComponent';
+
+import { BtnGoToReports } from '../components/BtnGoToReports/BtnGoToReports';
+import { BtnGoToMain } from '../components/BtnGoToMain/BtnGoToMain';
 
 function ExampleComponent() {
   return (
     <div>
-      <AppBar position="relative">Header</AppBar>
+      {/* <AppBar position="relative">Header</AppBar> */}
+
       <Box marginTop="20px">
+        <BtnGoToReports />
+        <BtnGoToMain />
+
+        <BalanceView />
+
         <Button color="primary" variant="contained">
           Click
         </Button>
@@ -31,7 +41,7 @@ function ExampleComponent() {
           Click
         </Button>
       </Box>
-      <Typography variant="h1">Home</Typography>
+      <Typography variant="button">Home</Typography>
       <Typography variant="body1">Home</Typography>
 
       <CustomStyledExampleComponent />
