@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "date": "11.12.2021",
+    "description": "АТБ",
+    "category": "Продукты",
+    "amount": 345.45,
+    "isExpense": true
+  },
+  {
+    "id": 2,
+    "date": "11.12.2021",
+    "description": "метро",
+    "category": "Транспорт",
+    "amount": 16,
+    "isExpense": true
+  },
+  {
+    "id": 3,
+    "date": "10.12.2021",
+    "description": "хлеб",
+    "category": "Продукты",
+    "amount": 14,
+    "isExpense": true
+  },
+  {
+    "id": 4,
+    "date": "01.12.2021",
+    "description": "зарплата",
+    "category": "ЗП",
+    "amount": 25000,
+    "isExpense": false
+  },
+  {
+    "id": 5,
+    "date": "11.12.2021",
+    "description": "% на остаток на карте",
+    "category": "Доп.доход",
+    "amount": 500,
+    "isExpense": false
+  }
+]

@@ -10,11 +10,15 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
+import React from 'react';
+
+import { BalanceView } from '../components/BalanceView/BalanceView';
 
 import CustomStyledExampleComponent from './CustomStyledExampleComponent';
-import React from 'react';
+
 import { BtnGoToReports } from '../components/BtnGoToReports/BtnGoToReports'
 import { BtnGoToMain } from '../components/BtnGoToMain/BtnGoToMain'
+
 
 function ExampleComponent() {
   return (
@@ -22,8 +26,12 @@ function ExampleComponent() {
       {/* <AppBar position="relative">Header</AppBar> */}
       
       <Box marginTop="20px">
+
         <BtnGoToReports />
         <BtnGoToMain/>
+    
+        <BalanceView />
+
         <Button color="primary" variant="contained">
           Click
         </Button>
