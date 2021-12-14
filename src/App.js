@@ -3,7 +3,8 @@ import './App.css';
 import ExampleComponent from './example/ExampleComponent';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './styles/theme';
-import { AppBar} from './components/AppBar/AppBar'
+import { AppBar } from './components/AppBar/AppBar';
+import { Auth } from './components/Auth/Auth';
 
 // import { useEffect, Suspense, lazy } from 'react';
 // import { useDispatch } from 'react-redux';
@@ -15,8 +16,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <AppBar position="fixed"/>
+        <AppBar position="fixed" />
         <ExampleComponent />
+        <Auth />
       </div>
     </ThemeProvider>
   );
