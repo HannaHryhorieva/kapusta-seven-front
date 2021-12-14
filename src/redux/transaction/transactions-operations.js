@@ -1,7 +1,8 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as transactionsApi from '../../api-service/transactionsApi';
 
-const fetchAllTransactions = createAsyncThunk(
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+export const fetchAllTransactions = createAsyncThunk(
   'transactions/fetchAllTransactions',
   async (_, { rejectWithValue }) => {
     try {
@@ -13,7 +14,7 @@ const fetchAllTransactions = createAsyncThunk(
   },
 );
 
-const fetchAllTransactionsByYear = createAsyncThunk(
+export const fetchAllTransactionsByYear = createAsyncThunk(
   'transactions/fetchAllTransactionsByYear',
   async (year, { rejectWithValue }) => {
     try {
@@ -25,7 +26,7 @@ const fetchAllTransactionsByYear = createAsyncThunk(
   },
 );
 
-const fetchAllTransactionsByYearMonth = createAsyncThunk(
+export const fetchAllTransactionsByYearMonth = createAsyncThunk(
   'transactions/fetchAllTransactionsByYearMonth',
   async (date, { rejectWithValue }) => {
     try {
@@ -37,7 +38,7 @@ const fetchAllTransactionsByYearMonth = createAsyncThunk(
   },
 );
 
-const fetchAddTransaction = createAsyncThunk(
+export const fetchAddTransaction = createAsyncThunk(
   'transactions/fetchAddTransaction',
   async (transaction, { rejectWithValue }) => {
     try {
@@ -48,7 +49,8 @@ const fetchAddTransaction = createAsyncThunk(
     }
   },
 );
-const fetchDeleteTransaction = createAsyncThunk(
+
+export const fetchDeleteTransaction = createAsyncThunk(
   'transactions/fetchDeleteTransaction',
   async (idTransaction, { rejectWithValue }) => {
     try {
@@ -60,11 +62,11 @@ const fetchDeleteTransaction = createAsyncThunk(
   },
 );
 
-const operations = {
-  fetchAllTransactions,
-  fetchAllTransactionsByYear,
-  fetchAllTransactionsByYearMonth,
-  fetchAddTransaction,
-  fetchDeleteTransaction,
-};
-export default operations;
+// const operations = {
+//   fetchAddTransaction,
+//   fetchAllTransactions,
+//   fetchAllTransactionsByYear,
+//   fetchAllTransactionsByYearMonth,
+//   fetchDeleteTransaction,
+// };
+// export default operations;

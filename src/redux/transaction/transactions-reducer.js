@@ -1,12 +1,13 @@
-import { combineReducers } from 'redux';
-import { createReducer } from '@reduxjs/toolkit';
 import {
+  fetchAddTransaction,
   fetchAllTransactions,
   fetchAllTransactionsByYear,
   fetchAllTransactionsByYearMonth,
-  fetchAddTransaction,
   fetchDeleteTransaction,
 } from './transactions-operations';
+
+import { combineReducers } from 'redux';
+import { createReducer } from '@reduxjs/toolkit';
 
 const allTransactions = createReducer([], {
   [fetchAllTransactions.fulfilled]: (_, { payload }) => payload,
