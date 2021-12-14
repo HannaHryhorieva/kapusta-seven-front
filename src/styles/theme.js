@@ -2,6 +2,7 @@ import appBarStyles from './themeComponents/appBarStyles';
 import buttonStyles from './themeComponents/buttonStyles';
 import { createTheme } from '@mui/material/styles';
 import tableStyles from './themeComponents/tableStyles';
+import tooltipStyles from './themeComponents/tooltipStyles';
 
 const themeOptions = {
   palette: {
@@ -61,6 +62,7 @@ const themeOptions = {
   components: {
     MuiButton: buttonStyles,
     MuiAppBar: appBarStyles,
+    MuiTooltip: tooltipStyles,
     ...tableStyles,
   },
 };
