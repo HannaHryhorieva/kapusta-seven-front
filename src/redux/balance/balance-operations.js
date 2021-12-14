@@ -1,9 +1,16 @@
-import //   incomeToBalance,
-//   expenseToBalance,
-//   updateBalanceRequest,
-//   updateBalanceSuccess,
-//   updateBalanceError,
-'./balance-actions';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as authApi from '../../api-service/authApi';
 
-const operations = {};
+const fetchUpdBalance = createAsyncThunk(
+  'auth/fetchUpdBalance',
+  async (userData, { rejectWithValue }) => {
+    try {
+      const data = await authApi.fetchUpdBalance(userData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+const operations = { fetchUpdBalance };
 export default operations;

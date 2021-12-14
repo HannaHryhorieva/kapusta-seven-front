@@ -1,102 +1,81 @@
-import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as authApi from '../../api-service/authApi';
 
-import {
-  registerRequest,
-  registerSuccess,
-  registerError,
-  logInRequest,
-  logInSuccess,
-  logInError,
-  logOutRequest,
-  logOutSuccess,
-  logOutError,
-  fetchCurrentUserRequest,
-  fetchCurrentUserSuccess,
-  fetchCurrentUserError,
-} from './auth-actions';
-
-axios.defaults.baseURL = 'https://';
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common['Authorization'] = `${token}`;
+const fetchSignup = createAsyncThunk(
+  'auth/fetchSignup',
+  async (user, { rejectWithValue }) => {
+    try {
+      const data = await authApi.fetchSignup(user);
+      return data.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   },
-  unset() {
-    axios.defaults.headers.common['Authorization'] = '';
+);
+
+const fetchGoogleAuth = createAsyncThunk(
+  'auth/fetchGoogleAuth',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await authApi.fetchGoogleAuth();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   },
-};
+);
+const fetchGoogleRedirect = createAsyncThunk(
+  'auth/fetchGoogleRedirect',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await authApi.fetchGoogleRedirect();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
-const register =
-  ({ name, email, password }) =>
-  dispatch => {
-    const user = {
-      name,
-      email,
-      password,
-    };
-    dispatch(registerRequest());
-    axios
-      .post('/users/signup', user)
-      .then(({ data }) => {
-        token.set(data.token);
-        dispatch(registerSuccess(data));
-      })
-      .catch(error => dispatch(registerError(error)));
-  };
-
-const logIn =
-  ({ email, password }) =>
-  dispatch => {
-    const user = {
-      email,
-      password,
-    };
-    dispatch(logInRequest());
-    axios
-      .post('/users/login', user)
-      .then(({ data }) => {
-        token.set(data.token);
-        dispatch(logInSuccess(data));
-      })
-      .catch(error => dispatch(logInError(error)));
-  };
-
-const logOut = () => dispatch => {
-  dispatch(logOutRequest());
-  axios
-    .post('/users/logout')
-    .then(() => {
-      token.unset();
-      dispatch(logOutSuccess());
-    })
-    .catch(error => dispatch(logOutError(error)));
-};
-
-const fetchCurrentUser = () => async (dispatch, getState) => {
-  const {
-    auth: { token: persistedToken },
-  } = getState();
-
-  if (!persistedToken) {
-    return;
-  }
-
-  token.set(persistedToken);
-  dispatch(fetchCurrentUserRequest());
-
-  try {
-    const response = await axios.get('/users/current');
-
-    dispatch(fetchCurrentUserSuccess(response.data));
-  } catch (error) {
-    dispatch(fetchCurrentUserError(error.message));
-  }
-};
+const fetchVerify = createAsyncThunk(
+  'auth/fetchVerify',
+  async (verificationToken, { rejectWithValue }) => {
+    try {
+      const data = await authApi.fetchVerify(verificationToken);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+const fetchSignin = createAsyncThunk(
+  'auth/fetchSignin',
+  async (user, { rejectWithValue }) => {
+    try {
+      const data = await authApi.fetchSignin(user);
+      return data.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+const fetchLogout = createAsyncThunk(
+  'auth/fetchLogout',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await authApi.fetchLogout();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
 const operations = {
-  register,
-  logOut,
-  logIn,
-  fetchCurrentUser,
+  fetchSignup,
+  fetchGoogleAuth,
+  fetchGoogleRedirect,
+  fetchVerify,
+  fetchSignin,
+  fetchLogout,
 };
 export default operations;

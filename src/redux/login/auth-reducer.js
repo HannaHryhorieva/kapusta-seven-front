@@ -2,60 +2,55 @@ import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
 import {
-  registerSuccess,
-  registerError,
-  logInSuccess,
-  logInError,
-  logOutSuccess,
-  logOutError,
-  fetchCurrentUserRequest,
-  fetchCurrentUserSuccess,
-  fetchCurrentUserError,
-} from './auth-actions';
+  fetchSignup,
+  fetchGoogleAuth,
+  fetchGoogleRedirect,
+  // fetchVerify,
+  fetchSignin,
+  fetchLogout,
+} from './auth-operations';
 
 const initialUserState = { name: null, email: null };
 
 const user = createReducer(initialUserState, {
-  [registerSuccess]: (_, { payload }) => payload.user,
-  [logInSuccess]: (_, { payload }) => payload.user,
-  [logOutSuccess]: () => initialUserState,
-  [fetchCurrentUserSuccess]: (_, { payload }) => payload,
+  [fetchSignup.fulfilled]: (_, { payload }) => payload.user,
+  [fetchSignin.fulfilled]: (_, { payload }) => payload.user,
+  [fetchGoogleAuth.fulfilled]: (_, { payload }) => payload.user,
+  [fetchGoogleRedirect.fulfilled]: (_, { payload }) => payload,
+  [fetchLogout.fulfilled]: () => initialUserState,
 });
 
 const token = createReducer(null, {
-  [registerSuccess]: (_, { payload }) => payload.token,
-  [logInSuccess]: (_, { payload }) => payload.token,
-  [logOutSuccess]: () => null,
+  [fetchSignup.fulfilled]: (_, { payload }) => payload.verificationToken,
+  [fetchSignin.fulfilled]: (_, { payload }) => payload.token,
+  [fetchLogout.fulfilled]: () => null,
 });
 
 const setError = (_, { payload }) => payload;
 
 const error = createReducer(null, {
-  [registerError]: setError,
-  [logInError]: setError,
-  [logOutError]: setError,
-  [fetchCurrentUserError]: setError,
+  [fetchSignup.rejected.rejected]: setError,
+  [fetchGoogleAuth.rejected]: setError,
+  [fetchGoogleRedirect.rejected]: setError,
+  [fetchSignin.rejected]: setError,
+  [fetchLogout.rejected]: setError,
 });
 
 const isLoggedIn = createReducer(false, {
-  [registerSuccess]: () => true,
-  [logInSuccess]: () => true,
-  [fetchCurrentUserSuccess]: () => true,
-  [registerError]: () => false,
-  [logInError]: () => false,
-  [fetchCurrentUserError]: () => false,
-  [logOutSuccess]: () => false,
+  [fetchSignup.fulfilled]: () => true,
+  [fetchGoogleAuth.fulfilled]: () => true,
+  [fetchGoogleRedirect.fulfilled]: () => true,
+  [fetchSignin.fulfilled]: () => true,
+  [fetchLogout.fulfilled]: () => false,
+  [fetchSignup.rejected]: () => false,
+  [fetchGoogleAuth.rejected]: () => false,
+  [fetchGoogleRedirect.rejected]: () => false,
+  [fetchSignin.rejected]: () => false,
 });
 
-const isFetchingCurrentUser = createReducer(false, {
-  [fetchCurrentUserRequest]: () => true,
-  [fetchCurrentUserSuccess]: () => false,
-  [fetchCurrentUserError]: () => false,
-});
 export default combineReducers({
   user,
   isLoggedIn,
   token,
-  isFetchingCurrentUser,
   error,
 });
