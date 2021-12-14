@@ -9,6 +9,18 @@ const balance = createReducer(null, {
   [fetchUpdBalance.fulfilled]: (_, { payload }) => payload.balance,
 });
 
+const isLoading = createReducer(false, {
+  [fetchUpdBalance.pending]: () => true,
+  [fetchUpdBalance.fulfilled]: () => false,
+  [fetchUpdBalance.rejected]: () => false,
+});
+
+const error = createReducer(null, {
+  [fetchUpdBalance.rejected]: (_, { payload }) => payload,
+});
+
 export default combineReducers({
   balance,
+  isLoading,
+  error,
 });
