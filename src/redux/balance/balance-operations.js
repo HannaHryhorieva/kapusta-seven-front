@@ -1,7 +1,8 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as authApi from '../../api-service/authApi';
 
-const fetchUpdBalance = createAsyncThunk(
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+export const fetchUpdBalance = createAsyncThunk(
   'auth/fetchUpdBalance',
   async (userData, { rejectWithValue }) => {
     try {
@@ -12,5 +13,5 @@ const fetchUpdBalance = createAsyncThunk(
     }
   },
 );
-const operations = { fetchUpdBalance };
-export default operations;
+// const operations = { fetchUpdBalance };
+// export default operations;

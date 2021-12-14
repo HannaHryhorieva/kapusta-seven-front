@@ -1,7 +1,8 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as authApi from '../../api-service/authApi';
 
-const fetchSignup = createAsyncThunk(
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+export const fetchSignup = createAsyncThunk(
   'auth/fetchSignup',
   async (user, { rejectWithValue }) => {
     try {
@@ -13,7 +14,7 @@ const fetchSignup = createAsyncThunk(
   },
 );
 
-const fetchGoogleAuth = createAsyncThunk(
+export const fetchGoogleAuth = createAsyncThunk(
   'auth/fetchGoogleAuth',
   async (_, { rejectWithValue }) => {
     try {
@@ -24,7 +25,8 @@ const fetchGoogleAuth = createAsyncThunk(
     }
   },
 );
-const fetchGoogleRedirect = createAsyncThunk(
+
+export const fetchGoogleRedirect = createAsyncThunk(
   'auth/fetchGoogleRedirect',
   async (_, { rejectWithValue }) => {
     try {
@@ -36,7 +38,7 @@ const fetchGoogleRedirect = createAsyncThunk(
   },
 );
 
-const fetchVerify = createAsyncThunk(
+export const fetchVerify = createAsyncThunk(
   'auth/fetchVerify',
   async (verificationToken, { rejectWithValue }) => {
     try {
@@ -47,7 +49,7 @@ const fetchVerify = createAsyncThunk(
     }
   },
 );
-const fetchSignin = createAsyncThunk(
+export const fetchSignin = createAsyncThunk(
   'auth/fetchSignin',
   async (user, { rejectWithValue }) => {
     try {
@@ -58,7 +60,7 @@ const fetchSignin = createAsyncThunk(
     }
   },
 );
-const fetchLogout = createAsyncThunk(
+export const fetchLogout = createAsyncThunk(
   'auth/fetchLogout',
   async (_, { rejectWithValue }) => {
     try {
@@ -70,12 +72,12 @@ const fetchLogout = createAsyncThunk(
   },
 );
 
-const operations = {
-  fetchSignup,
-  fetchGoogleAuth,
-  fetchGoogleRedirect,
-  fetchVerify,
-  fetchSignin,
-  fetchLogout,
-};
-export default operations;
+// const operations = {
+//   fetchSignup,
+//   fetchGoogleAuth,
+//   fetchGoogleRedirect,
+//   fetchVerify,
+//   fetchSignin,
+//   fetchLogout,
+// };
+// export default operations;

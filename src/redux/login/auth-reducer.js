@@ -1,14 +1,13 @@
-import { combineReducers } from 'redux';
-import { createReducer } from '@reduxjs/toolkit';
-
 import {
-  fetchSignup,
   fetchGoogleAuth,
   fetchGoogleRedirect,
-  // fetchVerify,
-  fetchSignin,
   fetchLogout,
+  fetchSignin,
+  fetchSignup,
 } from './auth-operations';
+
+import { combineReducers } from 'redux';
+import { createReducer } from '@reduxjs/toolkit';
 
 const initialUserState = { name: null, email: null };
 
