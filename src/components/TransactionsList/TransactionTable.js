@@ -11,12 +11,16 @@ import {
 import React, { useState } from 'react';
 
 import TransactionRow from './TransactionRow';
-import transactionsFromFile from './transactions.json';
+import { useSelector } from 'react-redux';
+import { transactionsSelectors } from '../../redux/transaction';
 
 function TransactionTable({ type }) {
-  const [transactions, setTransactions] = useState(transactionsFromFile);
+  const selectorType =
+    type === 'expense'
+      ? transactionsSelectors.getExpenseTransactions
+      : transactionsSelectors.getIncomeTransactions;
 
-  const isExpense = type === 'expense';
+  const transactions = useSelector(selectorType);
 
   return (
     <TableContainer component={Paper}>
@@ -39,11 +43,9 @@ function TransactionTable({ type }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {transactions
-            .filter(item => item.isExpense === isExpense)
-            .map(transaction => (
-              <TransactionRow key={transaction.id} transaction={transaction} />
-            ))}
+          {transactions.map(transaction => (
+            <TransactionRow key={transaction._id} transaction={transaction} />
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

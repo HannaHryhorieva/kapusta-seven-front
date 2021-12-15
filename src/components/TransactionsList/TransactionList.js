@@ -2,7 +2,8 @@ import { Button, ButtonGroup } from '@mui/material';
 import React, { useState } from 'react';
 
 import TransactionItem from './TransactionItem';
-import transactionsFromFile from './transactions.json';
+import { useSelector } from 'react-redux';
+import { transactionsSelectors } from '../../redux/transaction';
 
 const buttonGroupStyles = {
   boxShadow: 'none',
@@ -20,7 +21,7 @@ const buttonGroupStyles = {
 };
 
 function TransactionList() {
-  const [transactions, setTransactions] = useState(transactionsFromFile);
+  const transactions = useSelector(transactionsSelectors.getAllTransactions);
 
   return (
     <>

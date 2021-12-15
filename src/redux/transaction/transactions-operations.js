@@ -2,20 +2,20 @@ import * as transactionsApi from '../../api-service/transactionsApi';
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchAllTransactions = createAsyncThunk(
-  'transactions/fetchAllTransactions',
-  async (_, { rejectWithValue }) => {
-    try {
-      const data = await transactionsApi.allTransactions();
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
+// export const fetchAllTransactions = createAsyncThunk(
+//   'transactions/fetchAllTransactions',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const data = await transactionsApi.allTransactions();
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error);
+//     }
+//   },
+// );
 
-export const fetchAllTransactionsByYear = createAsyncThunk(
-  'transactions/fetchAllTransactionsByYear',
+export const fetchTransactionsSummaryByYear = createAsyncThunk(
+  'transactions/fetchTransactionsSummaryByYear',
   async (year, { rejectWithValue }) => {
     try {
       const data = await transactionsApi.allTransactionsByYear(year);
@@ -26,11 +26,24 @@ export const fetchAllTransactionsByYear = createAsyncThunk(
   },
 );
 
-export const fetchAllTransactionsByYearMonth = createAsyncThunk(
-  'transactions/fetchAllTransactionsByYearMonth',
+// export const fetchAllTransactionsByCategory = createAsyncThunk(
+//   'transactions/fetchAllTransactionsByCategory',
+//   async (date, { rejectWithValue }) => {
+//     try {
+//       const data = await transactionsApi.allTransactionsByCategory(date);
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error);
+//     }
+//   },
+// );
+
+export const fetchAllTransactionsByMonth = createAsyncThunk(
+  'transactions/fetchAllTransactionsByMonth',
   async (date, { rejectWithValue }) => {
     try {
-      const data = await transactionsApi.allTransactionsByYearMonth(date);
+      console.log('date:', date);
+      const data = await transactionsApi.allTransactionsByMonth(date);
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -61,12 +74,3 @@ export const fetchDeleteTransaction = createAsyncThunk(
     }
   },
 );
-
-// const operations = {
-//   fetchAddTransaction,
-//   fetchAllTransactions,
-//   fetchAllTransactionsByYear,
-//   fetchAllTransactionsByYearMonth,
-//   fetchDeleteTransaction,
-// };
-// export default operations;
