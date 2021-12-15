@@ -17,7 +17,7 @@ function TransactionRow({ transaction }) {
       <TableCell align="left">{transaction.description}</TableCell>
       <TableCell align="center">{transaction.category}</TableCell>
       <TableCell align="center">
-        {transaction.isExpense ? (
+        {!transaction.isIncome ? (
           <Typography color="#E7192E" fontWeight="700">
             - {amount}
           </Typography>

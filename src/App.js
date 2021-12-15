@@ -21,7 +21,7 @@ function App() {
 
         <HomeView />
 
-        <ExampleComponent />
+        {/* <ExampleComponent /> */}
       </div>
     </ThemeProvider>
   );

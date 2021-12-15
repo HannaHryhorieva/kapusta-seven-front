@@ -34,7 +34,7 @@ function TransactionItem({ transaction }) {
           </Typography>
         </div>
         <div style={{ width: '36%', textAlign: 'right' }}>
-          {transaction.isExpense ? (
+          {!transaction.isIncome ? (
             <Typography fontSize={14} color="#E7192E" fontWeight="700">
               - {amount}
             </Typography>
