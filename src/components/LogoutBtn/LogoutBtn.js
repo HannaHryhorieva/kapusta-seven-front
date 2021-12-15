@@ -25,16 +25,6 @@ const LogoutBtn = () => {
         className={s.btn}
         type="button"
       >
-
-
-// const LogoutBtn = () => {
-//   return (
-//     <div className={s.container}>
-//       <span className={s.avatar}>U</span>
-
-//       <p className={s.name}>Name</p>
-//       <button className={s.btn} type="button">
-
         <span className={s.logout}>Выйти</span>
         <img src={logout} alt="logout button" className={s.logoutIcon} />
       </button>
