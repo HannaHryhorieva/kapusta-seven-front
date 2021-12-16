@@ -5,6 +5,7 @@ import ExampleComponent from './example/ExampleComponent';
 import HomeView from './views/HomeView';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './styles/theme';
+import ReportPage from './views/ReportView';
 
 // import { useEffect, Suspense, lazy } from 'react';
 // import { useDispatch } from 'react-redux';
@@ -22,6 +23,9 @@ function App() {
         <HomeView />
 
         {/* <ExampleComponent /> */}
+        <AppBar position="fixed" />
+        <ExampleComponent />
+        <ReportPage />
       </div>
     </ThemeProvider>
   );
