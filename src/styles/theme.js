@@ -63,6 +63,17 @@ const themeOptions = {
     MuiButton: buttonStyles,
     MuiAppBar: appBarStyles,
     MuiTooltip: tooltipStyles,
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          border: '2px solid #F5F6FB',
+          borderRight: 'none',
+          outline: 'none',
+          '&.MuiOutlinedInput-input': {
+            border: 'none',
+          }
+        }
+      }},
     ...tableStyles,
   },
 };

@@ -7,14 +7,15 @@ import categories from './categories.json'
 import { buttonGroupStyles } from './buttonStyles'
 import { selectStyles } from './selectStyles'
 import calc from '../../images/icons/calculator.svg'
- 
+import './datePickerStyles.css'
+import calendar from '../../images/icons/calendar.svg'
 
 function Transaction() {
   
   const [date, setDate] = useState(new Date());
   const [description, setDescription] = useState('');
     const [category, setCategory] = useState('')
-const [sum, setSum] = useState(0)    
+const [sum, setSum] = useState()    
 //   const dispatch = useDispatch();
 //   const contacts = useSelector(getFilteredContacts);
  
@@ -54,16 +55,21 @@ const [sum, setSum] = useState(0)
 
  
     return (
-        <form onSubmit={handleSubmit} className={s.form}>
-            <DatePicker
+      <form onSubmit={handleSubmit} className={s.form}>
+        <div className={ s.wrapInputs}>
+        <label className={ s.label}>
+          <img src={calendar} style={{marginRight: '10px'}} alt='calendar'/>
+          <DatePicker
                 id='date'
-                className={ s.date}
+                className={s.date}
                 name='date'
                 dateFormat="dd.MM.yyyy"
                 selected={date}
                 onChange={data => setDate(data)}
                 required
             />
+        </label>
+            
           <input
             className={s.desc}
             type="text"
@@ -86,7 +92,8 @@ const [sum, setSum] = useState(0)
               {option.label}
             </MenuItem>
           ))}
-            </Select>
+        </Select>
+        <label className={s.sumWrap}>
           <input
             className={s.sum}
             type="number"
@@ -95,10 +102,12 @@ const [sum, setSum] = useState(0)
             onChange={handleChange}
             placeholder='0,00'
             pattern="^\d{1,3}(\s\d{3})*(\.\d+)?$"
-            //title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
             required
             />
             <img className={s.iconCalc } src={ calc} alt='калькулятор'/>
+          </label>
+          </div>
+          
             <ButtonGroup
             color="secondary"
         variant="outlined"
