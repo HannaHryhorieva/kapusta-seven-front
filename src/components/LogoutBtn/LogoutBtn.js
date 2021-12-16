@@ -10,7 +10,7 @@ const LogoutBtn = () => {
     <div className={s.container}>
       {showModal && (
         <Modal
-          onCloseButtonClick={() => {
+          onClose={() => {
             setShowModal(false);
           }}
         />

@@ -6,16 +6,29 @@ import { Button } from '@mui/material';
 
 const modalRoot = document.querySelector('#modal-root');
 
-type ModalProps = {
-  onCloseButtonClick: () => void,
-};
+function Modal({ onClose }) {
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  });
 
-function Modal(props: ModalProps) {
-  const { onCloseButtonClick } = props;
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      onClose();
+    }
+  };
+
+  const handleBackdropClick = e => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
   return createPortal(
-    <div className={s.Overlay}>
+    <div className={s.Overlay} onClick={handleBackdropClick}>
       <div className={s.Modal}>
-        <span className={s.modalClose} onClick={onCloseButtonClick}>
+        <span className={s.modalClose} onClick={handleBackdropClick}>
           &#10005;
         </span>
         <div className={s.ModalContainer}>
@@ -23,31 +36,22 @@ function Modal(props: ModalProps) {
             <p>Вы действительно хотите выйти?</p>
           </div>
 
-          {/* <div className={s.ModalContainerBtn}> */}
           <ul className={s.ModalContainerBtn}>
             <li className={s.ModalBtn}>
-              <Button color="primary" variant="contained">
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={handleBackdropClick}
+              >
                 Да
               </Button>
             </li>
             <li>
               <Button color="info" variant="outlined">
-                нет
+                Нет
               </Button>
             </li>
           </ul>
-
-          {/* <button className={s.ModalBtn} type="button">
-              Да
-            </button> */}
-          {/* <button
-              className={s.ModalBtn}
-              onClick={onCloseButtonClick}
-              type="button"
-            >
-              Нет
-            </button> */}
-          {/* </div> */}
         </div>
       </div>
     </div>,
