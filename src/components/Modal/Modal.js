@@ -1,7 +1,8 @@
-// import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useEffect } from 'react';
 import s from './Modal.module.css';
-// import PropTypes from 'prop-types';
+
+import { Button } from '@mui/material';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -22,18 +23,31 @@ function Modal(props: ModalProps) {
             <p>Вы действительно хотите выйти?</p>
           </div>
 
-          <div className={s.ModalContainerBtn}>
-            <button className={s.ModalBtn} type="button">
+          {/* <div className={s.ModalContainerBtn}> */}
+          <ul className={s.ModalContainerBtn}>
+            <li className={s.ModalBtn}>
+              <Button color="primary" variant="contained">
+                Да
+              </Button>
+            </li>
+            <li>
+              <Button color="info" variant="outlined">
+                нет
+              </Button>
+            </li>
+          </ul>
+
+          {/* <button className={s.ModalBtn} type="button">
               Да
-            </button>
-            <button
+            </button> */}
+          {/* <button
               className={s.ModalBtn}
               onClick={onCloseButtonClick}
               type="button"
             >
               Нет
-            </button>
-          </div>
+            </button> */}
+          {/* </div> */}
         </div>
       </div>
     </div>,
