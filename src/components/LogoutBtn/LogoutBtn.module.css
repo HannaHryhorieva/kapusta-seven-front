@@ -35,11 +35,12 @@
 
 .btn {
   padding: 0;
-  background-color: #fff;
+  background-color: transparent;
 
   border: none;
 }
 .logoutIcon {
+  margin-right: 20px;
   width: 16px;
   height: 16px;
 }

@@ -1,8 +1,16 @@
+html {
+  font-size: '12px';
+  line-height: 1.17;
+  letter-spacing: '0.04em';
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #52555f;
+  /* background-color: lightgray; */
 }
 
 code {
