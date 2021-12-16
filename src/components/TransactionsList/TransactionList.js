@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from '@mui/material';
+import { Button, ButtonGroup, LinearProgress } from '@mui/material';
 import React, { useState } from 'react';
 
 import TransactionItem from './TransactionItem';
@@ -23,8 +23,11 @@ const buttonGroupStyles = {
 function TransactionList() {
   const transactions = useSelector(transactionsSelectors.getAllTransactions);
 
+  const isLoading = useSelector(transactionsSelectors.getTransactionsIsLoading);
+
   return (
     <>
+      {isLoading && <LinearProgress />}
       <ul
         style={{
           listStyle: 'none',
