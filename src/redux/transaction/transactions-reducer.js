@@ -5,6 +5,8 @@ import {
   fetchTransactionsSummaryByYear,
 } from './transactions-operations';
 
+import * as actions from './transactions-actions';
+
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
@@ -57,7 +59,7 @@ const selectedDate = createReducer(initialDate, {
 
 const isLoading = createReducer(false, {
   [fetchAllTransactionsByMonth.pending]: () => true,
-  [fetchAllTransactionsByMonth.fullfilled]: () => false,
+  [fetchAllTransactionsByMonth.fulfilled]: () => false,
   [fetchAllTransactionsByMonth.rejected]: () => false,
 
   // [fetchAllTransactions.pending]: () => true,
@@ -101,6 +103,8 @@ const error = createReducer(null, {
 
   [fetchDeleteTransaction.pending]: () => null,
   [fetchDeleteTransaction.rejected]: setError,
+
+  [actions.resetError]: () => null,
 });
 
 export default combineReducers({
