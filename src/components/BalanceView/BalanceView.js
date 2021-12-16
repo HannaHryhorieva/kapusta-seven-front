@@ -6,6 +6,11 @@ const BalanceView = () => {
   const [inputValue, setInputValue] = useState('');
   const [balance, setBalance] = useState(0);
 
+    const formatter = new Intl.NumberFormat('uk-UA', {
+    style: 'currency',
+    currency: 'UAH',
+    });
+  
   const formatNumber = n => {
     return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   };
@@ -30,33 +35,34 @@ const BalanceView = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    let submitValue = inputValue;
+    let submitValue = Number.parseFloat(inputValue.split(' ').join())
     if (!inputValue.includes('.')) {
-      submitValue += '.00';
+      submitValue = formatter.format(submitValue);
     }
     setBalance(submitValue);
+    console.log(submitValue)
   };
 
   return (
     <div className={s.container}>
       <p className={s.title}>Баланс:</p>
       {balance ? (
-        <span className={s.balance}> {balance} UAH</span>
+        <span className={s.balance}> {balance}</span>
       ) : (
         <form className={s.form} onSubmit={handleSubmit}>
           <Tooltip
             title={
-              <Typography color="inherit">
-                <p style={{ marginBottom: '20px' }}>
+              <Typography color="inherit" >
+                <span style={{ display: 'block', marginBottom: '20px' }}>
                   Привет! Для начала работы внеси текущий баланс своего счета!
-                </p>
-                <p style={{ fontSize: '14px' }}>
+                </span>
+                <span style={{ fontSize: '14px' }}>
                   Ты не можешь тратить деньги пока их у тебя нет :)
-                </p>
+                </span>
               </Typography>
             }
             arrow
-            leaveDelay="3000"
+           
           >
             <input
               value={inputValue}

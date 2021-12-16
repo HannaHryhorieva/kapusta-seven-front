@@ -11,13 +11,14 @@ import theme from './styles/theme';
 // import { Switch, Route } from 'react-router-dom';
 
 // const HomeView = lazy(() => import('./views/HomeView'));
-
+import Transaction from './components/TransactionForm/Transaction';
 function App() {
   // const dispatch = useDispatch();
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <AppBar position="fixed" />
+        <Transaction/> 
 
         <HomeView />
 
