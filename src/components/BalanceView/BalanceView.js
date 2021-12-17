@@ -1,7 +1,11 @@
 import s from './BalanceView.module.css';
 import { useState } from 'react';
 import { Typography, Tooltip } from '@mui/material';
-
+//with back
+// import { fetchUpdBalance } from '../../redux/balance/balance-operations';
+// import { useDispatch, useSelector } from 'react-redux';
+// import {getBalance } from '../../redux/balance/balance-selectors'
+//============
 const BalanceView = () => {
   const [inputValue, setInputValue] = useState('');
   const [balance, setBalance] = useState(0);
@@ -10,6 +14,11 @@ const BalanceView = () => {
     style: 'currency',
     currency: 'UAH',
   }); 
+//with back
+  //  const dispatch = useDispatch();
+  // const balance = formatter.format(useSelector(getBalance))
+  //=============
+
   // const formatNumber = n => {
   //   return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   // };
@@ -38,6 +47,8 @@ const BalanceView = () => {
     // if (!inputValue.includes('.')) {
     //   submitValue += '.00';
     // }
+    //with back
+    // dispatch(fetchUpdBalance(inputValue))
     setBalance(formatter.format(inputValue))
   };
 
