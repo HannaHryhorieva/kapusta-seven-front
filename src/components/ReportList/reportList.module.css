@@ -1,0 +1,65 @@
+.iconEllipse {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 59px;
+  height: 46px;
+  background-color: #f5f6fb;
+  border-radius: 20px;
+}
+
+li:hover .iconEllipse,
+li:focus .iconEllipse {
+  background-color: #ffdac0;
+}
+
+li:hover svg,
+li:focus svg {
+  fill: #ff751d;
+}
+
+.iconWrap {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 17px;
+  margin-bottom: 5px;
+}
+
+.expenseList {
+  display: flex;
+  margin-top: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.expenseList > li:not(:last-child):not(:nth-child(6n)) {
+  margin-right: 30px;
+}
+
+.expenseList > li:not(:nth-last-child(-n + 6)) {
+  margin-bottom: 40px;
+}
+
+.expenseList > li {
+  padding: 0 5px;
+}
+
+.expenseListMobile {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.expenseListMobile > li {
+  width: 100px;
+  padding: 15px;
+  border-bottom: 1px solid #e0e5eb;
+}
+
+.expenseListMobile > li:not(:nth-last-child(-n + 2)) {
+  margin-bottom: 20px;
+}

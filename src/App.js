@@ -5,7 +5,10 @@ import ExampleComponent from './example/ExampleComponent';
 import HomeView from './views/HomeView';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './styles/theme';
+
+import ReportPage from './views/ReportView';
 import { Auth } from './components/Auth/Auth';
+
 
 // import { useEffect, Suspense, lazy } from 'react';
 // import { useDispatch } from 'react-redux';
@@ -21,10 +24,8 @@ function App() {
         <AppBar position="fixed" />
         <ExampleComponent />
         <Auth />
-
         <HomeView />
-
-        {/* <ExampleComponent /> */}
+        <ReportPage />
       </div>
     </ThemeProvider>
   );
