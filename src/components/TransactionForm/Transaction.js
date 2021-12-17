@@ -9,6 +9,9 @@ import { selectStyles } from './selectStyles'
 import calc from '../../images/icons/calculator.svg'
 import './datePickerStyles.css'
 import calendar from '../../images/icons/calendar.svg'
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 
 function Transaction() {
   
@@ -18,7 +21,9 @@ function Transaction() {
 const [sum, setSum] = useState()    
 //   const dispatch = useDispatch();
 //   const contacts = useSelector(getFilteredContacts);
- 
+ const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
+   const isTablet = useMediaQuery(theme.breakpoints.only('tablet'));
   const handleChange = e => {
     const { name, value } = e.target;
 
@@ -79,7 +84,11 @@ const [sum, setSum] = useState()
             placeholder='Описание расхода'
             />
             <Select
-                sx={selectStyles}
+                sx={isMobile
+              ? { width: '280px', marginBottom: '30px', }
+              : isTablet
+              ? { width: '168px', marginBottom: 0,  borderRight: 'none', }
+              : selectStyles}
                 id="select"
                 name='category'
                 label="Категория товара"
