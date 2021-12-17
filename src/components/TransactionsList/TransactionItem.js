@@ -3,7 +3,7 @@ import { IconButton, Typography } from '@mui/material';
 import { ReactComponent as DeleteIcon } from '../../images/icons/delete.svg';
 import React from 'react';
 
-function TransactionItem({ transaction }) {
+function TransactionItem({ transaction, deleteDialogHandler }) {
   const formatter = new Intl.NumberFormat('uk-UA', {
     style: 'currency',
     currency: 'UAH',
@@ -45,7 +45,11 @@ function TransactionItem({ transaction }) {
           )}
         </div>
         <div style={{ width: '10%', textAlign: 'center' }}>
-          <IconButton aria-label="Удалить транзакцию" sx={{ p: '6px' }}>
+          <IconButton
+            onClick={() => deleteDialogHandler(transaction._id)}
+            aria-label="Удалить транзакцию"
+            sx={{ p: '6px' }}
+          >
             <DeleteIcon />
           </IconButton>
         </div>

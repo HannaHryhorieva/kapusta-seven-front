@@ -9,13 +9,14 @@ import {
   Typography,
   LinearProgress,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 
 import TransactionRow from './TransactionRow';
 import { useSelector } from 'react-redux';
 import { transactionsSelectors } from '../../redux/transaction';
+import EmptyRow from './EmptyRow';
 
-function TransactionTable({ type }) {
+function TransactionTable({ type, deleteDialogHandler }) {
   const selectorType =
     type === 'expense'
       ? transactionsSelectors.getExpenseTransactions
@@ -49,8 +50,16 @@ function TransactionTable({ type }) {
           </TableHead>
           <TableBody>
             {transactions.map(transaction => (
-              <TransactionRow key={transaction._id} transaction={transaction} />
+              <TransactionRow
+                key={transaction._id}
+                transaction={transaction}
+                deleteDialogHandler={deleteDialogHandler}
+              />
             ))}
+            {transactions.length < 9 &&
+              Array(9 - transactions.length)
+                .fill()
+                .map((item, index) => <EmptyRow key={index}></EmptyRow>)}
           </TableBody>
         </Table>
       </TableContainer>
