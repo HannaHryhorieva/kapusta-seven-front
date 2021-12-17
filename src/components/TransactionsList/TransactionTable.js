@@ -29,8 +29,13 @@ function TransactionTable({ type, deleteDialogHandler }) {
   return (
     <>
       {isLoading && <LinearProgress />}
-      <TableContainer component={Paper}>
-        <Table>
+      <TableContainer
+        component={Paper}
+        sx={{
+          height: '437px',
+        }}
+      >
+        <Table stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell align="left">

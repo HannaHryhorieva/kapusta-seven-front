@@ -20,6 +20,7 @@ const tableStyles = {
   MuiTableCell: {
     styleOverrides: {
       root: {
+        fontSize: '12px',
         padding: 10,
         paddingLeft: 20,
       },

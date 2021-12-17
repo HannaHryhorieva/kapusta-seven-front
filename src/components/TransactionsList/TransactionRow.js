@@ -18,17 +18,18 @@ function TransactionRow({ transaction, deleteDialogHandler }) {
       <TableCell align="center">{transaction.category}</TableCell>
       <TableCell align="center">
         {!transaction.isIncome ? (
-          <Typography color="#E7192E" fontWeight="700">
+          <Typography color="#E7192E" fontWeight="700" fontSize={12}>
             - {amount}
           </Typography>
         ) : (
-          <Typography color="#407946" fontWeight="700">
+          <Typography color="#407946" fontWeight="700" fontSize={12}>
             {amount}
           </Typography>
         )}
       </TableCell>
       <TableCell align="center" sx={{ width: 110 }}>
         <IconButton
+          sx={{ padding: '3px' }}
           aria-label="Удалить транзакцию"
           onClick={() => deleteDialogHandler(transaction._id)}
         >
