@@ -13,14 +13,15 @@ import calendar from '../../images/icons/calendar.svg'
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { fetchAddTransaction } from '../../redux/transaction/transactions-operations'
+import { expenseToBalance } from '../../redux/balance/balance-actions'
 
 
-function Transaction() {
+function Transaction({ categories, isIncome, placeholder, toBalance}) {
   
   const [date, setDate] = useState(new Date());
   const [description, setDescription] = useState('');
     const [category, setCategory] = useState('')
-const [sum, setSum] = useState()    
+const [amount, setAmount] = useState()    
 const dispatch = useDispatch();
 //   const contacts = useSelector(getFilteredContacts);
  const theme = useTheme();
@@ -39,8 +40,8 @@ const dispatch = useDispatch();
         case 'category':
             setCategory(value);
             break;
-        case 'sum':
-            setSum(value);
+        case 'amount':
+            setAmount(value);
             break;
       default:
         return;
@@ -49,8 +50,12 @@ const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(fetchAddTransaction({date, description, category, sum}))
-      console.log([date, description, category, sum])
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+    dispatch(fetchAddTransaction({ year, month, day, description, category, amount, isIncome}))
+    dispatch(expenseToBalance(amount))
+    console.log([year, month, day, description, category, amount])
     reset();
   };
 
@@ -58,7 +63,7 @@ const dispatch = useDispatch();
       setDate(new Date())
       setDescription('');
       setCategory('')
-      setSum(0)
+      setAmount(0)
   };
 
  
@@ -84,7 +89,7 @@ const dispatch = useDispatch();
             name="description"
             value={description}
             onChange={handleChange}
-            placeholder='Описание расхода'
+            placeholder={placeholder}
             />
             <Select
                 sx={isMobile
@@ -109,8 +114,8 @@ const dispatch = useDispatch();
           <input
             className={s.sum}
             type="number"
-            name="sum"
-            value={sum}
+            name="amount"
+            value={amount}
             onChange={handleChange}
             placeholder='0,00'
             pattern="^\d{1,3}(\s\d{3})*(\.\d+)?$"
@@ -125,7 +130,7 @@ const dispatch = useDispatch();
         variant="outlined"
         sx={buttonGroupStyles}
             >
-                <Button type="submit">Ввод</Button>
+                <Button type="submit" >Ввод</Button>
                 <Button type="button" onClick={reset}>Очистить</Button>
 </ButtonGroup>
          
@@ -134,4 +139,10 @@ const dispatch = useDispatch();
 
 }
 
+Transaction.defaultProps = {
+  isIncome: false,
+  categories: categories, 
+  placeholder: 'Описание расхода',
+toBalance: expenseToBalance,
+}
 export default Transaction;
