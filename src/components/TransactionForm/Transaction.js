@@ -1,5 +1,6 @@
 import { ButtonGroup, Button, Select, MenuItem } from '@mui/material';
 import { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import s from './Transaction.module.css'
@@ -11,6 +12,7 @@ import './datePickerStyles.css'
 import calendar from '../../images/icons/calendar.svg'
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { fetchAddTransaction } from '../../redux/transaction/transactions-operations'
 
 
 function Transaction() {
@@ -19,7 +21,7 @@ function Transaction() {
   const [description, setDescription] = useState('');
     const [category, setCategory] = useState('')
 const [sum, setSum] = useState()    
-//   const dispatch = useDispatch();
+const dispatch = useDispatch();
 //   const contacts = useSelector(getFilteredContacts);
  const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
@@ -47,6 +49,7 @@ const [sum, setSum] = useState()
 
   const handleSubmit = e => {
     e.preventDefault();
+    dispatch(fetchAddTransaction({date, description, category, sum}))
       console.log([date, description, category, sum])
     reset();
   };
