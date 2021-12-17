@@ -5,6 +5,7 @@ import ExampleComponent from './example/ExampleComponent';
 import HomeView from './views/HomeView';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './styles/theme';
+import { Auth } from './components/Auth/Auth';
 
 // import { useEffect, Suspense, lazy } from 'react';
 // import { useDispatch } from 'react-redux';
@@ -18,6 +19,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <AppBar position="fixed" />
+        <ExampleComponent />
+        <Auth />
 
         <HomeView />
 

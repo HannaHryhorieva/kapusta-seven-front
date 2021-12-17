@@ -1,0 +1,45 @@
+.div {
+  display: flex;
+  flex-direction: column;
+  box-sizing: content-box;
+  width: 100%;
+  padding: 40px 20px 50px;
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+  width: 260px;
+  height: 435px;
+  border-radius: 30px;
+}
+
+.text {
+  font-size: 10px;
+  font-weight: 12px;
+  letter-spacing: 0.04em;
+  color: #52555f;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.inputText {
+  font-size: 10px;
+  font-weight: 12px;
+  margin-bottom: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .div {
+    padding: 50px 85px;
+  }
+
+  .text {
+    font-size: 12px;
+    font-weight: 14px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .inputText {
+    font-size: 12px;
+    font-weight: 14px;
+    margin-bottom: 10px;
+  }
+}
