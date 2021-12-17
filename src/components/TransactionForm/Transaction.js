@@ -55,7 +55,6 @@ const dispatch = useDispatch();
     const day = date.getDate();
     dispatch(fetchAddTransaction({ year, month, day, description, category, amount, isIncome}))
     dispatch(toBalance(amount))
-    console.log([year, month, day, description, category, amount])
     reset();
   };
 
@@ -146,4 +145,5 @@ Transaction.defaultProps = {
   toBalance: expenseToBalance,
 selectLabel: 'Категория товара'
 }
+
 export default Transaction;
