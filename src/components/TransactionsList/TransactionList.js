@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, LinearProgress } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 
 import TransactionItem from './TransactionItem';
 import { useSelector } from 'react-redux';
@@ -20,7 +20,7 @@ const buttonGroupStyles = {
   '& .MuiButton-root:hover': { backgroundColor: '#FF751D', color: '#fff' },
 };
 
-function TransactionList() {
+function TransactionList({ deleteDialogHandler }) {
   const transactions = useSelector(transactionsSelectors.getAllTransactions);
 
   const isLoading = useSelector(transactionsSelectors.getTransactionsIsLoading);
@@ -37,7 +37,11 @@ function TransactionList() {
         }}
       >
         {transactions.map(transaction => (
-          <TransactionItem key={transaction.id} transaction={transaction} />
+          <TransactionItem
+            key={transaction._id}
+            transaction={transaction}
+            deleteDialogHandler={deleteDialogHandler}
+          />
         ))}
       </ul>
       <ButtonGroup

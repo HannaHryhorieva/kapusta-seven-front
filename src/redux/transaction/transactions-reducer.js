@@ -25,6 +25,10 @@ const transactionsByMonth = createReducer([], {
       ...item,
       date: `${item.day}.${item.month}.${item.year}`,
     })),
+  [fetchDeleteTransaction.fulfilled]: (state, { payload }) =>
+    state.filter(item => {
+      return item._id !== payload.data._id;
+    }),
   //todo implement add and delete transactions
 });
 
@@ -35,7 +39,7 @@ const summaryByYear = createReducer([], {
     ...state,
     ...payload,
   ],
-  [fetchDeleteTransaction.fulfilled]: (state, { payload }) => [],
+  // [fetchDeleteTransaction.fulfilled]: (state, { payload }) => [],
 });
 
 const initialDate = {
