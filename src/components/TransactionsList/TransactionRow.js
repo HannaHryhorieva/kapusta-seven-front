@@ -3,7 +3,7 @@ import { IconButton, TableCell, TableRow, Typography } from '@mui/material';
 import { ReactComponent as DeleteIcon } from '../../images/icons/delete.svg';
 import React from 'react';
 
-function TransactionRow({ transaction }) {
+function TransactionRow({ transaction, deleteDialogHandler }) {
   const formatter = new Intl.NumberFormat('uk-UA', {
     style: 'currency',
     currency: 'UAH',
@@ -17,7 +17,7 @@ function TransactionRow({ transaction }) {
       <TableCell align="left">{transaction.description}</TableCell>
       <TableCell align="center">{transaction.category}</TableCell>
       <TableCell align="center">
-        {transaction.isExpense ? (
+        {!transaction.isIncome ? (
           <Typography color="#E7192E" fontWeight="700">
             - {amount}
           </Typography>
@@ -28,7 +28,10 @@ function TransactionRow({ transaction }) {
         )}
       </TableCell>
       <TableCell align="center" sx={{ width: 110 }}>
-        <IconButton aria-label="Удалить транзакцию">
+        <IconButton
+          aria-label="Удалить транзакцию"
+          onClick={() => deleteDialogHandler(transaction._id)}
+        >
           <DeleteIcon />
         </IconButton>
       </TableCell>

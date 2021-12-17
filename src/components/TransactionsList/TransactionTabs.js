@@ -4,7 +4,7 @@ import { TabContext, TabList, TabPanel } from '@mui/lab';
 
 import TransactionTable from './TransactionTable';
 
-function TransactionTabs() {
+function TransactionTabs({ deleteDialogHandler }) {
   const [value, setValue] = useState('expense');
 
   const handleChange = (event, newValue) => {
@@ -26,9 +26,6 @@ function TransactionTabs() {
       color: '#FF751D',
       border: 'none',
     },
-    // '& .MuiTabPanel-root': {
-    //   padding: 0,
-    // },
   };
 
   const paperStyle = {
@@ -53,10 +50,16 @@ function TransactionTabs() {
         </TabList>
         <Paper sx={paperStyle}>
           <TabPanel value="expense" sx={{ padding: 0 }}>
-            <TransactionTable type="expense" />
+            <TransactionTable
+              type="expense"
+              deleteDialogHandler={deleteDialogHandler}
+            />
           </TabPanel>
           <TabPanel value="income" sx={{ padding: 0 }}>
-            <TransactionTable type="income" />
+            <TransactionTable
+              type="income"
+              deleteDialogHandler={deleteDialogHandler}
+            />
           </TabPanel>
         </Paper>
       </TabContext>

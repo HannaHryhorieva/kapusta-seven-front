@@ -51,6 +51,14 @@ const themeOptions = {
       lineHeight: 1.17,
       letterSpacing: '0.04em',
     },
+    h2: {
+      fontSize: 14,
+      lineHeight: 1.14,
+      letterSpacing: '0.02em',
+      fontWeight: 700,
+      color: '#000000',
+      align: 'center',
+    },
   },
   breakpoints: {
     values: {
