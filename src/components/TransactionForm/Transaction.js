@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import s from './Transaction.module.css'
-import categories from './categories.json'
+import categories from './expenseCategories.json'
 import { buttonGroupStyles } from './buttonStyles'
 import { selectStyles } from './selectStyles'
 import calc from '../../images/icons/calculator.svg'
@@ -16,7 +16,7 @@ import { fetchAddTransaction } from '../../redux/transaction/transactions-operat
 import { expenseToBalance } from '../../redux/balance/balance-actions'
 
 
-function Transaction({ categories, isIncome, placeholder, toBalance}) {
+function Transaction({ categories, isIncome, placeholder, toBalance, selectLabel}) {
   
   const [date, setDate] = useState(new Date());
   const [description, setDescription] = useState('');
@@ -54,7 +54,7 @@ const dispatch = useDispatch();
     const month = date.getMonth();
     const day = date.getDate();
     dispatch(fetchAddTransaction({ year, month, day, description, category, amount, isIncome}))
-    dispatch(expenseToBalance(amount))
+    dispatch(toBalance(amount))
     console.log([year, month, day, description, category, amount])
     reset();
   };
@@ -99,7 +99,7 @@ const dispatch = useDispatch();
               : selectStyles}
                 id="select"
                 name='category'
-                label="Категория товара"
+            label={ selectLabel}
                 value={category}
                 onChange={handleChange}
                 required
@@ -143,6 +143,7 @@ Transaction.defaultProps = {
   isIncome: false,
   categories: categories, 
   placeholder: 'Описание расхода',
-toBalance: expenseToBalance,
+  toBalance: expenseToBalance,
+selectLabel: 'Категория товара'
 }
 export default Transaction;
