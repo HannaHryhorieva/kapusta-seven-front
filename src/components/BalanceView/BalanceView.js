@@ -15,7 +15,7 @@ const BalanceView = () => {
 
   const dispatch = useDispatch();
   const balance = formatter.format(useSelector(getBalance))
-
+  
   // const formatNumber = n => {
   //   return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   // };
@@ -51,7 +51,7 @@ const BalanceView = () => {
   return (
     <div className={s.container}>
       <p className={s.title}>Баланс:</p>
-      {balance ? (
+      {balance > 0 ? (
         <span className={s.balance}> {balance}</span>
       ) : (
         <form className={s.form} onSubmit={handleSubmit}>
