@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import s from './Transaction.module.css'
-import categories from './expenseCategories.json'
+import expenseCategories from './expenseCategories.json'
 import { buttonGroupStyles } from './buttonStyles'
 import { selectStyles } from './selectStyles'
 import calc from '../../images/icons/calculator.svg'
@@ -140,7 +140,7 @@ const dispatch = useDispatch();
 
 Transaction.defaultProps = {
   isIncome: false,
-  categories: categories, 
+  categories: expenseCategories, 
   placeholder: 'Описание расхода',
   toBalance: expenseToBalance,
 selectLabel: 'Категория товара'

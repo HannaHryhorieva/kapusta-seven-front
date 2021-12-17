@@ -1,8 +1,10 @@
 import { Box, Paper, Tab } from '@mui/material';
 import React, { useState } from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-
+import Transaction from '../TransactionForm/Transaction';
 import TransactionTable from './TransactionTable';
+import incomeCategories from '../TransactionForm/incomeCategories.json'
+import { incomeToBalance } from '../../redux/balance/balance-actions'
 
 function TransactionTabs({ deleteDialogHandler }) {
   const [value, setValue] = useState('expense');
@@ -50,12 +52,20 @@ function TransactionTabs({ deleteDialogHandler }) {
         </TabList>
         <Paper sx={paperStyle}>
           <TabPanel value="expense" sx={{ padding: 0 }}>
+            <Transaction/>
             <TransactionTable
               type="expense"
               deleteDialogHandler={deleteDialogHandler}
             />
           </TabPanel>
           <TabPanel value="income" sx={{ padding: 0 }}>
+            <Transaction
+              isIncome='true'
+              categories={incomeCategories}
+              toBalance={() => incomeToBalance()}
+              placeholder='Описание дохода'
+              selectLabel='Категория дохода'
+            />
             <TransactionTable
               type="income"
               deleteDialogHandler={deleteDialogHandler}

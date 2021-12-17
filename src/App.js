@@ -15,7 +15,7 @@ import { Auth } from './components/Auth/Auth';
 // import { Switch, Route } from 'react-router-dom';
 
 // const HomeView = lazy(() => import('./views/HomeView'));
-import Transaction from './components/TransactionForm/Transaction';
+
 function App() {
   // const dispatch = useDispatch();
   return (
@@ -24,7 +24,6 @@ function App() {
         <AppBar position="fixed" />
         {/* <ExampleComponent /> */}
         <Auth />
-<Transaction/>
         <HomeView />
         <ReportPage />
       </div>

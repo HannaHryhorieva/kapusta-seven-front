@@ -97,6 +97,8 @@
 @media screen and (min-width: 1024px) {
   .form {
     flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 60px;
   }
   .wrapInputs {
     margin-bottom: 0;
