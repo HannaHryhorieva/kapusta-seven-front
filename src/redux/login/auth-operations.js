@@ -71,13 +71,14 @@ export const fetchLogout = createAsyncThunk(
     }
   },
 );
+//cheching
+const authOperations = {
+  fetchSignup,
+  fetchGoogleAuth,
+  fetchGoogleRedirect,
+  fetchVerify,
+  fetchSignin,
+  fetchLogout,
+};
 
-// const operations = {
-//   fetchSignup,
-//   fetchGoogleAuth,
-//   fetchGoogleRedirect,
-//   fetchVerify,
-//   fetchSignin,
-//   fetchLogout,
-// };
-// export default operations;
+export default authOperations;

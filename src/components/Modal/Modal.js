@@ -6,7 +6,7 @@ import { Button } from '@mui/material';
 
 const modalRoot = document.querySelector('#modal-root');
 
-function Modal({ onClose }) {
+function Modal({ onClose, onLogout }) {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
@@ -26,9 +26,9 @@ function Modal({ onClose }) {
     }
   };
   return createPortal(
-    <div className={s.Overlay} onClick={handleBackdropClick}>
-      <div className={s.Modal}>
-        <span className={s.modalClose} onClick={handleBackdropClick}>
+    <div className={s.Overlay}>
+      <div className={s.Modal} onClick={handleBackdropClick}>
+        <span className={s.modalClose} onClick={onClose}>
           &#10005;
         </span>
         <div className={s.ModalContainer}>
@@ -41,13 +41,13 @@ function Modal({ onClose }) {
               <Button
                 color="primary"
                 variant="contained"
-                onClick={handleBackdropClick}
+                onClick={onLogout}
               >
                 Да
               </Button>
             </li>
             <li>
-              <Button color="info" variant="outlined">
+              <Button color="info" variant="outlined" onClick={onClose}>
                 Нет
               </Button>
             </li>
