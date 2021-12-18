@@ -1,9 +1,10 @@
+import { Tooltip, Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchUpdBalance } from '../../redux/balance/balance-operations';
+import { getBalance } from '../../redux/balance/balance-selectors';
 import s from './BalanceView.module.css';
 import { useState } from 'react';
-import { Typography, Tooltip } from '@mui/material';
-import { fetchUpdBalance } from '../../redux/balance/balance-operations';
-import { useDispatch, useSelector } from 'react-redux';
-import { getBalance } from '../../redux/balance/balance-selectors';
 
 const BalanceView = () => {
   const [inputValue, setInputValue] = useState();
@@ -89,4 +90,4 @@ const BalanceView = () => {
   );
 };
 
-export { BalanceView };
+export default BalanceView;

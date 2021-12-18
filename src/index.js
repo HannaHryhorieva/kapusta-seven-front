@@ -1,14 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import 'modern-normalize/modern-normalize.css';
-import './index.css';
+import './styles/index.css';
+import './styles/App.css';
 
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from './redux/store';
+import { persistor, store } from './redux/store';
 
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 ReactDOM.render(
   <React.StrictMode>
