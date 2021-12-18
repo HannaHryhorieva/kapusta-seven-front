@@ -9,8 +9,12 @@ export const getExpenseTransactions = state => {
   return state.transactions.transactionsByMonth.filter(item => !item.isIncome);
 };
 
-// export const getSummaryByYear = state => state.transactions.transactionsByMonth;
 export const getSummaryByYear = state => state.transactions.summaryByYear;
+
+export const getTransactionsByCategory = state => {
+  return state.transactions.transactionsByCategory.data;
+};
+
 // export const getAllTransactionsByYearMonth = state =>
 //   state.transactions.allTransactionsByYearMonth;
 

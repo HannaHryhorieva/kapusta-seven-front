@@ -1,14 +1,16 @@
 import { Box, Paper, Tab } from '@mui/material';
 import React, { useState } from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-
+import Transaction from '../TransactionForm/Transaction';
 import TransactionTable from './TransactionTable';
+import incomeCategories from '../TransactionForm/incomeCategories.json';
+import { incomeToBalance } from '../../redux/balance/balance-actions';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Summary from '../summary/Summary';
 
-function TransactionTabs() {
+function TransactionTabs({ deleteDialogHandler }) {
   const [value, setValue] = useState('expense');
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.down('desktop'));
@@ -31,9 +33,6 @@ function TransactionTabs() {
       color: '#FF751D',
       border: 'none',
     },
-    // '& .MuiTabPanel-root': {
-    //   padding: 0,
-    // },
   };
 
   const paperStyle = {
@@ -62,10 +61,24 @@ function TransactionTabs() {
         </TabList>
         <Paper sx={paperStyle}>
           <TabPanel value="expense" sx={{ padding: 0, flexGrow: '1' }}>
-            <TransactionTable type="expense" />
+            <Transaction />
+            <TransactionTable
+              type="expense"
+              deleteDialogHandler={deleteDialogHandler}
+            />
           </TabPanel>
           <TabPanel value="income" sx={{ padding: 0, flexGrow: '1' }}>
-            <TransactionTable type="income" />
+            <Transaction
+              isIncome="true"
+              categories={incomeCategories}
+              toBalance={() => incomeToBalance()}
+              placeholder="Описание дохода"
+              selectLabel="Категория дохода"
+            />
+            <TransactionTable
+              type="income"
+              deleteDialogHandler={deleteDialogHandler}
+            />
           </TabPanel>
           <Summary value={value} />
         </Paper>

@@ -26,23 +26,22 @@ export const fetchTransactionsSummaryByYear = createAsyncThunk(
   },
 );
 
-// export const fetchAllTransactionsByCategory = createAsyncThunk(
-//   'transactions/fetchAllTransactionsByCategory',
-//   async (date, { rejectWithValue }) => {
-//     try {
-//       const data = await transactionsApi.allTransactionsByCategory(date);
-//       return data;
-//     } catch (error) {
-//       return rejectWithValue(error);
-//     }
-//   },
-// );
+export const fetchAllTransactionsByCategory = createAsyncThunk(
+  'transactions/fetchAllTransactionsByCategory',
+  async (date, { rejectWithValue }) => {
+    try {
+      const data = await transactionsApi.allTransactionsByCategory(date);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
 export const fetchAllTransactionsByMonth = createAsyncThunk(
   'transactions/fetchAllTransactionsByMonth',
   async (date, { rejectWithValue }) => {
     try {
-      console.log('date:', date);
       const data = await transactionsApi.allTransactionsByMonth(date);
       return data;
     } catch (error) {
@@ -71,7 +70,7 @@ export const fetchDeleteTransaction = createAsyncThunk(
       const data = await transactionsApi.deleteTransaction(idTransaction);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );

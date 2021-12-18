@@ -13,5 +13,3 @@ export const fetchUpdBalance = createAsyncThunk(
     }
   },
 );
-// const operations = { fetchUpdBalance };
-// export default operations;
