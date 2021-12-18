@@ -32,7 +32,7 @@ const Summary = ({ value }) => {
         summary = summaryByYear['income'];
         break;
       default:
-        console.log('Invalid subscription type');
+        summary = {};
     }
   }
 

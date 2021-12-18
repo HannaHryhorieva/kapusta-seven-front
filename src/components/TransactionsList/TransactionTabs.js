@@ -8,7 +8,7 @@ import { incomeToBalance } from '../../redux/balance/balance-actions';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import Summary from '../summary/Summary';
+import Summary from '../Summary/Summary';
 
 function TransactionTabs({ deleteDialogHandler }) {
   const [value, setValue] = useState('expense');

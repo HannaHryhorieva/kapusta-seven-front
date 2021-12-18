@@ -38,7 +38,7 @@ export default function monthWord(key) {
       month = 'декабрь';
       break;
     default:
-      console.log('Invalid subscription type');
+      month = '';
   }
   return month;
 }
