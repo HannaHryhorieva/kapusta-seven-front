@@ -25,7 +25,7 @@
   justify-content: center;
   width: 145px;
   height: 44px;
-  border: 2px solid #eee;
+  border: 2px solid #fff;
   border-radius: 0 16px 16px 0;
   border-left: none;
 
@@ -57,14 +57,16 @@
   /* font-size: 12px; */
   text-align: right;
 
-  border: 2px solid #eee;
+  border: 2px solid #fff;
   border-radius: 16px 0 0 16px;
+}
+.input:focus {
+  outline: none;
+  border: 2px solid #ff751d;
 }
 
 .input::placeholder {
   font-weight: 700;
-  /* font-size: 12px;
-  line-height: 1.6; */
 
   text-align: right;
   letter-spacing: 0.02em;
@@ -84,7 +86,7 @@
   line-height: 1.6; */
   text-align: center;
 
-  border: 2px solid #eee;
+  border: 2px solid #fff;
   border-radius: 16px;
 }
 
@@ -102,6 +104,6 @@
   }
   .button {
     border-radius: 16px;
-    border-left: 2px solid #eee;
+    border-left: 2px solid #fff;
   }
 }
