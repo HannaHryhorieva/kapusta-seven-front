@@ -22,16 +22,22 @@ export default function ReportPage() {
   const [month, setMonth] = useState(selectedMonth || todayMonth);
   const [year, setYear] = useState(selectedYear || todayYear);
 
-  // useEffect(() =>
-  // dispatch(transactionsOperations.fetchAllTransactionsByCategory(year, month)),
-  // [dispatch, month, year]);
+  useEffect(
+    () =>
+      dispatch(
+        transactionsOperations.fetchAllTransactionsByCategory({ month, year }),
+      ),
+    [dispatch, month, year],
+  );
 
-  // const transactions = useSelector(transactionsSelectors.getTransactionsByCategory);
+  const transactions = useSelector(
+    transactionsSelectors.getTransactionsByCategory,
+  );
 
-  const transactions = {
-    income: { category: { data: [], total: 0 } },
-    expense: { category: { data: [], total: 0 } },
-  };
+  // const transactions = {
+  //   income: [{ category: { data: [], total: 0 } }],
+  //   expense: [{ category: { data: [], total: 0 } }],
+  // };
 
   console.log(transactions);
 
