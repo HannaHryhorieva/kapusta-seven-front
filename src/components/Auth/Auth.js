@@ -4,8 +4,11 @@ import {
   FormHelperText,
   FormControl,
 } from '@mui/material';
+import googleIcon from '../../images/icons/google.svg';
 import style from './Auth.module.css';
 import { useState, useEffect } from 'react';
+import { fetchSignup, fetchSignin } from '../../api-service/authApi';
+import { useDispatch } from 'react-redux';
 
 const inputStyle = {
   width: '250px',
@@ -14,29 +17,55 @@ const inputStyle = {
   borderRadius: '30px',
 };
 
+const helperText = {
+  color: '#EB5757',
+  fontSize: '10px',
+  lineHeight: '12px',
+  letterSpacing: '0.04em',
+};
+
 const buttonStyle = {
   alignSelf: 'center',
   width: '122px',
   height: '40px',
   marginBottom: '30px',
+  textTransform: 'none',
+};
+
+const initialFormValuesState = {
+  email: '',
+  password: '',
+  type: '',
 };
 
 function Auth() {
-  const [formValues, setFormValues] = useState({
-    email: '',
-    password: '',
-    type: '',
-  });
+  const [formValues, setFormValues] = useState(initialFormValuesState);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
       if (formValues.type === 'signin') {
-        console.log('Войти');
+        dispatch(
+          fetchSignin({
+            email: formValues.email,
+            password: formValues.password,
+          }),
+        );
+        setFormValues(initialFormValuesState);
+        setIsSubmitting(false);
       }
       if (formValues.type === 'signup') {
-        console.log('Регистрация');
+        dispatch(
+          fetchSignup({
+            email: formValues.email,
+            password: formValues.password,
+          }),
+        );
+        setFormValues(initialFormValuesState);
+        setIsSubmitting(false);
       }
     }
   }, [formErrors]);
@@ -45,14 +74,14 @@ function Auth() {
     let errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (!values.email) {
-      errors.email = 'Cannot be blank';
+      errors.email = 'это обязательное поле';
     } else if (!regex.test(values.email)) {
-      errors.email = 'Invalid email format';
+      errors.email = 'неверный формат электронной почты';
     }
     if (!values.password) {
-      errors.password = 'Cannot be blank';
+      errors.password = 'это обязательное поле';
     } else if (values.password.length < 4) {
-      errors.password = 'Password must be more than 4 characters';
+      errors.password = 'пароль должен содержать более 4 символов';
     }
     return errors;
   };
@@ -81,6 +110,7 @@ function Auth() {
         Вы можете авторизироваться с помощью Google Account:
       </p>
       <Button color="secondary" sx={buttonStyle}>
+        <img src={googleIcon} alt="google icon" className={style.icon}></img>
         Google
       </Button>
       <p className={style.text}>
@@ -95,7 +125,7 @@ function Auth() {
           name="email"
           onChange={handleInputChange}
         />
-        <FormHelperText sx={{ color: 'red', margin: '4px 0px 0px' }}>
+        <FormHelperText sx={{ ...helperText, margin: '4px 0px 0px' }}>
           {formErrors.email}
         </FormHelperText>
       </FormControl>
@@ -109,7 +139,7 @@ function Auth() {
           onChange={handleInputChange}
           sx={inputStyle}
         />
-        <FormHelperText sx={{ color: 'red', margin: '4px 0px 0px' }}>
+        <FormHelperText sx={{ ...helperText, margin: '4px 0px 0px' }}>
           {formErrors.password}
         </FormHelperText>
       </FormControl>
