@@ -4,9 +4,14 @@ import { TabContext, TabList, TabPanel } from '@mui/lab';
 
 import TransactionTable from './TransactionTable';
 
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import Summary from '../summary/Summary';
+
 function TransactionTabs() {
   const [value, setValue] = useState('expense');
-
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.down('desktop'));
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -40,6 +45,10 @@ function TransactionTabs() {
     p: '30px 20px 60px',
   };
 
+  if (!isDesktop) {
+    paperStyle.display = 'flex';
+  }
+
   return (
     <Box>
       <TabContext value={value}>
@@ -58,6 +67,7 @@ function TransactionTabs() {
           <TabPanel value="income" sx={{ padding: 0 }}>
             <TransactionTable type="income" />
           </TabPanel>
+          <Summary value={value} />
         </Paper>
       </TabContext>
     </Box>

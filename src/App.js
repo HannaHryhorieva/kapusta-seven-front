@@ -9,7 +9,6 @@ import theme from './styles/theme';
 import ReportPage from './views/ReportView';
 import { Auth } from './components/Auth/Auth';
 
-
 // import { useEffect, Suspense, lazy } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { Switch, Route } from 'react-router-dom';
@@ -26,6 +25,7 @@ function App() {
         <Auth />
         <HomeView />
         <ReportPage />
+        <ExampleComponent />
       </div>
     </ThemeProvider>
   );

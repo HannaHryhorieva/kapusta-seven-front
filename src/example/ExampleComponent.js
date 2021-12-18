@@ -15,7 +15,6 @@ import React from 'react';
 import { BalanceView } from '../components/BalanceView/BalanceView';
 
 import CustomStyledExampleComponent from './CustomStyledExampleComponent';
-
 import { BtnGoToReports } from '../components/BtnGoToReports/BtnGoToReports';
 import { BtnGoToMain } from '../components/BtnGoToMain/BtnGoToMain';
 
