@@ -8,6 +8,7 @@ import {getBalance } from '../../redux/balance/balance-selectors'
 const BalanceView = () => {
   const [inputValue, setInputValue] = useState();
 
+
   const formatter = new Intl.NumberFormat('uk-UA', {
     style: 'currency',
     currency: 'UAH',
@@ -40,6 +41,7 @@ const BalanceView = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
     // let submitValue = inputValue;
     // if (!inputValue.includes('.')) {
     //   submitValue += '.00';
@@ -57,17 +59,17 @@ const BalanceView = () => {
         <form className={s.form} onSubmit={handleSubmit}>
           <Tooltip
             title={
-              <Typography color="inherit">
-                <p style={{ marginBottom: '20px' }}>
+              <Typography color="inherit" >
+                <span style={{ display: 'block', marginBottom: '20px' }}>
                   Привет! Для начала работы внеси текущий баланс своего счета!
-                </p>
-                <p style={{ fontSize: '14px' }}>
+                </span>
+                <span style={{ fontSize: '14px' }}>
                   Ты не можешь тратить деньги пока их у тебя нет :)
-                </p>
+                </span>
               </Typography>
             }
             arrow
-            leaveDelay="3000"
+           
           >
             <input
               value={inputValue}
