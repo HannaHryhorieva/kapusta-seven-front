@@ -1,73 +1,39 @@
 import s from './Summary.module.css';
-// import React, { useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-// import {
-//   transactionsOperations,
-//   transactionsSelectors,
-// } from '../../redux/transaction';
+import {
+  transactionsOperations,
+  transactionsSelectors,
+} from '../../redux/transaction';
 
 import monthWord from './monthWord';
 
-const data = {
-  income: {
-    11: {
-      total: 1000,
-    },
-    12: {
-      total: 1000,
-    },
-  },
-  expense: {
-    2: {
-      total: 16,
-    },
-    3: {
-      total: 235,
-    },
-    4: {
-      total: 555,
-    },
-    5: {
-      total: 4587,
-    },
-    6: {
-      total: 3254,
-    },
-    7: {
-      total: 2344,
-    },
-    11: {
-      total: 416.1,
-    },
-    12: {
-      total: 224.86999999999998,
-    },
-  },
-};
-
 const Summary = ({ value }) => {
-  // const dispatch = useDispatch();
-  // const transactionsByYear = useSelector(
-  //   transactionsSelectors.getSummaryByYear,
-  // );
-  // const date = useSelector(transactionsSelectors.getSelectedDate);
-  // const year = date.year;
-  // useEffect(
-  //   () => dispatch(transactionsOperations.fetchTransactionsSummaryByYear(year)),
-  //   [dispatch, year],
-  // );
+  const dispatch = useDispatch();
+  const date = useSelector(transactionsSelectors.getSelectedDate);
+  const year = date.year;
+  useEffect(
+    () => dispatch(transactionsOperations.fetchTransactionsSummaryByYear(year)),
+    [dispatch, year],
+  );
 
+  const transactionsByYear = useSelector(
+    transactionsSelectors.getSummaryByYear,
+  );
   let summary = {};
-  switch (value) {
-    case 'expense':
-      summary = data.expense;
-      break;
-    case 'income':
-      summary = data.income;
-      break;
-    default:
-      console.log('Invalid subscription type');
+  const summaryByYear = transactionsByYear['data'];
+  if (summaryByYear) {
+    switch (value) {
+      case 'expense':
+        summary = summaryByYear['expense'];
+        break;
+      case 'income':
+        summary = summaryByYear['income'];
+        break;
+      default:
+        console.log('Invalid subscription type');
+    }
   }
 
   let arrSummary = [];

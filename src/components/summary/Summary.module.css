@@ -1,6 +1,7 @@
 .summaryBox {
   width: 230px;
   margin-left: 30px;
+  margin-top: 10px;
 }
 .title {
   color: #000000;
@@ -18,13 +19,13 @@
   display: flex;
   justify-content: space-between;
   text-transform: uppercase;
-  padding: 12px 20px 12px 22px;
+  padding: 10px 20px 10px 22px;
 }
 .itemMonth {
-  font-size: 12px;
-  line-height: 14px;
+  /* font-size: 14px;
+  line-height: 18px; */
 }
 .itemTotal {
-  font-size: 12px;
-  line-height: 14px;
+  /* font-size: 14px;
+  line-height: 18px; */
 }

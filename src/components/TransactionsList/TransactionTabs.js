@@ -61,10 +61,10 @@ function TransactionTabs() {
           <Tab label="Доходы" value="income" />
         </TabList>
         <Paper sx={paperStyle}>
-          <TabPanel value="expense" sx={{ padding: 0 }}>
+          <TabPanel value="expense" sx={{ padding: 0, flexGrow: '1' }}>
             <TransactionTable type="expense" />
           </TabPanel>
-          <TabPanel value="income" sx={{ padding: 0 }}>
+          <TabPanel value="income" sx={{ padding: 0, flexGrow: '1' }}>
             <TransactionTable type="income" />
           </TabPanel>
           <Summary value={value} />

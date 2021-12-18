@@ -46,6 +46,7 @@ export const fetchAllTransactionsByMonth = createAsyncThunk(
       const data = await transactionsApi.allTransactionsByMonth(date);
       return data;
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error.message);
     }
   },
