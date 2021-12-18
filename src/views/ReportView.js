@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  transactionsOperations,
+  transactionsSelectors,
+} from '../redux/transaction';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  transactionsSelectors,
-  transactionsOperations,
-} from '../redux/transaction';
+import BalanceView from './../components/BalanceView/BalanceView';
+import BaseView from './BaseView';
+import { Box } from '@mui/material';
+import BtnGoToMain from '../components/BtnGoToMain/BtnGoToMain';
 import CategoriesList from '../components/ReportList/CategoriesList';
-import ReportChart from '../components/ReportChart/ReportChart';
 import CurrentMonth from '../components/CurrentMonth/CurrentMonth';
+import ReportChart from '../components/ReportChart/ReportChart';
 import ReportSummary from '../components/ReportSummary/ReportSummary';
 
 export default function ReportPage() {
@@ -68,16 +72,34 @@ export default function ReportPage() {
   };
 
   return (
-    <div>
-      <CurrentMonth
-        year={year}
-        month={month}
-        onHandleClickLeft={onHandleClickLeft}
-        onHandleClickRight={onHandleClickRight}
-      />
-      <ReportSummary transactions={transactions} />
-      <CategoriesList type={type} onClick={() => onHandleChangeType()} />
-      <ReportChart />
-    </div>
+    <>
+      <BaseView>
+        <Box
+          sx={{
+            display: 'flex',
+            marginTop: '40px',
+            marginBottom: '30px',
+            alignItems: 'center',
+          }}
+        >
+          <BtnGoToMain />
+          <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
+            <BalanceView />
+          </Box>
+          <Box>
+            <CurrentMonth
+              year={year}
+              month={month}
+              onHandleClickLeft={onHandleClickLeft}
+              onHandleClickRight={onHandleClickRight}
+            />
+          </Box>
+        </Box>
+
+        <ReportSummary transactions={transactions} />
+        <CategoriesList type={type} onClick={() => onHandleChangeType()} />
+        <ReportChart />
+      </BaseView>
+    </>
   );
 }

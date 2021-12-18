@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import s from './BtnGoToMain.module.css';
 import arrowBack from '../../images/icons/arrow-go-back.svg';
+import s from './BtnGoToMain.module.css';
 
 const BtnGoToMain = () => {
   return (
@@ -11,4 +11,4 @@ const BtnGoToMain = () => {
   );
 };
 
-export { BtnGoToMain };
+export default BtnGoToMain;

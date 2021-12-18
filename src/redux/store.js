@@ -1,20 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit';
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
   REGISTER,
+  REHYDRATE,
+  persistReducer,
+  persistStore,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
-import logger from 'redux-logger';
 
 import authReducer from './login/auth-reducer';
 import balanceReducer from './balance/balance-reducer';
+import { configureStore } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
+import storage from 'redux-persist/lib/storage';
 import transactionsReducer from './transaction/transactions-reducer';
 
 const authPersistConfig = {
@@ -35,7 +34,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(logger),
+    }), //.concat(logger),
 });
 
 export const persistor = persistStore(store);

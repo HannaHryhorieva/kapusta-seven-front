@@ -1,14 +1,15 @@
-import './App.css';
+import './styles/App.css';
+
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 import { AppBar } from './components/AppBar/AppBar';
-//import ExampleComponent from './example/ExampleComponent';
+import AuthView from './views/AuthView/AuthView';
 import HomeView from './views/HomeView';
+import ReportView from './views/ReportView';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './styles/theme';
 
-// import ReportPage from './views/ReportView';
-// import { Auth } from './components/Auth/Auth';
-
+//import ExampleComponent from './example/ExampleComponent';
 // import { useEffect, Suspense, lazy } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { Switch, Route } from 'react-router-dom';
@@ -34,12 +35,20 @@ function App() {
   // const dispatch = useDispatch();
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
+      <div>
         <AppBar position="fixed" />
         {/* <ExampleComponent /> */}
-        {/* <Auth /> */}
-        <HomeView />
-        {/* <ReportPage /> */}
+        <Switch>
+          <Route path="/" exact>
+            <HomeView />
+          </Route>
+          <Route path="/report">
+            <ReportView />
+          </Route>
+          <Route path="/auth">
+            <AuthView />
+          </Route>
+        </Switch>
       </div>
     </ThemeProvider>
   );
