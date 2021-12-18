@@ -11,6 +11,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #52555f;
   /* background-color: lightgray; */
+
+  scrollbar-color: #ff751d #f5f6fb;
+  scrollbar-width: '6px';
 }
 
 code {
@@ -42,4 +45,18 @@ ol {
 
 a {
   text-decoration: none;
+}
+
+/* scrollbar */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f5f6fb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff751d;
+  border-radius: 2px;
 }

@@ -33,6 +33,7 @@ const buttonStyles = {
         fontWeight: '400',
       },
     },
+
   ],
 };
 export default buttonStyles;
