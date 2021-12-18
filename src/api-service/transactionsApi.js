@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'http://localhost:3001';
 //todo remove after adding login functionality
 axios.defaults.headers.common[
   'Authorization'
-] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjg0ZDQxOTg3ZmRjZjViYTM1YTg3ZCIsImlhdCI6MTYzOTg0MTk5NCwiZXhwIjoxNjM5ODQ5MTk0fQ.TCsCe3fF3GjuoNaEnvH6y11S3vKvmRAHaNT3Ew-0ybA`;
+] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmRhODk4YzMyMzdhZTM3NTEzYTY5OSIsImlhdCI6MTYzOTg1NTI3NCwiZXhwIjoxNjM5ODYyNDc0fQ.CKrZLaVLfBke2r-EsKq8qtnDaOjjDZLDmQgLxJp92mI`;
 
 // /api/transactions
 

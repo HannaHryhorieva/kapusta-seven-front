@@ -1,6 +1,6 @@
 import { ButtonGroup, Button, Select, MenuItem } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './Transaction.module.css';
@@ -13,6 +13,7 @@ import calendar from '../../images/icons/calendar.svg';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { fetchAddTransaction } from '../../redux/transaction/transactions-operations';
+import { getSelectedDate} from '../../redux/transaction/transactions-selectors'
 import { expenseToBalance } from '../../redux/balance/balance-actions';
 
 function Transaction({
@@ -22,7 +23,8 @@ function Transaction({
   toBalance,
   selectLabel,
 }) {
-  const [date, setDate] = useState(new Date());
+  const selectedDate = useSelector(getSelectedDate)
+  const [date, setDate] = useState(new Date(selectedDate.year, selectedDate.month, selectedDate.day));
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState();
