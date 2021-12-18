@@ -8,7 +8,7 @@ import googleIcon from '../../images/icons/google.svg';
 import style from './Auth.module.css';
 import { useState, useEffect } from 'react';
 import { fetchSignup, fetchSignin } from '../../api-service/authApi';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const inputStyle = {
   width: '250px',
@@ -38,20 +38,32 @@ const initialFormValuesState = {
   type: '',
 };
 
-function Auth({ fetchSignin, fetchSignup }) {
+function Auth() {
   const [formValues, setFormValues] = useState(initialFormValuesState);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
       if (formValues.type === 'signin') {
-        fetchSignin({ email: formValues.email, password: formValues.password });
+        dispatch(
+          fetchSignin({
+            email: formValues.email,
+            password: formValues.password,
+          }),
+        );
         setFormValues(initialFormValuesState);
         setIsSubmitting(false);
       }
       if (formValues.type === 'signup') {
-        fetchSignup({ email: formValues.email, password: formValues.password });
+        dispatch(
+          fetchSignup({
+            email: formValues.email,
+            password: formValues.password,
+          }),
+        );
         setFormValues(initialFormValuesState);
         setIsSubmitting(false);
       }
@@ -149,9 +161,4 @@ function Auth({ fetchSignin, fetchSignup }) {
   );
 }
 
-const mapDispatchToState = dispatch => ({
-  fetchSignup: data => dispatch(fetchSignup(data)),
-  fetchSignin: data => dispatch(fetchSignin(data)),
-});
-
-export default connect(null, mapDispatchToState)(Auth);
+export { Auth };

@@ -7,7 +7,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from './styles/theme';
 
 import ReportPage from './views/ReportView';
-import Auth from './components/Auth/Auth';
+import { Auth } from './components/Auth/Auth';
 
 // import { useEffect, Suspense, lazy } from 'react';
 // import { useDispatch } from 'react-redux';
