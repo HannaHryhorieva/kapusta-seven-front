@@ -9,9 +9,11 @@ import {
 import { ReactComponent as CloseIcon } from '../../images/icons/close.svg';
 import { useDispatch } from 'react-redux';
 import { transactionsOperations } from '../../redux/transaction';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function DeleteModal({ isOpen = true, transactionId, onClose }) {
   const dispatch = useDispatch();
+  const isNarrowMobile = useMediaQuery('(max-width:435px)');
 
   function submitHandler() {
     dispatch(transactionsOperations.fetchDeleteTransaction(transactionId));
@@ -45,7 +47,11 @@ function DeleteModal({ isOpen = true, transactionId, onClose }) {
         <Button
           color="primary"
           variant="contained"
-          sx={{ marginTop: '20px', marginRight: '15px' }}
+          sx={
+            isNarrowMobile
+              ? { marginTop: '20px' }
+              : { marginTop: '20px', marginRight: '15px' }
+          }
           onClick={submitHandler}
         >
           Да
