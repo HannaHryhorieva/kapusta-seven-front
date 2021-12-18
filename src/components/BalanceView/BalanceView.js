@@ -3,20 +3,19 @@ import { useState } from 'react';
 import { Typography, Tooltip } from '@mui/material';
 import { fetchUpdBalance } from '../../redux/balance/balance-operations';
 import { useDispatch, useSelector } from 'react-redux';
-import {getBalance } from '../../redux/balance/balance-selectors'
+import { getBalance } from '../../redux/balance/balance-selectors';
 
 const BalanceView = () => {
   const [inputValue, setInputValue] = useState();
 
-
   const formatter = new Intl.NumberFormat('uk-UA', {
     style: 'currency',
     currency: 'UAH',
-  }); 
+  });
 
   const dispatch = useDispatch();
-  const balance = formatter.format(useSelector(getBalance))
-  
+  const balance = formatter.format(useSelector(getBalance));
+
   // const formatNumber = n => {
   //   return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   // };
@@ -47,7 +46,7 @@ const BalanceView = () => {
     //   submitValue += '.00';
     // }
     //with back
-    dispatch(fetchUpdBalance(inputValue))
+    dispatch(fetchUpdBalance(inputValue));
   };
 
   return (
@@ -59,7 +58,7 @@ const BalanceView = () => {
         <form className={s.form} onSubmit={handleSubmit}>
           <Tooltip
             title={
-              <Typography color="inherit" >
+              <Typography color="inherit">
                 <span style={{ display: 'block', marginBottom: '20px' }}>
                   Привет! Для начала работы внеси текущий баланс своего счета!
                 </span>
@@ -69,7 +68,6 @@ const BalanceView = () => {
               </Typography>
             }
             arrow
-           
           >
             <input
               value={inputValue}

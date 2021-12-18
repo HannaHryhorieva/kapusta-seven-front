@@ -81,9 +81,10 @@ const themeOptions = {
           outline: 'none',
           '&.MuiOutlinedInput-input': {
             border: 'none',
-          }
-        }
-      }},
+          },
+        },
+      },
+    },
     ...tableStyles,
   },
 };
