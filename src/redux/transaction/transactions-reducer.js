@@ -3,6 +3,7 @@ import {
   fetchAllTransactionsByMonth,
   fetchDeleteTransaction,
   fetchTransactionsSummaryByYear,
+  fetchAllTransactionsByCategory,
 } from './transactions-operations';
 
 import * as actions from './transactions-actions';
@@ -30,6 +31,10 @@ const transactionsByMonth = createReducer([], {
       return item._id !== payload.data._id;
     }),
   //todo implement add and delete transactions
+});
+
+const transactionsByCategory = createReducer([], {
+  [fetchAllTransactionsByCategory.fulfilled]: (_, { payload }) => payload,
 });
 
 const summaryByYear = createReducer([], {
@@ -70,6 +75,10 @@ const isLoading = createReducer(false, {
   // [fetchAllTransactions.fulfilled]: () => false,
   // [fetchAllTransactions.rejected]: () => false,
 
+  [fetchAllTransactionsByCategory.pending]: () => true,
+  [fetchAllTransactionsByCategory.fulfilled]: () => false,
+  [fetchAllTransactionsByCategory.rejected]: () => false,
+
   [fetchTransactionsSummaryByYear.pending]: () => true,
   [fetchTransactionsSummaryByYear.fulfilled]: () => false,
   [fetchTransactionsSummaryByYear.rejected]: () => false,
@@ -99,6 +108,9 @@ const error = createReducer(null, {
   [fetchTransactionsSummaryByYear.pending]: () => null,
   [fetchTransactionsSummaryByYear.rejected]: setError,
 
+  [fetchAllTransactionsByCategory.pending]: () => null,
+  [fetchAllTransactionsByCategory.rejected]: () => setError,
+
   // [fetchAllTransactionsByYearMonth.pending]: () => null,
   // [fetchAllTransactionsByYearMonth.rejected]: setError,
 
@@ -113,6 +125,7 @@ const error = createReducer(null, {
 
 export default combineReducers({
   transactionsByMonth,
+  transactionsByCategory,
   summaryByYear,
   selectedDate,
   isLoading,
