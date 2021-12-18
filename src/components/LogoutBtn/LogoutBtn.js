@@ -14,11 +14,11 @@ const LogoutBtn = () => {
     <div className={s.container}>
       {showModal && (
         <Modal
-          onClose={() => {
+          onDeny={() => {
             setShowModal(false)
           }}
-          onLogout={() => dispatch(authOperations.fetchLogout) } 
-          
+          onApprove={() => dispatch(authOperations.fetchLogout) } 
+          question='Вы действительно хотите выйти?'
         />
       )}
       <span className={s.avatar}>U</span>

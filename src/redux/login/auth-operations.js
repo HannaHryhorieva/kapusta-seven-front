@@ -71,6 +71,7 @@ export const fetchLogout = createAsyncThunk(
     }
   },
 );
+
 //cheching
 const authOperations = {
   fetchSignup,

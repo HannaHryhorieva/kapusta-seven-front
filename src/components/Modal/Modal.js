@@ -6,7 +6,7 @@ import { Button } from '@mui/material';
 
 const modalRoot = document.querySelector('#modal-root');
 
-function Modal({ onClose, onLogout }) {
+function Modal({ onDeny, onApprove, question }) {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
@@ -16,24 +16,24 @@ function Modal({ onClose, onLogout }) {
 
   const handleKeyDown = e => {
     if (e.code === 'Escape') {
-      onClose();
+      onDeny();
     }
   };
 
   const handleBackdropClick = e => {
-    if (e.target === e.currentTarget) {
-      onClose();
+    if (e.currentTarget=== e.target) {
+      onDeny();
     }
   };
   return createPortal(
-    <div className={s.Overlay}>
-      <div className={s.Modal} onClick={handleBackdropClick}>
-        <span className={s.modalClose} onClick={onClose}>
+    <div className={s.Overlay} onClick={handleBackdropClick}>
+      <div className={s.Modal} >
+        <span className={s.modalClose} onClick={onDeny}>
           &#10005;
         </span>
         <div className={s.ModalContainer}>
           <div className={s.ModalItems}>
-            <p>Вы действительно хотите выйти?</p>
+            <p>{question}</p>
           </div>
 
           <ul className={s.ModalContainerBtn}>
@@ -41,13 +41,13 @@ function Modal({ onClose, onLogout }) {
               <Button
                 color="primary"
                 variant="contained"
-                onClick={onLogout}
+                onClick={onApprove}
               >
                 Да
               </Button>
             </li>
             <li>
-              <Button color="info" variant="outlined" onClick={onClose}>
+              <Button color="info" variant="outlined" onClick={onDeny}>
                 Нет
               </Button>
             </li>
