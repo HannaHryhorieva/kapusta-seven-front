@@ -46,7 +46,7 @@ const Summary = ({ value }) => {
     });
   }
   if (arrSummary.length > 6) {
-    arrSummary = arrSummary.slice(0, 6);
+    arrSummary = arrSummary.slice(0, 6).sort((a, b) => b.month - a.month);
   }
   return (
     <div className={s.summaryBox}>

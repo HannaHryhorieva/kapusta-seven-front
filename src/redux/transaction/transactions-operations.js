@@ -21,7 +21,7 @@ export const fetchTransactionsSummaryByYear = createAsyncThunk(
       const data = await transactionsApi.allTransactionsByYear(year);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.messeg);
     }
   },
 );
