@@ -72,6 +72,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .form {
+    margin-bottom: 50px;
+  }
   .wrapInputs {
     flex-direction: row;
     align-items: center;
