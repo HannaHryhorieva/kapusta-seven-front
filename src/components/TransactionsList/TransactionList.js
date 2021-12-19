@@ -1,25 +1,11 @@
 import { Button, ButtonGroup, LinearProgress } from '@mui/material';
-import React from 'react';
 
-import TransactionItem from './TransactionItem';
-import { useSelector } from 'react-redux';
-import { transactionsSelectors } from '../../redux/transaction';
 import { NavLink } from 'react-router-dom';
-
-const buttonGroupStyles = {
-  boxShadow: 'none',
-  position: 'fixed',
-  bottom: 0,
-  '& .MuiButtonGroup-grouped': {
-    borderRadius: 0,
-    borderTop: 'none',
-  },
-  '& .MuiButtonGroup-grouped:first-of-type': {
-    marginRight: '2px',
-  },
-  '& .MuiButton-root': { color: '#000' },
-  '& .MuiButton-root:hover': { backgroundColor: '#FF751D', color: '#fff' },
-};
+import React from 'react';
+import TransactionItem from './TransactionItem';
+import TransactionsButtons from './TransactionsButtons';
+import { transactionsSelectors } from '../../redux/transaction';
+import { useSelector } from 'react-redux';
 
 function TransactionList({ deleteDialogHandler }) {
   const transactions = useSelector(transactionsSelectors.getAllTransactions);
@@ -45,19 +31,7 @@ function TransactionList({ deleteDialogHandler }) {
           />
         ))}
       </ul>
-      <ButtonGroup
-        color="secondary"
-        variant="contained"
-        fullWidth
-        sx={buttonGroupStyles}
-      >
-        <NavLink to='/incomeform'>
-          <Button>Доходы</Button>
-        </NavLink>
-        <NavLink to='/expenseform'>
-          <Button>Расходы</Button>
-        </NavLink>    
-      </ButtonGroup>
+      <TransactionsButtons />
     </>
   );
 }
