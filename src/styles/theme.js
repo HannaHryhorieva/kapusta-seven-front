@@ -78,12 +78,12 @@ const themeOptions = {
           borderRadius: '0',
           height: '44px',
           borderRight: 'none',
-          outline: 'none',
           '&.MuiOutlinedInput-input': {
             border: 'none',
-          }
-        }
-      }},
+          },
+        },
+      },
+    },
     ...tableStyles,
   },
 };

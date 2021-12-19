@@ -25,13 +25,15 @@
 }
 
 .date {
-  width: 95px;
+  width: 75px;
   margin: 0;
   padding: 5px 0px;
   border: none;
-
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
+
+  background-color: transparent;
   color: #52555f;
 }
 .date:focus {
@@ -45,7 +47,12 @@
   width: 280px;
   height: 44px;
 
-  border: 2px solid #f5f6fb;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-bottom: none;
   border-radius: 16px 16px 0 0;
 }
 
@@ -63,7 +70,11 @@
   width: 183px;
   height: 44px;
 
-  border: 2px solid #f5f6fb;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+
+  background-color: transparent;
+  border: 2px solid #fff;
   border-radius: 16px;
 }
 .sum:focus {
@@ -85,6 +96,9 @@
     margin-bottom: 0;
   }
   .desc {
+    width: 190px;
+    border: 2px solid #f5f6fb;
+    border-bottom: 2px solid #f5f6fb;
     border-right: none;
     border-top-right-radius: 0;
   }
@@ -93,11 +107,12 @@
   }
   .sum {
     width: 128px;
+    border: 2px solid #f5f6fb;
     border-radius: 0px 16px 16px 0px;
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1280px) {
   .form {
     flex-direction: row;
     justify-content: space-between;

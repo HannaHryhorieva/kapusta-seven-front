@@ -1,22 +1,22 @@
+import { Tooltip, Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchUpdBalance } from '../../redux/balance/balance-operations';
+import { getBalance } from '../../redux/balance/balance-selectors';
 import s from './BalanceView.module.css';
 import { useState } from 'react';
-import { Typography, Tooltip } from '@mui/material';
-import { fetchUpdBalance } from '../../redux/balance/balance-operations';
-import { useDispatch, useSelector } from 'react-redux';
-import {getBalance } from '../../redux/balance/balance-selectors'
 
 const BalanceView = () => {
   const [inputValue, setInputValue] = useState();
 
-
   const formatter = new Intl.NumberFormat('uk-UA', {
     style: 'currency',
     currency: 'UAH',
-  }); 
-
-  const dispatch = useDispatch();
-  const balance = formatter.format(useSelector(getBalance))
+  });
   
+  const dispatch = useDispatch();
+  const balance = useSelector(getBalance);
+
   // const formatNumber = n => {
   //   return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   // };
@@ -24,7 +24,7 @@ const BalanceView = () => {
   const handleChange = e => {
     let value = e.target.value;
     // if (value.indexOf('.') >= 0) {
-    //   const decimalPos = value.indexOf('.');
+    //   const decimalPos = value.indexOf('.');;
     //   let leftSide = value.substring(0, decimalPos);
     //   let rightSide = value.substring(decimalPos);
 
@@ -47,19 +47,19 @@ const BalanceView = () => {
     //   submitValue += '.00';
     // }
     //with back
-    dispatch(fetchUpdBalance(inputValue))
+    dispatch(fetchUpdBalance(inputValue));
   };
 
   return (
     <div className={s.container}>
       <p className={s.title}>Баланс:</p>
       {balance > 0 ? (
-        <span className={s.balance}> {balance}</span>
+        <span className={s.balance}> {formatter.format(balance)}</span>
       ) : (
         <form className={s.form} onSubmit={handleSubmit}>
           <Tooltip
             title={
-              <Typography color="inherit" >
+              <Typography color="inherit">
                 <span style={{ display: 'block', marginBottom: '20px' }}>
                   Привет! Для начала работы внеси текущий баланс своего счета!
                 </span>
@@ -69,7 +69,6 @@ const BalanceView = () => {
               </Typography>
             }
             arrow
-           
           >
             <input
               value={inputValue}
@@ -91,4 +90,4 @@ const BalanceView = () => {
   );
 };
 
-export { BalanceView };
+export default BalanceView;

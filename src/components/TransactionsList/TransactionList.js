@@ -4,6 +4,7 @@ import React from 'react';
 import TransactionItem from './TransactionItem';
 import { useSelector } from 'react-redux';
 import { transactionsSelectors } from '../../redux/transaction';
+import { NavLink } from 'react-router-dom';
 
 const buttonGroupStyles = {
   boxShadow: 'none',
@@ -50,8 +51,12 @@ function TransactionList({ deleteDialogHandler }) {
         fullWidth
         sx={buttonGroupStyles}
       >
-        <Button>Доходы</Button>
-        <Button>Расходы</Button>
+        <NavLink to='/incomeform'>
+          <Button>Доходы</Button>
+        </NavLink>
+        <NavLink to='/expenseform'>
+          <Button>Расходы</Button>
+        </NavLink>    
       </ButtonGroup>
     </>
   );

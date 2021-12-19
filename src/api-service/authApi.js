@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'http://localhost:3001';
 
 const token = {
   set(token) {
-    axios.defaults.headers.common['Authorization'] = `${token}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjg0ZDQxOTg3ZmRjZjViYTM1YTg3ZCIsImlhdCI6MTYzOTgyNDU4MywiZXhwIjoxNjM5ODMxNzgzfQ._NXpwyXexdQr11XSlDTsuCcEgaUT5Q4WS9RggDPYUWY`;
   },
   unset() {
     axios.defaults.headers.common['Authorization'] = '';

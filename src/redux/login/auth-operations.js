@@ -21,6 +21,7 @@ export const fetchGoogleAuth = createAsyncThunk(
       const data = await authApi.fetchGoogleAuth();
       return data;
     } catch (error) {
+
       return rejectWithValue(error.response.data);
     }
   },
@@ -33,7 +34,7 @@ export const fetchGoogleRedirect = createAsyncThunk(
       const data = await authApi.fetchGoogleRedirect();
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -45,7 +46,7 @@ export const fetchVerify = createAsyncThunk(
       const data = await authApi.fetchVerify(verificationToken);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -57,7 +58,7 @@ export const fetchSignin = createAsyncThunk(
       return data.data;
     } catch (error) {
       return rejectWithValue(error.response.status);
-    }
+  }
   },
 );
 export const fetchLogout = createAsyncThunk(
@@ -67,17 +68,19 @@ export const fetchLogout = createAsyncThunk(
       const data = await authApi.fetchLogout();
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
 
-// const operations = {
-//   fetchSignup,
-//   fetchGoogleAuth,
-//   fetchGoogleRedirect,
-//   fetchVerify,
-//   fetchSignin,
-//   fetchLogout,
-// };
-// export default operations;
+//cheching
+const authOperations = {
+  fetchSignup,
+  fetchGoogleAuth,
+  fetchGoogleRedirect,
+  fetchVerify,
+  fetchSignin,
+  fetchLogout,
+};
+
+export default authOperations;

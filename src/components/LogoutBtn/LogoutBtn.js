@@ -3,16 +3,22 @@ import logout from '../../images/icons/logout.svg';
 
 import Modal from '../Modal/Modal';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperations from '../../redux/login/auth-operations';
 
 const LogoutBtn = () => {
   const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch()
+ 
   return (
     <div className={s.container}>
       {showModal && (
         <Modal
-          onClose={() => {
-            setShowModal(false);
+          onDeny={() => {
+            setShowModal(false)
           }}
+          onApprove={() => dispatch(authOperations.fetchLogout) } 
+          question='Вы действительно хотите выйти?'
         />
       )}
       <span className={s.avatar}>U</span>
