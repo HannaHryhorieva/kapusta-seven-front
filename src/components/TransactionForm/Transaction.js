@@ -115,6 +115,7 @@ function Transaction({
             dateFormat="dd.MM.yyyy"
             selected={date}
             onChange={handleChangeDate}
+            maxDate={new Date()}
             required
           />
         </label>

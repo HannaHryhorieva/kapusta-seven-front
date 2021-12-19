@@ -2,3 +2,16 @@
   width: 75px;
   margin-right: 25px;
 }
+
+.react-datepicker__month-container {
+  z-index: 1000;
+}
+
+.react-datepicker__header {
+  background-color: #f2f5fc;
+  border: #52555f;
+}
+
+.react-datepicker__day--selected {
+  background-color: #ff751d;
+}
