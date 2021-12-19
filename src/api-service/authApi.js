@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'http://localhost:3001';
 
 const token = {
   set(token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjg0ZDQxOTg3ZmRjZjViYTM1YTg3ZCIsImlhdCI6MTYzOTgyNDU4MywiZXhwIjoxNjM5ODMxNzgzfQ._NXpwyXexdQr11XSlDTsuCcEgaUT5Q4WS9RggDPYUWY`;
+    axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmRhODk4YzMyMzdhZTM3NTEzYTY5OSIsImlhdCI6MTYzOTk0MDk3OCwiZXhwIjoxNjM5OTQ4MTc4fQ.3imiiXI3RFGiV4BNtWcO45EW7PhdW1-ddsPXHnzS7S0`;
   },
   unset() {
     axios.defaults.headers.common['Authorization'] = '';
@@ -47,9 +47,9 @@ export async function fetchLogout() {
   return data;
 }
 
-export async function fetchUpdBalance({ idUser, balance }) {
-  const { data } = await axios.patch(`/auth/balance/${idUser}`, {
-    balance,
+export async function fetchUpdBalance({ balance }) {
+  const { data } = await axios.patch(`/auth/balance/61bda898c3237ae37513a699`, {
+    balance
   });
   return data.data;
 }
