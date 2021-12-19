@@ -12,12 +12,8 @@ const token = {
 };
 
 export async function fetchSignup({ name, email, password }) {
-  const { data } = await axios.post(`/auth/signup`, {
-    name,
-    email,
-    password,
-  });
-  token.set(data.token);
+  const { data } = await axios.post(`/auth/signup`, { name, email, password });
+  // token.set(data.data.data.verificationToken);
   return data;
 }
 
@@ -41,7 +37,7 @@ export async function fetchSignin({ email, password }) {
     email,
     password,
   });
-  token.set(data.token);
+  token.set(data.data.token);
   return data;
 }
 
