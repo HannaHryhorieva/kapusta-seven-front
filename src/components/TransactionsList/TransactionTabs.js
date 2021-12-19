@@ -44,8 +44,9 @@ function TransactionTabs({ deleteDialogHandler }) {
     p: '30px 20px 60px',
   };
 
+  const tableBox = {};
   if (!isDesktop) {
-    paperStyle.display = 'flex';
+    tableBox.display = 'flex';
   }
 
   return (
@@ -60,15 +61,17 @@ function TransactionTabs({ deleteDialogHandler }) {
           <Tab label="Доходы" value="income" />
         </TabList>
         <Paper sx={paperStyle}>
-          <TabPanel value="expense" sx={{ padding: 0, flexGrow: '1' }}>
+          <TabPanel value="expense" sx={{ padding: 0 }}>
             <Transaction />
-            <TransactionTable
-              type="expense"
-              deleteDialogHandler={deleteDialogHandler}
-            />
-            <Summary value={value} />
+            <div style={tableBox}>
+              <TransactionTable
+                type="expense"
+                deleteDialogHandler={deleteDialogHandler}
+              />
+              <Summary value={value} />
+            </div>
           </TabPanel>
-          <TabPanel value="income" sx={{ padding: 0, flexGrow: '1' }}>
+          <TabPanel value="income" sx={{ padding: 0 }}>
             <Transaction
               isIncome="true"
               categories={incomeCategories}
@@ -76,11 +79,13 @@ function TransactionTabs({ deleteDialogHandler }) {
               placeholder="Описание дохода"
               selectLabel="Категория дохода"
             />
-            <TransactionTable
-              type="income"
-              deleteDialogHandler={deleteDialogHandler}
-            />
-            <Summary value={value} />
+            <div style={tableBox}>
+              <TransactionTable
+                type="income"
+                deleteDialogHandler={deleteDialogHandler}
+              />
+              <Summary value={value} />
+            </div>
           </TabPanel>
         </Paper>
       </TabContext>
