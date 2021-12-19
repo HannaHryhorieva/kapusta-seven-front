@@ -32,7 +32,7 @@ function Transaction({
   );
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState({});
   const dispatch = useDispatch();
   //   const contacts = useSelector(getFilteredContacts);
   const theme = useTheme();
@@ -75,7 +75,7 @@ function Transaction({
         isIncome,
       }),
     );
-    dispatch(toBalance(amount));
+    //dispatch(toBalance(amount));
     reset();
   };
 

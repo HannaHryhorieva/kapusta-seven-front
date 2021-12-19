@@ -73,9 +73,9 @@ function TransactionTabs({ deleteDialogHandler }) {
           </TabPanel>
           <TabPanel value="income" sx={{ padding: 0 }}>
             <Transaction
-              isIncome="true"
+             isIncome={true}
               categories={incomeCategories}
-              toBalance={() => incomeToBalance()}
+              toBalance={incomeToBalance()}
               placeholder="Описание дохода"
               selectLabel="Категория дохода"
             />

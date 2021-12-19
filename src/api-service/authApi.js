@@ -47,9 +47,8 @@ export async function fetchLogout() {
   return data;
 }
 
-export async function fetchUpdBalance({ balance }) {
-  const { data } = await axios.patch(`/auth/balance/61bda898c3237ae37513a699`, {
-    balance
-  });
+export async function fetchUpdBalance(balance) {
+  const { data } = await axios.patch(`/auth/balance/61bda898c3237ae37513a699`,
+    { balance });
   return data.data;
 }
