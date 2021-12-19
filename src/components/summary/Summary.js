@@ -45,8 +45,9 @@ const Summary = ({ value }) => {
       id: +key,
     });
   }
+  arrSummary = arrSummary.sort((a, b) => b.id - a.id);
   if (arrSummary.length > 6) {
-    arrSummary = arrSummary.slice(0, 6).sort((a, b) => b.month - a.month);
+    arrSummary = arrSummary.slice(0, 6);
   }
   return (
     <div className={s.summaryBox}>
