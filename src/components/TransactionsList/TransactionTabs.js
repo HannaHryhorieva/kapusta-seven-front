@@ -44,9 +44,9 @@ function TransactionTabs({ deleteDialogHandler }) {
     p: '30px 20px 60px',
   };
 
-  const tabelBox = {};
+  const tableBox = {};
   if (!isDesktop) {
-    tabelBox.display = 'flex';
+    tableBox.display = 'flex';
   }
 
   return (
@@ -63,7 +63,7 @@ function TransactionTabs({ deleteDialogHandler }) {
         <Paper sx={paperStyle}>
           <TabPanel value="expense" sx={{ padding: 0 }}>
             <Transaction />
-            <div style={tabelBox}>
+            <div style={tableBox}>
               <TransactionTable
                 type="expense"
                 deleteDialogHandler={deleteDialogHandler}
@@ -79,7 +79,7 @@ function TransactionTabs({ deleteDialogHandler }) {
               placeholder="Описание дохода"
               selectLabel="Категория дохода"
             />
-            <div style={tabelBox}>
+            <div style={tableBox}>
               <TransactionTable
                 type="income"
                 deleteDialogHandler={deleteDialogHandler}
