@@ -7,9 +7,9 @@ export const fetchSignup = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const data = await authApi.fetchSignup(user);
-      return data.data;
+      return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.status);
     }
   },
 );
@@ -21,7 +21,7 @@ export const fetchGoogleAuth = createAsyncThunk(
       const data = await authApi.fetchGoogleAuth();
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data);
     }
   },
 );
@@ -56,7 +56,7 @@ export const fetchSignin = createAsyncThunk(
       const data = await authApi.fetchSignin(user);
       return data.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.status);
     }
   },
 );

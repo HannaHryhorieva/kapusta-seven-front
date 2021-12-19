@@ -22,6 +22,7 @@ import { fetchAddTransaction } from '../../redux/transaction/transactions-operat
 import { getSelectedDate } from '../../redux/transaction/transactions-selectors';
 import s from './Transaction.module.css';
 import { selectStyles } from './selectStyles';
+import { transactionsActions } from '../../redux/transaction';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
@@ -34,7 +35,7 @@ function Transaction({
 }) {
   const selectedDate = useSelector(getSelectedDate);
   const [date, setDate] = useState(
-    new Date(selectedDate.year, selectedDate.month, selectedDate.day),
+    new Date(selectedDate.year, selectedDate.month - 1, selectedDate.day),
   );
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -67,7 +68,7 @@ function Transaction({
   const handleSubmit = e => {
     e.preventDefault();
     const year = date.getFullYear();
-    const month = date.getMonth();
+    const month = date.getMonth() + 1;
     const day = date.getDate();
     dispatch(
       fetchAddTransaction({
@@ -91,6 +92,17 @@ function Transaction({
     setAmount(0);
   };
 
+  const handleChangeDate = data => {
+    dispatch(
+      transactionsActions.selectedDate({
+        day: data.getDate(),
+        month: data.getMonth() + 1,
+        year: data.getFullYear(),
+      }),
+    );
+    setDate(data);
+  };
+
   return (
     <form onSubmit={handleSubmit} className={s.form}>
       <div className={s.wrapInputs}>
@@ -102,7 +114,7 @@ function Transaction({
             name="date"
             dateFormat="dd.MM.yyyy"
             selected={date}
-            onChange={data => setDate(data)}
+            onChange={handleChangeDate}
             required
           />
         </label>

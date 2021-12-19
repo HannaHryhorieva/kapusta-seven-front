@@ -11,6 +11,22 @@
   background-color: #fff;
 }
 
+.googleButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 122px;
+  height: 40px;
+  background: #f6f7fb;
+  border-radius: 26px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
+  align-self: center;
+  margin-bottom: 30px;
+}
+
 .text {
   font-size: 10px;
   font-weight: 12px;

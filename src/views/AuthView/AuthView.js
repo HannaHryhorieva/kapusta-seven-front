@@ -1,6 +1,5 @@
 import { Auth } from '../../components/Auth/Auth';
 import React from 'react';
-import { Typography } from '@mui/material';
 import s from './AuthView.module.css';
 
 function AuthView() {
