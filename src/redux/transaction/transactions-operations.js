@@ -21,7 +21,7 @@ export const fetchTransactionsSummaryByYear = createAsyncThunk(
       const data = await transactionsApi.allTransactionsByYear(year);
       return data;
     } catch (error) {
-      return rejectWithValue(error.messeg);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -33,7 +33,7 @@ export const fetchAllTransactionsByCategory = createAsyncThunk(
       const data = await transactionsApi.allTransactionsByCategory(date);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -57,7 +57,7 @@ export const fetchAddTransaction = createAsyncThunk(
       const data = await transactionsApi.addTransaction(transaction);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
