@@ -1,20 +1,29 @@
-import { ButtonGroup, Button, Select, MenuItem } from '@mui/material';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import s from './Transaction.module.css';
-import expenseCategories from './expenseCategories.json';
-import { buttonGroupStyles } from './buttonStyles';
-import { selectStyles } from './selectStyles';
-import calc from '../../images/icons/calculator.svg';
 import './datePickerStyles.css';
+
+import {
+  Button,
+  ButtonGroup,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from '@mui/material';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import DatePicker from 'react-datepicker';
+import { buttonGroupStyles } from './buttonStyles';
+import calc from '../../images/icons/calculator.svg';
 import calendar from '../../images/icons/calendar.svg';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { fetchAddTransaction } from '../../redux/transaction/transactions-operations';
-import { getSelectedDate} from '../../redux/transaction/transactions-selectors'
+import expenseCategories from './expenseCategories.json';
 import { expenseToBalance } from '../../redux/balance/balance-actions';
+import { fetchAddTransaction } from '../../redux/transaction/transactions-operations';
+import { getSelectedDate } from '../../redux/transaction/transactions-selectors';
+import s from './Transaction.module.css';
+import { selectStyles } from './selectStyles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 function Transaction({
   categories,
@@ -23,13 +32,14 @@ function Transaction({
   toBalance,
   selectLabel,
 }) {
-  const selectedDate = useSelector(getSelectedDate)
-  const [date, setDate] = useState(new Date(selectedDate.year, selectedDate.month, selectedDate.day));
+  const selectedDate = useSelector(getSelectedDate);
+  const [date, setDate] = useState(
+    new Date(selectedDate.year, selectedDate.month, selectedDate.day),
+  );
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState();
   const dispatch = useDispatch();
-  //   const contacts = useSelector(getFilteredContacts);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
   const isTablet = useMediaQuery(theme.breakpoints.only('tablet'));
@@ -105,27 +115,47 @@ function Transaction({
           onChange={handleChange}
           placeholder={placeholder}
         />
-        <Select
-          sx={
-            isMobile
-              ? { width: '280px', marginBottom: '30px', borderRadius: '0 0 16px 0', border: '2px solid #FFF', fontSize:'12px' }
-              : isTablet
-              ? { width: '168px', marginBottom: 0, borderRight: 'none', borderRadius: '0', fontSize:'12px'}
-              : selectStyles
-          }
-          id="select"
-          name="category"
-          label={selectLabel}
-          value={category}
-          onChange={handleChange}
-          required
-        >
-          {categories.map(option => (
-            <MenuItem key={option.value} value={option.value} id={option.value} style={{fontSize: '12px'}}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
+        <FormControl>
+          <InputLabel sx={{ fontSize: '12px' }}>Категория</InputLabel>
+          <Select
+            sx={
+              isMobile
+                ? {
+                    width: '280px',
+                    marginBottom: '30px',
+                    borderRadius: '0 0 16px 0',
+                    border: '2px solid #FFF',
+                    fontSize: '12px',
+                  }
+                : isTablet
+                ? {
+                    width: '168px',
+                    marginBottom: 0,
+                    borderRight: 'none',
+                    borderRadius: '0',
+                    fontSize: '12px',
+                  }
+                : selectStyles
+            }
+            id="select"
+            name="category"
+            label={selectLabel}
+            value={category}
+            onChange={handleChange}
+            required
+          >
+            {categories.map(option => (
+              <MenuItem
+                key={option.value}
+                value={option.value}
+                id={option.value}
+                style={{ fontSize: '12px' }}
+              >
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <label className={s.sumWrap}>
           <input
             className={s.sum}
