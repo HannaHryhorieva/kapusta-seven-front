@@ -5,7 +5,7 @@ import { incomeToBalance } from '../../redux/balance/balance-actions'
 
 
 const FormIncomeForMob = () => { 
-    return (<div>
+    return (<div style={{ marginTop: '15px' }}>
         
         <BtnGoToMain />
         <Transaction
