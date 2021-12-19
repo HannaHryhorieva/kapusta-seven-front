@@ -32,6 +32,8 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
+
+  background-color: transparent;
   color: #52555f;
 }
 .date:focus {
@@ -42,13 +44,15 @@
   display: block;
 
   padding: 12px 20px;
-  width: 190px;
+  width: 280px;
   height: 44px;
 
   font-size: 12px;
   letter-spacing: 0.02em;
 
-  border: 2px solid #f5f6fb;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-bottom: none;
   border-radius: 16px 16px 0 0;
 }
 
@@ -69,7 +73,8 @@
   font-size: 12px;
   letter-spacing: 0.02em;
 
-  border: 2px solid #f5f6fb;
+  background-color: transparent;
+  border: 2px solid #fff;
   border-radius: 16px;
 }
 .sum:focus {
@@ -91,6 +96,9 @@
     margin-bottom: 0;
   }
   .desc {
+    width: 190px;
+    border: 2px solid #f5f6fb;
+    border-bottom: 2px solid #f5f6fb;
     border-right: none;
     border-top-right-radius: 0;
   }
@@ -99,6 +107,7 @@
   }
   .sum {
     width: 128px;
+    border: 2px solid #f5f6fb;
     border-radius: 0px 16px 16px 0px;
   }
 }
