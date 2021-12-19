@@ -1,7 +1,15 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import './datePickerStyles.css';
 
-import { Button, ButtonGroup, MenuItem, Select } from '@mui/material';
+import {
+  Button,
+  ButtonGroup,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from '@mui/material';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DatePicker from 'react-datepicker';
@@ -16,7 +24,6 @@ import s from './Transaction.module.css';
 import { selectStyles } from './selectStyles';
 import { transactionsActions } from '../../redux/transaction';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 
 function Transaction({
@@ -34,7 +41,6 @@ function Transaction({
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState();
   const dispatch = useDispatch();
-  //   const contacts = useSelector(getFilteredContacts);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
   const isTablet = useMediaQuery(theme.breakpoints.only('tablet'));
@@ -121,44 +127,47 @@ function Transaction({
           onChange={handleChange}
           placeholder={placeholder}
         />
-        <Select
-          sx={
-            isMobile
-              ? {
-                  width: '280px',
-                  marginBottom: '30px',
-                  borderRadius: '0 0 16px 0',
-                  border: '2px solid #FFF',
-                  fontSize: '12px',
-                }
-              : isTablet
-              ? {
-                  width: '168px',
-                  marginBottom: 0,
-                  borderRight: 'none',
-                  borderRadius: '0',
-                  fontSize: '12px',
-                }
-              : selectStyles
-          }
-          id="select"
-          name="category"
-          label={selectLabel}
-          value={category}
-          onChange={handleChange}
-          required
-        >
-          {categories.map(option => (
-            <MenuItem
-              key={option.value}
-              value={option.value}
-              id={option.value}
-              style={{ fontSize: '12px' }}
-            >
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
+        <FormControl>
+          <InputLabel sx={{ fontSize: '12px' }}>Категория</InputLabel>
+          <Select
+            sx={
+              isMobile
+                ? {
+                    width: '280px',
+                    marginBottom: '30px',
+                    borderRadius: '0 0 16px 0',
+                    border: '2px solid #FFF',
+                    fontSize: '12px',
+                  }
+                : isTablet
+                ? {
+                    width: '168px',
+                    marginBottom: 0,
+                    borderRight: 'none',
+                    borderRadius: '0',
+                    fontSize: '12px',
+                  }
+                : selectStyles
+            }
+            id="select"
+            name="category"
+            label={selectLabel}
+            value={category}
+            onChange={handleChange}
+            required
+          >
+            {categories.map(option => (
+              <MenuItem
+                key={option.value}
+                value={option.value}
+                id={option.value}
+                style={{ fontSize: '12px' }}
+              >
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <label className={s.sumWrap}>
           <input
             className={s.sum}
