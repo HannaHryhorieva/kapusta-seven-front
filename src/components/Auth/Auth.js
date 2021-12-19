@@ -52,13 +52,23 @@ function Auth() {
 
   useEffect(() => {
     if (error) {
-      setFormErrors({ email: error.message });
+      if (error === 400) {
+        setFormErrors({ email: 'пользователь с такой почтой не найден' });
+      }
+
+      if (error === 401) {
+        setFormErrors({ email: 'неправильная почта или пароль' });
+      }
+
+      if (error === 409) {
+        setFormErrors({ email: 'пользователь с такой почтой уже существует' });
+      }
     }
   }, [error]);
 
   useEffect(() => {
     if (verificationToken) {
-      setFormMessage('Подтверждение отправлено на почту');
+      setFormMessage('сообщение с подтверждением отправлено на почту');
     }
   }, [verificationToken]);
 

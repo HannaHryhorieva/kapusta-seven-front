@@ -7,10 +7,9 @@ export const fetchSignup = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const data = await authApi.fetchSignup(user);
-      console.log(data);
       return data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.status);
     }
   },
 );
@@ -55,10 +54,9 @@ export const fetchSignin = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const data = await authApi.fetchSignin(user);
-      console.log(data.data);
       return data.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.status);
     }
   },
 );
