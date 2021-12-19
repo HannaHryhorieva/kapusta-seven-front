@@ -27,6 +27,9 @@
   .background-top {
     height: 286px;
   }
+  .background-top_for-mobile {
+    height: 330px;
+  }
 }
 
 .container {

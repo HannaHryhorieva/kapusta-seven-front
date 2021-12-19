@@ -1,6 +1,6 @@
 import { ButtonGroup, Button, Select, MenuItem } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './Transaction.module.css';
@@ -13,6 +13,7 @@ import calendar from '../../images/icons/calendar.svg';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { fetchAddTransaction } from '../../redux/transaction/transactions-operations';
+import { getSelectedDate} from '../../redux/transaction/transactions-selectors'
 import { expenseToBalance } from '../../redux/balance/balance-actions';
 
 function Transaction({
@@ -22,7 +23,8 @@ function Transaction({
   toBalance,
   selectLabel,
 }) {
-  const [date, setDate] = useState(new Date());
+  const selectedDate = useSelector(getSelectedDate)
+  const [date, setDate] = useState(new Date(selectedDate.year, selectedDate.month, selectedDate.day));
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState();
@@ -106,9 +108,9 @@ function Transaction({
         <Select
           sx={
             isMobile
-              ? { width: '280px', marginBottom: '30px' }
+              ? { width: '280px', marginBottom: '30px', borderRadius: '0 0 16px 0', border: '2px solid #FFF', fontSize:'12px' }
               : isTablet
-              ? { width: '168px', marginBottom: 0, borderRight: 'none' }
+              ? { width: '168px', marginBottom: 0, borderRight: 'none', borderRadius: '0', fontSize:'12px'}
               : selectStyles
           }
           id="select"
@@ -119,7 +121,7 @@ function Transaction({
           required
         >
           {categories.map(option => (
-            <MenuItem key={option.value} value={option.value} id={option.value}>
+            <MenuItem key={option.value} value={option.value} id={option.value} style={{fontSize: '12px'}}>
               {option.label}
             </MenuItem>
           ))}

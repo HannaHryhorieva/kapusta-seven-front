@@ -7,8 +7,8 @@
 .title {
   margin-bottom: 8px;
   font-weight: 500;
-  /* font-size: 12px;
-  line-height: 1.6; */
+  font-size: 12px;
+  line-height: 1.6;
   letter-spacing: 0.02em;
 
   color: rgba(82, 85, 95, 0.7);
@@ -23,14 +23,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 145px;
+  width: 125px;
   height: 44px;
   border: 2px solid #fff;
   border-radius: 0 16px 16px 0;
   border-left: none;
 
-  /* font-size: 12px;
-  line-height: 1.6; */
+  font-size: 12px;
+  line-height: 1.6;
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -50,13 +50,14 @@
   display: inline-block;
   /* margin-right: 15px; */
   padding: 12px 20px;
-  max-width: 145px;
+  max-width: 125px;
   height: 44px;
   font: inherit;
   font-weight: 700;
-  /* font-size: 12px; */
+  font-size: 12px;
   text-align: right;
 
+  background-color: transparent;
   border: 2px solid #fff;
   border-radius: 16px 0 0 16px;
 }
@@ -81,8 +82,8 @@
   max-height: 42px;
 
   font-weight: 700;
-  /* font-size: 12px;
-  line-height: 1.6; */
+  font-size: 12px;
+  line-height: 1.6;
   text-align: center;
 
   border: 2px solid #fff;
