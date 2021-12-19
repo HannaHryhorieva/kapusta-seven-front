@@ -1,4 +1,4 @@
-import { BtnGoToMain } from '../BtnGoToMain/BtnGoToMain'
+import BtnGoToMain from '../BtnGoToMain/BtnGoToMain'
 import Transaction from './Transaction'
 
 const FormExpenseForMob = () => { 

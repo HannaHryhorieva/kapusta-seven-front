@@ -13,11 +13,11 @@ import theme from './styles/theme';
 // import { useEffect, Suspense, lazy } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { Switch, Route } from 'react-router-dom';
-
-/* 
-Шляхи до сторінки з формами введення транзакції при розширенню екрану на мобільних
 import FormExpenseForMob from './components/TransactionForm/FormExpenseForMob'
 import FormIncomeForMob from './components/TransactionForm/FormIncomeForMob'
+/* 
+Шляхи до сторінки з формами введення транзакції при розширенню екрану на мобільних
+
 ==============
 при рендері арр до решти раутів
             <Route path="/incomeform">
@@ -48,6 +48,12 @@ function App() {
           <Route path="/auth">
             <AuthView />
           </Route>
+           <Route path="/incomeform">
+              <FormIncomeForMob/>
+            </Route> 
+            <Route path="/expenseform">
+            <FormExpenseForMob />
+            </Route>
         </Switch>
       </div>
     </ThemeProvider>
