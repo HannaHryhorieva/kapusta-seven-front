@@ -9,7 +9,7 @@ export const fetchUpdBalance = createAsyncThunk(
       const data = await authApi.fetchUpdBalance(userData);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
