@@ -12,7 +12,7 @@ import { createReducer } from '@reduxjs/toolkit';
 const initialUserState = { name: null, email: null };
 
 const user = createReducer(initialUserState, {
-  [fetchSignup.fulfilled]: (_, { payload }) => payload.user,
+  [fetchSignup.fulfilled]: (_, { payload }) => payload.data,
   [fetchSignin.fulfilled]: (_, { payload }) => payload.user,
   [fetchGoogleAuth.fulfilled]: (_, { payload }) => payload.user,
   [fetchGoogleRedirect.fulfilled]: (_, { payload }) => payload,
@@ -20,7 +20,7 @@ const user = createReducer(initialUserState, {
 });
 
 const token = createReducer(null, {
-  [fetchSignup.fulfilled]: (_, { payload }) => payload.verificationToken,
+  // [fetchSignup.fulfilled]: (_, { payload }) => payload.verificationToken,
   [fetchSignin.fulfilled]: (_, { payload }) => payload.token,
   [fetchLogout.fulfilled]: () => null,
 });
@@ -28,7 +28,7 @@ const token = createReducer(null, {
 const setError = (_, { payload }) => payload;
 
 const error = createReducer(null, {
-  [fetchSignup.rejected.rejected]: setError,
+  [fetchSignup.rejected]: setError,
   [fetchGoogleAuth.rejected]: setError,
   [fetchGoogleRedirect.rejected]: setError,
   [fetchSignin.rejected]: setError,
@@ -36,12 +36,12 @@ const error = createReducer(null, {
 });
 
 const isLoggedIn = createReducer(false, {
-  [fetchSignup.fulfilled]: () => true,
+  // [fetchSignup.fulfilled]: () => true,
   [fetchGoogleAuth.fulfilled]: () => true,
   [fetchGoogleRedirect.fulfilled]: () => true,
   [fetchSignin.fulfilled]: () => true,
   [fetchLogout.fulfilled]: () => false,
-  [fetchSignup.rejected]: () => false,
+  // [fetchSignup.rejected]: () => false,
   [fetchGoogleAuth.rejected]: () => false,
   [fetchGoogleRedirect.rejected]: () => false,
   [fetchSignin.rejected]: () => false,
