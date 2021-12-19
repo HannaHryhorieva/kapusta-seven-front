@@ -13,9 +13,9 @@ const BalanceView = () => {
     style: 'currency',
     currency: 'UAH',
   });
-
+  
   const dispatch = useDispatch();
-  const balance = formatter.format(useSelector(getBalance));
+  const balance = useSelector(getBalance);
 
   // const formatNumber = n => {
   //   return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -24,7 +24,7 @@ const BalanceView = () => {
   const handleChange = e => {
     let value = e.target.value;
     // if (value.indexOf('.') >= 0) {
-    //   const decimalPos = value.indexOf('.');
+    //   const decimalPos = value.indexOf('.');;
     //   let leftSide = value.substring(0, decimalPos);
     //   let rightSide = value.substring(decimalPos);
 
@@ -54,7 +54,7 @@ const BalanceView = () => {
     <div className={s.container}>
       <p className={s.title}>Баланс:</p>
       {balance > 0 ? (
-        <span className={s.balance}> {balance}</span>
+        <span className={s.balance}> {formatter.format(balance)}</span>
       ) : (
         <form className={s.form} onSubmit={handleSubmit}>
           <Tooltip

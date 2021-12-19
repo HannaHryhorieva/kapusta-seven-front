@@ -48,13 +48,13 @@ const summaryByYear = createReducer([], {
 });
 
 const initialDate = {
-  day: new Date().getDay(),
-  month: new Date().getMonth() + 1,
+  day: new Date().getDate(),
+  month: new Date().getMonth(),
   year: new Date().getFullYear(),
 };
 
 const selectedDate = createReducer(initialDate, {
-  //todo add logic for date
+  [actions.selectedDate]: (_, { payload }) => payload,
 });
 
 // const allTransactionsByYearMonth = createReducer([], {

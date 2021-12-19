@@ -1,7 +1,8 @@
 const selectStyles = {
-  borderRadius: 0,
   width: '188px',
   height: '44px',
+  fontSize: '12px',
+  borderRadius: '0',
   borderRight: 'none',
   border: '2px solid #F5F6FB',
 
