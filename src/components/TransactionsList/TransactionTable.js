@@ -33,6 +33,7 @@ function TransactionTable({ type, deleteDialogHandler }) {
         component={Paper}
         sx={{
           height: '437px',
+          maxWidth: '760px',
         }}
       >
         <Table stickyHeader>
