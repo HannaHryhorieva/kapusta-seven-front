@@ -9,7 +9,7 @@ export const fetchSignup = createAsyncThunk(
       const data = await authApi.fetchSignup(user);
       return data.data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -21,7 +21,7 @@ export const fetchGoogleAuth = createAsyncThunk(
       const data = await authApi.fetchGoogleAuth();
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -33,7 +33,7 @@ export const fetchGoogleRedirect = createAsyncThunk(
       const data = await authApi.fetchGoogleRedirect();
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -45,7 +45,7 @@ export const fetchVerify = createAsyncThunk(
       const data = await authApi.fetchVerify(verificationToken);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -56,7 +56,7 @@ export const fetchSignin = createAsyncThunk(
       const data = await authApi.fetchSignin(user);
       return data.data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -67,7 +67,7 @@ export const fetchLogout = createAsyncThunk(
       const data = await authApi.fetchLogout();
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
