@@ -75,7 +75,7 @@ function TransactionTabs({ deleteDialogHandler }) {
             <Transaction
              isIncome={true}
               categories={incomeCategories}
-              toBalance={incomeToBalance()}
+              toBalance={()=>incomeToBalance()}
               placeholder="Описание дохода"
             />
             <div style={tableBox}>
