@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
-export const token = {
+const token = {
   set(token) {
     axios.defaults.headers.common['Authorization'] = `${token}`;
   },
@@ -60,7 +60,7 @@ export async function fetchUpdBalance({ idUser, balance }) {
 
 export async function fetchCurrentUser(localToken) {
   token.set(localToken);
-  console.log(axios.defaults.headers.common['Authorization']);
+  console.log(localToken);
   const { data } = await axios.get(`/auth/users/${localToken}`);
   return data.data;
 }
