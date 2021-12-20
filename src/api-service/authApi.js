@@ -4,9 +4,7 @@ axios.defaults.baseURL = 'http://localhost:3001';
 
 const token = {
   set(token) {
-    axios.defaults.headers.common[
-      'Authorization'
-    ] = `Bearer ${token}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   },
   unset() {
     axios.defaults.headers.common['Authorization'] = '';
@@ -39,8 +37,8 @@ export async function fetchSignin({ email, password }) {
     email,
     password,
   });
-  token.set(data.data.token);
-  return data;
+  token.set(data.token);
+  return data.data;
 }
 
 export async function fetchLogout() {
@@ -53,5 +51,11 @@ export async function fetchUpdBalance( balance ) {
   const { data } = await axios.patch(`/auth/balance`, {
     balance
   });
+  return data.data;
+}
+
+export async function fetchCurrentUser(localToken) {
+  token.set(localToken);
+  const { data } = await axios.get(`/auth/users/${localToken}`);
   return data.data;
 }
