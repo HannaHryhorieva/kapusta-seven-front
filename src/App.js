@@ -46,7 +46,7 @@ function App() {
           <Route path="/report">
             <ReportView />
           </Route>
-          <Route path="/auth">
+          <Route path="/auth" redirectTo="/">
             <AuthView />
           </Route>
           <Route path="/incomeform">
