@@ -3,10 +3,11 @@ import { useEffect } from 'react';
 import s from './Modal.module.css';
 
 import { Button } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
 const modalRoot = document.querySelector('#modal-root');
 
-function Modal({ onClose }) {
+function Modal({ onClose, handleAgreeButtonClick }) {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
@@ -25,6 +26,12 @@ function Modal({ onClose }) {
       onClose();
     }
   };
+
+  const handleButtonClick = () => {
+    handleAgreeButtonClick();
+    onClose();
+  };
+
   return createPortal(
     <div className={s.Overlay} onClick={handleBackdropClick}>
       <div className={s.Modal}>
@@ -41,13 +48,17 @@ function Modal({ onClose }) {
               <Button
                 color="primary"
                 variant="contained"
-                onClick={handleBackdropClick}
+                onClick={handleButtonClick}
               >
                 Да
               </Button>
             </li>
             <li>
-              <Button color="info" variant="outlined">
+              <Button
+                color="info"
+                variant="outlined"
+                onClick={handleBackdropClick}
+              >
                 Нет
               </Button>
             </li>

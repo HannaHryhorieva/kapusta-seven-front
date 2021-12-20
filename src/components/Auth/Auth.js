@@ -7,12 +7,13 @@ import {
 import googleIcon from '../../images/icons/google.svg';
 import style from './Auth.module.css';
 import { useState, useEffect } from 'react';
-import { fetchSignup, fetchSignin } from '../../redux/login/auth-operations';
-import { useDispatch, useSelector } from 'react-redux';
 import {
-  getError,
-  getVerificationToken,
-} from '../../redux/login/auth-selectors';
+  fetchSignup,
+  fetchSignin,
+  fetchUser,
+} from '../../redux/login/auth-operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { getStatus } from '../../redux/login/auth-selectors';
 
 const inputStyle = {
   width: '250px',
@@ -47,30 +48,34 @@ function Auth() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const dispatch = useDispatch();
-  const error = useSelector(getError);
-  const verificationToken = useSelector(getVerificationToken);
+  const status = useSelector(getStatus);
 
   useEffect(() => {
-    if (error) {
-      if (error === 400) {
+    const token = window.location.search.split('=')[1];
+    if (token) {
+      dispatch(fetchUser(token));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (status) {
+      if (status === 400) {
         setFormErrors({ email: 'пользователь с такой почтой не найден' });
       }
 
-      if (error === 401) {
+      if (status === 401) {
         setFormErrors({ email: 'неправильная почта или пароль' });
       }
 
-      if (error === 409) {
+      if (status === 409) {
         setFormErrors({ email: 'пользователь с такой почтой уже существует' });
       }
-    }
-  }, [error]);
 
-  useEffect(() => {
-    if (verificationToken) {
-      setFormMessage('сообщение с подтверждением отправлено на почту');
+      if (status === 201) {
+        setFormMessage('сообщение с подтверждением отправлено на почту');
+      }
     }
-  }, [verificationToken]);
+  }, [status]);
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {

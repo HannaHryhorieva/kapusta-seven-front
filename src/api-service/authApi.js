@@ -2,8 +2,9 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
-const token = {
+export const token = {
   set(token) {
+    console.log(axios.defaults);
     axios.defaults.headers.common['Authorization'] = `${token}`;
   },
   unset() {
@@ -14,6 +15,13 @@ const token = {
 export async function fetchSignup({ name, email, password }) {
   const { data } = await axios.post(`/auth/signup`, { name, email, password });
   // token.set(data.data.data.verificationToken);
+  return data;
+}
+
+export async function fetchUser(token) {
+  console.log(token);
+  const data = await axios.get(`/auth/users/${token}`);
+  console.log(data);
   return data;
 }
 
@@ -38,12 +46,6 @@ export async function fetchSignin({ email, password }) {
     password,
   });
   token.set(data.data.token);
-  return data;
-}
-
-export async function fetchLogout() {
-  const { data } = await axios.post(`/auth/logout`);
-  token.unset();
   return data;
 }
 

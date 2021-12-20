@@ -7,9 +7,22 @@ export const fetchSignup = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const data = await authApi.fetchSignup(user);
+      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
+    }
+  },
+);
+
+export const fetchUser = createAsyncThunk(
+  'auth/fetchUser',
+  async (token, { rejectWithValue }) => {
+    try {
+      const data = await authApi.fetchUser(token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
     }
   },
 );
@@ -60,17 +73,18 @@ export const fetchSignin = createAsyncThunk(
     }
   },
 );
-export const fetchLogout = createAsyncThunk(
-  'auth/fetchLogout',
-  async (_, { rejectWithValue }) => {
-    try {
-      const data = await authApi.fetchLogout();
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
+// export const fetchLogout = createAsyncThunk(
+//   'auth/fetchLogout',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       console.log(1);
+//       const data = await authApi.fetchLogout();
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error);
+//     }
+//   },
+// );
 
 // const operations = {
 //   fetchSignup,
