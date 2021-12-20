@@ -110,11 +110,11 @@ function Transaction({
           <img src={calendar} style={{ marginRight: '10px' }} alt="calendar" />
           <DatePicker
             id="date"
-            className={s.date}
             name="date"
             dateFormat="dd.MM.yyyy"
             selected={date}
             onChange={handleChangeDate}
+            maxDate={new Date()}
             required
           />
         </label>

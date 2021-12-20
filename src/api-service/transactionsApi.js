@@ -2,9 +2,11 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 //todo remove after adding login functionality
+
+
 axios.defaults.headers.common[
   'Authorization'
-] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmRhODk4YzMyMzdhZTM3NTEzYTY5OSIsImlhdCI6MTYzOTk0OTM0MSwiZXhwIjoxNjM5OTU2NTQxfQ.AgcOmQsJn5Jua9e_QCpB1CGkkaZ1cBbh_OIMWVB3Xcc`;
+] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmRhODk4YzMyMzdhZTM3NTEzYTY5OSIsImlhdCI6MTYzOTk4MjcyMywiZXhwIjoxNjM5OTg5OTIzfQ.YYJHEa7VOJBkCnXyVo18C9B95xvMt_A3hpUMgH3d4j8`;
 
 
 // /api/transactions
