@@ -1,7 +1,7 @@
 import s from './Summary.module.css';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+// import { getToken } from '../../redux/login/auth-selectors';
 import {
   transactionsOperations,
   transactionsSelectors,
@@ -11,6 +11,7 @@ import monthWord from './monthWord';
 
 const Summary = ({ value }) => {
   const dispatch = useDispatch();
+
   const date = useSelector(transactionsSelectors.getSelectedDate);
   const year = date.year;
   useEffect(

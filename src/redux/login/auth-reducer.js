@@ -4,6 +4,7 @@ import {
   fetchLogout,
   fetchSignin,
   fetchSignup,
+  fetchCurrentUser,
 } from './auth-operations';
 
 import { combineReducers } from 'redux';
@@ -12,7 +13,12 @@ import { createReducer } from '@reduxjs/toolkit';
 const initialUserState = { name: null, email: null };
 
 const user = createReducer(initialUserState, {
+
+  [fetchCurrentUser.fulfilled]: (_, { payload }) => payload,
+  //[fetchSignup.fulfilled]: (_, { payload }) => payload.user,
+
   [fetchSignup.fulfilled]: (_, { payload }) => payload.data,
+
   [fetchSignin.fulfilled]: (_, { payload }) => payload.user,
   [fetchGoogleAuth.fulfilled]: (_, { payload }) => payload.user,
   [fetchGoogleRedirect.fulfilled]: (_, { payload }) => payload,
@@ -33,10 +39,14 @@ const error = createReducer(null, {
   [fetchGoogleRedirect.rejected]: setError,
   [fetchSignin.rejected]: setError,
   [fetchLogout.rejected]: setError,
+  [fetchCurrentUser.rejected]: setError,
 });
 
 const isLoggedIn = createReducer(false, {
-  // [fetchSignup.fulfilled]: () => true,
+
+  [fetchCurrentUser.fulfilled]: () => true,
+  [fetchSignup.fulfilled]: () => true,
+
   [fetchGoogleAuth.fulfilled]: () => true,
   [fetchGoogleRedirect.fulfilled]: () => true,
   [fetchSignin.fulfilled]: () => true,
@@ -45,6 +55,7 @@ const isLoggedIn = createReducer(false, {
   [fetchGoogleAuth.rejected]: () => false,
   [fetchGoogleRedirect.rejected]: () => false,
   [fetchSignin.rejected]: () => false,
+  [fetchCurrentUser.rejected]: () => false,
 });
 
 export default combineReducers({

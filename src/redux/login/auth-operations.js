@@ -54,7 +54,7 @@ export const fetchSignin = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const data = await authApi.fetchSignin(user);
-      return data.data;
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
     }
@@ -62,16 +62,30 @@ export const fetchSignin = createAsyncThunk(
 );
 export const fetchLogout = createAsyncThunk(
   'auth/fetchLogout',
-  async (_, { rejectWithValue }) => {
+  async (token, { rejectWithValue }) => {
     try {
-      const data = await authApi.fetchLogout();
+      const data = await authApi.fetchLogout(token);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   },
 );
+export const fetchCurrentUser = createAsyncThunk(
+  'auth/fetchCurrentUser',
 
+  async (token, { rejectWithValue }) => {
+    if (token === null) {
+      return rejectWithValue();
+    }
+    try {
+      const data = await authApi.fetchCurrentUser(token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 //cheching
 const authOperations = {
   fetchSignup,
@@ -80,6 +94,7 @@ const authOperations = {
   fetchVerify,
   fetchSignin,
   fetchLogout,
+  fetchCurrentUser,
 };
 
 export default authOperations;
