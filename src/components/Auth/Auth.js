@@ -14,7 +14,6 @@ import {
   getVerificationToken,
 } from '../../redux/login/auth-selectors';
 
-
 const inputStyle = {
   width: '250px',
   height: '50px',
