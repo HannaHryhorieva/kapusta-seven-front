@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUpdBalance } from '../../redux/balance/balance-operations';
 import { getBalance } from '../../redux/balance/balance-selectors';
 import s from './BalanceView.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const BalanceView = () => {
   const [inputValue, setInputValue] = useState({});
@@ -17,7 +17,9 @@ const BalanceView = () => {
   const dispatch = useDispatch();
   const balance = useSelector(getBalance);
 
-  
+  useEffect(() => {
+    
+   })
 
   // const formatNumber = n => {
   //   return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');

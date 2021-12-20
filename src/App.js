@@ -52,9 +52,9 @@ function App() {
             <PrivateRoute path="/expenseform" redirectTo="/auth">
               <FormExpenseForMob />
             </PrivateRoute>
-             <Route>
+             {/* <Route>
             <NotFound />
-          </Route>                 
+          </Route>                  */}
           </Suspense>
                               </Switch>
       </div>
