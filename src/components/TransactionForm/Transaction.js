@@ -80,7 +80,7 @@ function Transaction({
         isIncome,
       }),
     );
-    dispatch(toBalance(amount));
+    dispatch(toBalance(Number(amount)));
     reset();
   };
 
