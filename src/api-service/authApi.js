@@ -12,12 +12,8 @@ const token = {
 };
 
 export async function fetchSignup({ name, email, password }) {
-  const { data } = await axios.post(`/auth/signup`, {
-    name,
-    email,
-    password,
-  });
-  token.set(data.token);
+  const { data } = await axios.post(`/auth/signup`, { name, email, password });
+  // token.set(data.data.data.verificationToken);
   return data;
 }
 
@@ -51,8 +47,8 @@ export async function fetchLogout() {
   return data;
 }
 
-export async function fetchUpdBalance({ idUser, balance }) {
-  const { data } = await axios.patch(`/auth/balance/${idUser}`, {
+export async function fetchUpdBalance( balance ) {
+  const { data } = await axios.patch(`/auth/balance/61bda898c3237ae37513a699`, {
     balance,
   });
   return data.data;

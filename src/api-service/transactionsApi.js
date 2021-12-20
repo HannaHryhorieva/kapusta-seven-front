@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001';
-// // todo remove after adding login functionality
+
+// todo remove after adding login functionality
+
 
 // axios.defaults.headers.common[
 //   'Authorization'

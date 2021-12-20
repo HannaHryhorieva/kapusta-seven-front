@@ -9,6 +9,12 @@ import style from './Auth.module.css';
 import { useState, useEffect } from 'react';
 import { fetchSignup, fetchSignin } from '../../redux/login/auth-operations';
 import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getError,
+  getVerificationToken,
+} from '../../redux/login/auth-selectors';
+
 
 const inputStyle = {
   width: '250px',
@@ -24,12 +30,10 @@ const helperText = {
   letterSpacing: '0.04em',
 };
 
-const buttonStyle = {
-  alignSelf: 'center',
-  width: '122px',
-  height: '40px',
-  marginBottom: '30px',
-  textTransform: 'none',
+const helperMessage = {
+  fontSize: '10px',
+  lineHeight: '12px',
+  letterSpacing: '0.04em',
 };
 
 const initialFormValuesState = {
@@ -41,9 +45,34 @@ const initialFormValuesState = {
 function Auth() {
   const [formValues, setFormValues] = useState(initialFormValuesState);
   const [formErrors, setFormErrors] = useState({});
+  const [formMessage, setFormMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const dispatch = useDispatch();
+  const error = useSelector(getError);
+  const verificationToken = useSelector(getVerificationToken);
+
+  useEffect(() => {
+    if (error) {
+      if (error === 400) {
+        setFormErrors({ email: 'пользователь с такой почтой не найден' });
+      }
+
+      if (error === 401) {
+        setFormErrors({ email: 'неправильная почта или пароль' });
+      }
+
+      if (error === 409) {
+        setFormErrors({ email: 'пользователь с такой почтой уже существует' });
+      }
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (verificationToken) {
+      setFormMessage('сообщение с подтверждением отправлено на почту');
+    }
+  }, [verificationToken]);
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
@@ -78,6 +107,7 @@ function Auth() {
   ]);
 
   const validate = values => {
+    setFormMessage('');
     let errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (!values.email) {
@@ -116,10 +146,13 @@ function Auth() {
       <p className={style.text}>
         Вы можете авторизироваться с помощью Google Account:
       </p>
-      <Button color="secondary" sx={buttonStyle}>
+      <a
+        href="http://localhost:3001/auth/google"
+        className={style.googleButton}
+      >
         <img src={googleIcon} alt="google icon" className={style.icon}></img>
         Google
-      </Button>
+      </a>
       <p className={style.text}>
         Или зайти с помощью e-mail и пароля, предварительно зарегистрировавшись:
       </p>
@@ -135,6 +168,7 @@ function Auth() {
         <FormHelperText sx={{ ...helperText, margin: '4px 0px 0px' }}>
           {formErrors.email}
         </FormHelperText>
+        <FormHelperText sx={helperMessage}>{formMessage}</FormHelperText>
       </FormControl>
       <p className={style.inputText}>Пароль:</p>
       <FormControl sx={{ marginBottom: '40px' }}>
