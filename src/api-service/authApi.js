@@ -6,7 +6,7 @@ const token = {
   set(token) {
     axios.defaults.headers.common[
       'Authorization'
-    ] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjg0ZDQxOTg3ZmRjZjViYTM1YTg3ZCIsImlhdCI6MTYzOTgyNDU4MywiZXhwIjoxNjM5ODMxNzgzfQ._NXpwyXexdQr11XSlDTsuCcEgaUT5Q4WS9RggDPYUWY`;
+    ] = `Bearer ${token}`;
   },
   unset() {
     axios.defaults.headers.common['Authorization'] = '';
@@ -49,8 +49,8 @@ export async function fetchLogout() {
   return data;
 }
 
-export async function fetchUpdBalance({ idUser, balance }) {
-  const { data } = await axios.patch(`/auth/balance/${idUser}`, {
+export async function fetchUpdBalance( balance ) {
+  const { data } = await axios.patch(`/auth/balance/61bda898c3237ae37513a699`, {
     balance,
   });
   return data.data;
