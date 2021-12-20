@@ -77,7 +77,6 @@ function TransactionTabs({ deleteDialogHandler }) {
               categories={incomeCategories}
               toBalance={incomeToBalance()}
               placeholder="Описание дохода"
-              selectLabel="Категория дохода"
             />
             <div style={tableBox}>
               <TransactionTable

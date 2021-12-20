@@ -31,7 +31,6 @@ function Transaction({
   isIncome,
   placeholder,
   toBalance,
-  selectLabel,
 }) {
   const selectedDate = useSelector(getSelectedDate);
   const [date, setDate] = useState(
@@ -155,7 +154,6 @@ function Transaction({
             }
             id="select"
             name="category"
-            label={selectLabel}
             value={category}
             onChange={handleChange}
             required
