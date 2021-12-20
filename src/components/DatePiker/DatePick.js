@@ -1,5 +1,6 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import '../TransactionForm/datePickerStyles.css';
+import s from './DatePick.module.css'
 import calendar from '../../images/icons/calendar.svg';
 import DatePicker from 'react-datepicker';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,10 +27,8 @@ const dispatch = useDispatch();
     setDate(data);
   };
   return (
-    <div style={{display: 'flex',
-  alignItems: 'center',
-}}>
-          <img src={calendar} style={{ marginRight: '10px' }} alt="calendar" />
+    <div className={ s.wrapper}>
+      <img src={calendar} className={ s.img} alt="calendar" />
           <DatePicker
             id="date"
             // className={s.date}
