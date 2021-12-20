@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchUpdBalance } from '../../redux/balance/balance-operations';
 import { getBalance } from '../../redux/balance/balance-selectors';
 import s from './BalanceView.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const BalanceView = () => {
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState({});
 
   const formatter = new Intl.NumberFormat('uk-UA', {
     style: 'currency',
@@ -47,7 +47,7 @@ const BalanceView = () => {
     //   submitValue += '.00';
     // }
     //with back
-    dispatch(fetchUpdBalance(inputValue));
+    dispatch(fetchUpdBalance(Number(inputValue)));
   };
 
   return (

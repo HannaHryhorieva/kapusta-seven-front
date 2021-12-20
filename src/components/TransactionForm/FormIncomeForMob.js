@@ -9,11 +9,10 @@ const FormIncomeForMob = () => {
         <div className="background-top background-top_for-mobile"></div>
         <BtnGoToMain />
         <Transaction
-            isIncome='true'
+            isIncome={true}
             categories={incomeCategories}
-            toBalance={() => incomeToBalance()}
+            toBalance={incomeToBalance}
             placeholder='Описание дохода'
-            selectLabel='Категория дохода'
         />
         </div>
     )
