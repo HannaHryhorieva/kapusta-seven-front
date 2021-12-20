@@ -51,6 +51,14 @@
     background-position: top 104px right, bottom left 35px;
     background-repeat: no-repeat, no-repeat;
   }
+
+  .logoName {
+    position: relative;
+    width: 183.52px;
+    height: 46.62px;
+    color: #000000;
+    background: url('../../images/KapustaLogoMob.png') no-repeat; /* Путь к фото*/
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -85,6 +93,37 @@
     line-height: 1.19;
     letter-spacing: 0.18em;
     margin-left: 57px;
+  }
+
+  .logoName {
+    position: relative;
+    width: 375.52px;
+    height: 104.62px;
+    color: #000000;
+    background: url('../../images/Kapusta_Hero.png') no-repeat; /* Путь к фото*/
+  }
+
+  .logoName:nth-child(1):before {
+    position: absolute;
+    width: 11.66px;
+    height: 12.82px;
+    display: inline-block;
+    content: '';
+    left: 249px; /* Позиционирование может поменяться*/
+    top: 6px; /* Позиционирование может поменяться*/
+
+    background: #000000;
+  }
+  .logoName:nth-child(1):after {
+    position: absolute;
+    width: 11.66px;
+    height: 13.82px;
+    display: inline-block;
+    content: '';
+    left: 249px; /* Позиционирование может поменяться*/
+    top: 72px; /* Позиционирование может поменяться*/
+
+    background: #000000;
   }
 }
 
@@ -121,5 +160,36 @@
   .form {
     margin-left: 127px;
     margin-right: 0;
+  }
+
+  .logoName {
+    position: relative;
+    width: 375.52px;
+    height: 104.62px;
+    color: #000000;
+    background: url('../../images/Kapusta_Hero.png') no-repeat; /* Путь к фото*/
+  }
+
+  .logoName:nth-child(1):before {
+    position: absolute;
+    width: 11.66px;
+    height: 12.82px;
+    display: inline-block;
+    content: '';
+    left: 249px; /* Позиционирование может поменяться*/
+    top: 6px; /* Позиционирование может поменяться*/
+
+    background: #000000;
+  }
+  .logoName:nth-child(1):after {
+    position: absolute;
+    width: 11.66px;
+    height: 13.82px;
+    display: inline-block;
+    content: '';
+    left: 249px; /* Позиционирование может поменяться*/
+    top: 72px; /* Позиционирование может поменяться*/
+
+    background: #000000;
   }
 }
