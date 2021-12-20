@@ -5,6 +5,7 @@
   justify-content: center;
 }
 .title {
+  margin-right: 10px;
   margin-bottom: 8px;
   font-weight: 500;
   font-size: 12px;
@@ -81,6 +82,8 @@
   padding: 12px 20px;
   max-height: 42px;
 
+  /*for mobile*/
+
   font-weight: 700;
   font-size: 12px;
   line-height: 1.6;
@@ -95,8 +98,11 @@
     flex-direction: row;
   }
   .title {
-    margin-bottom: 0;
     margin-right: 20px;
+    margin-bottom: 0;
+  }
+  .form {
+    margin-right: 90px;
   }
   .input {
     margin-right: 15px;
@@ -105,5 +111,25 @@
   .button {
     border-radius: 16px;
     border-left: 2px solid #fff;
+  }
+  .balance {
+    margin-right: 110px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .balance {
+    margin-right: 310px;
+  }
+  .form {
+    margin-right: 205px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .form {
+    margin-bottom: 45px;
+  }
+  .balance {
+    margin-bottom: 45px;
   }
 }
