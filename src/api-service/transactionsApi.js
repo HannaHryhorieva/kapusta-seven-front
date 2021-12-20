@@ -1,12 +1,11 @@
 import axios from 'axios';
+// import { fetchCurrentUser } ;
 
 axios.defaults.baseURL = 'http://localhost:3001';
 //todo remove after adding login functionality
-axios.defaults.headers.common[
-  'Authorization'
-] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmJhNTUyYWUwNDJlNGIxNWIwZThjMyIsImlhdCI6MTYzOTkxMzIzOSwiZXhwIjoxNjM5OTIwNDM5fQ.Z-OBm7Gg6fI-8tXJXZDJcoQXWKec2G_35-pDXTFYTiE`;
 
-// /api/transactions
+// axios.defaults.headers.common['Authorization'] =
+//   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmJhNTUyYWUwNDJlNGIxNWIwZThjMyIsImlhdCI6MTY0MDAwMTQyNywiZXhwIjoxNjQwMDA4NjI3fQ.xq7-M7bg9ydm1ZQ0QYOjuhQ4haFkK-XUXDr_L9kp-Q4';
 
 export async function allTransactions() {
   const { data } = await axios.get(`/api/transactions/`);

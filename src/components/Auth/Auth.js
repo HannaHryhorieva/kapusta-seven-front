@@ -7,7 +7,7 @@ import {
 import googleIcon from '../../images/icons/google.svg';
 import style from './Auth.module.css';
 import { useState, useEffect } from 'react';
-import { fetchSignup, fetchSignin } from '../../api-service/authApi';
+import { fetchSignup, fetchSignin } from '../../redux/login/auth-operations';
 import { useDispatch } from 'react-redux';
 
 const inputStyle = {
@@ -68,7 +68,14 @@ function Auth() {
         setIsSubmitting(false);
       }
     }
-  }, [formErrors]);
+  }, [
+    dispatch,
+    formErrors,
+    formValues.email,
+    formValues.password,
+    isSubmitting,
+    formValues.type,
+  ]);
 
   const validate = values => {
     let errors = {};
