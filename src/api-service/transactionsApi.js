@@ -2,12 +2,6 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
-// todo remove after adding login functionality
-
-// axios.defaults.headers.common[
-//   'Authorization'
-// ] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmJhNTUyYWUwNDJlNGIxNWIwZThjMyIsImlhdCI6MTY0MDAwOTI1NywiZXhwIjoxNjQwMDE2NDU3fQ.se1VtuPEGPR7mIfytY-mqbTQtOdazzb6j0FyTk1xWos`;
-
 export async function allTransactions() {
   const { data } = await axios.get(`/api/transactions/`);
   return data;

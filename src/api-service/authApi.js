@@ -48,8 +48,8 @@ export async function fetchLogout() {
 }
 
 export async function fetchUpdBalance( balance ) {
-  const { data } = await axios.patch(`/auth/balance/61bda898c3237ae37513a699`, {
-    balance,
+  const { data } = await axios.patch(`/auth/balance`, {
+    balance
   });
   return data.data;
 }
