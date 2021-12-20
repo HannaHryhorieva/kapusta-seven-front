@@ -10,6 +10,7 @@ import HomeView from './views/HomeView';
 import ReportView from './views/ReportView';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './styles/theme';
+import NotFound from './components/NotFound/NotFound';
 
 //import ExampleComponent from './example/ExampleComponent';
 // import { useEffect, Suspense, lazy } from 'react';
@@ -54,6 +55,9 @@ function App() {
           </Route>
           <Route path="/expenseform">
             <FormExpenseForMob />
+          </Route>
+          <Route>
+            <NotFound />
           </Route>
         </Switch>
       </div>
