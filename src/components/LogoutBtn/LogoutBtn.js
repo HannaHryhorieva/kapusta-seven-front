@@ -1,8 +1,9 @@
 import s from './LogoutBtn.module.css';
 import logoutIcon from '../../images/icons/logout.svg';
-
+import authOperations from '../../redux/login/auth-operations';
 import Modal from '../Modal/Modal';
 import React, { useState } from 'react';
+
 import { logoutUser } from '../../redux/login/auth-actions';
 import { useDispatch } from 'react-redux';
 
@@ -16,14 +17,19 @@ const LogoutBtn = () => {
     dispatch(logoutUser());
   };
 
+
   return (
     <div className={s.container}>
       {showModal && (
         <Modal
-          onClose={() => {
-            setShowModal(false);
+          onDeny={() => {
+            setShowModal(false)
           }}
           handleAgreeButtonClick={logout}
+
+//           onApprove={() => dispatch(authOperations.fetchLogout) } 
+//           question='Вы действительно хотите выйти?'
+
         />
       )}
       <span className={s.avatar}>U</span>

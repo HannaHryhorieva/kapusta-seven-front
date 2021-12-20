@@ -1,6 +1,7 @@
 import appBarStyles from './themeComponents/appBarStyles';
 import buttonStyles from './themeComponents/buttonStyles';
 import { createTheme } from '@mui/material/styles';
+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import tableStyles from './themeComponents/tableStyles';
 import tooltipStyles from './themeComponents/tooltipStyles';
 
@@ -78,12 +79,21 @@ const themeOptions = {
           borderRadius: '0',
           height: '44px',
           borderRight: 'none',
-          outline: 'none',
           '&.MuiOutlinedInput-input': {
             border: 'none',
-          }
-        }
-      }},
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          [`& .${outlinedInputClasses.notchedOutline}`]: {
+            borderWidth: 0,
+          },
+        },
+      },
+    },
     ...tableStyles,
   },
 };

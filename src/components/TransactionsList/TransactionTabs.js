@@ -1,14 +1,19 @@
 import { Box, Paper, Tab } from '@mui/material';
 import React, { useState } from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
+
+import Summary from '../Summary/Summary';
 import Transaction from '../TransactionForm/Transaction';
 import TransactionTable from './TransactionTable';
-import incomeCategories from '../TransactionForm/incomeCategories.json'
-import { incomeToBalance } from '../../redux/balance/balance-actions'
+import incomeCategories from '../TransactionForm/incomeCategories.json';
+import { incomeToBalance } from '../../redux/balance/balance-actions';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 function TransactionTabs({ deleteDialogHandler }) {
   const [value, setValue] = useState('expense');
-
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.down('desktop'));
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -39,6 +44,11 @@ function TransactionTabs({ deleteDialogHandler }) {
     p: '30px 20px 60px',
   };
 
+  const tableBox = {};
+  if (!isDesktop) {
+    tableBox.display = 'flex';
+  }
+
   return (
     <Box>
       <TabContext value={value}>
@@ -52,24 +62,29 @@ function TransactionTabs({ deleteDialogHandler }) {
         </TabList>
         <Paper sx={paperStyle}>
           <TabPanel value="expense" sx={{ padding: 0 }}>
-            <Transaction/>
-            <TransactionTable
-              type="expense"
-              deleteDialogHandler={deleteDialogHandler}
-            />
+            <Transaction />
+            <div style={tableBox}>
+              <TransactionTable
+                type="expense"
+                deleteDialogHandler={deleteDialogHandler}
+              />
+              <Summary value={value} />
+            </div>
           </TabPanel>
           <TabPanel value="income" sx={{ padding: 0 }}>
             <Transaction
-              isIncome='true'
+             isIncome={true}
               categories={incomeCategories}
-              toBalance={() => incomeToBalance()}
-              placeholder='Описание дохода'
-              selectLabel='Категория дохода'
+              toBalance={incomeToBalance}
+              placeholder="Описание дохода"
             />
-            <TransactionTable
-              type="income"
-              deleteDialogHandler={deleteDialogHandler}
-            />
+            <div style={tableBox}>
+              <TransactionTable
+                type="income"
+                deleteDialogHandler={deleteDialogHandler}
+              />
+              <Summary value={value} />
+            </div>
           </TabPanel>
         </Paper>
       </TabContext>

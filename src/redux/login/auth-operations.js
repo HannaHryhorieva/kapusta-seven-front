@@ -46,7 +46,7 @@ export const fetchGoogleRedirect = createAsyncThunk(
       const data = await authApi.fetchGoogleRedirect();
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -58,7 +58,7 @@ export const fetchVerify = createAsyncThunk(
       const data = await authApi.fetchVerify(verificationToken);
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -67,12 +67,13 @@ export const fetchSignin = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const data = await authApi.fetchSignin(user);
-      return data.data;
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
     }
   },
 );
+
 // export const fetchLogout = createAsyncThunk(
 //   'auth/fetchLogout',
 //   async (_, { rejectWithValue }) => {
@@ -86,12 +87,42 @@ export const fetchSignin = createAsyncThunk(
 //   },
 // );
 
-// const operations = {
-//   fetchSignup,
-//   fetchGoogleAuth,
-//   fetchGoogleRedirect,
-//   fetchVerify,
-//   fetchSignin,
-//   fetchLogout,
-// };
-// export default operations;
+export const fetchLogout = createAsyncThunk(
+  'auth/fetchLogout',
+  async (token, { rejectWithValue }) => {
+    try {
+      const data = await authApi.fetchLogout(token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+export const fetchCurrentUser = createAsyncThunk(
+  'auth/fetchCurrentUser',
+
+  async (token, { rejectWithValue }) => {
+    if (token === null) {
+      return rejectWithValue();
+    }
+    try {
+      const data = await authApi.fetchCurrentUser(token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+//cheching
+const authOperations = {
+  fetchSignup,
+  fetchGoogleAuth,
+  fetchGoogleRedirect,
+  fetchVerify,
+  fetchSignin,
+  fetchLogout,
+  fetchCurrentUser,
+};
+
+
+export default authOperations;

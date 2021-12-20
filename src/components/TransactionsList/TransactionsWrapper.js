@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import {
+  transactionsOperations,
+  transactionsSelectors,
+} from '../../redux/transaction';
 import { useDispatch, useSelector } from 'react-redux';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+
+import DeleteModal from './DeleteModal';
 import TransactionList from './TransactionList';
 import TransactionTabs from './TransactionTabs';
-import DeleteModal from './DeleteModal';
-import {
-  transactionsSelectors,
-  transactionsOperations,
-} from '../../redux/transaction';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 function TransactionsWrapper() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,11 +20,15 @@ function TransactionsWrapper() {
   const dispatch = useDispatch();
 
   const transactions = useSelector(transactionsSelectors.getAllTransactions);
-  const selectedDate = useSelector(transactionsSelectors.getSelectedDate);
+
+  const month = useSelector(transactionsSelectors.getSelectedMonth);
+  const year = useSelector(transactionsSelectors.getSelectedYear);
 
   useEffect(() => {
-    dispatch(transactionsOperations.fetchAllTransactionsByMonth(selectedDate));
-  }, [dispatch, selectedDate]);
+    dispatch(
+      transactionsOperations.fetchAllTransactionsByMonth({ month, year }),
+    );
+  }, [dispatch, month, year]);
 
   function showModal(transactionId) {
     setIsModalOpen(true);
