@@ -21,7 +21,6 @@ export const fetchGoogleAuth = createAsyncThunk(
       const data = await authApi.fetchGoogleAuth();
       return data;
     } catch (error) {
-
       return rejectWithValue(error.response.data);
     }
   },
@@ -58,7 +57,7 @@ export const fetchSignin = createAsyncThunk(
       return data.data;
     } catch (error) {
       return rejectWithValue(error.response.status);
-  }
+    }
   },
 );
 export const fetchLogout = createAsyncThunk(

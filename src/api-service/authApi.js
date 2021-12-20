@@ -4,7 +4,9 @@ axios.defaults.baseURL = 'http://localhost:3001';
 
 const token = {
   set(token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmRhODk4YzMyMzdhZTM3NTEzYTY5OSIsImlhdCI6MTYzOTk0MDk3OCwiZXhwIjoxNjM5OTQ4MTc4fQ.3imiiXI3RFGiV4BNtWcO45EW7PhdW1-ddsPXHnzS7S0`;
+    axios.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYjg0ZDQxOTg3ZmRjZjViYTM1YTg3ZCIsImlhdCI6MTYzOTgyNDU4MywiZXhwIjoxNjM5ODMxNzgzfQ._NXpwyXexdQr11XSlDTsuCcEgaUT5Q4WS9RggDPYUWY`;
   },
   unset() {
     axios.defaults.headers.common['Authorization'] = '';
