@@ -17,6 +17,8 @@ const BalanceView = () => {
   const dispatch = useDispatch();
   const balance = useSelector(getBalance);
 
+  
+
   // const formatNumber = n => {
   //   return n.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   // };

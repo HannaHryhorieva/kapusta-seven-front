@@ -6,7 +6,7 @@ axios.defaults.baseURL = 'http://localhost:3001';
 
 axios.defaults.headers.common[
   'Authorization'
-] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmRhODk4YzMyMzdhZTM3NTEzYTY5OSIsImlhdCI6MTYzOTk4MjcyMywiZXhwIjoxNjM5OTg5OTIzfQ.YYJHEa7VOJBkCnXyVo18C9B95xvMt_A3hpUMgH3d4j8`;
+] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmRhODk4YzMyMzdhZTM3NTEzYTY5OSIsImlhdCI6MTY0MDAyMzg0MCwiZXhwIjoxNjQwMDMxMDQwfQ.l2EFxNyvPN__1j7hBiiMXE49CAjoEAET1FExekRY2UE`;
 
 
 // /api/transactions

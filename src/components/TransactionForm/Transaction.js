@@ -81,9 +81,13 @@ function Transaction({
         isIncome,
       }),
     );
-    //dispatch(toBalance(amount));
+    dispatch(toBalance(amount));
     reset();
   };
+
+
+ 
+
 
   const reset = () => {
     setDate(new Date());
