@@ -16,7 +16,7 @@ import { useTheme } from '@mui/material/styles';
 
 function HomeView() {
   const error = useSelector(transactionsSelectors.getTransactionsError);
-const theme = useTheme();
+  const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
 
   return (

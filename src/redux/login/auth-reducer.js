@@ -37,8 +37,10 @@ const status = createReducer(null, {
   [fetchGoogleRedirect.rejected]: setError,
   [fetchSignin.rejected]: setError,
   [fetchCurrentUser.rejected]: setError,
+
+  [fetchLogout.fulfilled]: null,
+
   [fetchLogout.rejected]: () => setError,
-  [logoutUser]: null,
 });
 
 const isLoggedIn = createReducer(false, {
@@ -48,7 +50,7 @@ const isLoggedIn = createReducer(false, {
   [fetchGoogleAuth.fulfilled]: () => true,
   [fetchGoogleRedirect.fulfilled]: () => true,
   [fetchSignin.fulfilled]: () => true,
-  [logoutUser]: () => false,
+  [fetchLogout.fulfilled]: () => false,
   [fetchGoogleAuth.rejected]: () => false,
   [fetchGoogleRedirect.rejected]: () => false,
   [fetchSignin.rejected]: () => false,

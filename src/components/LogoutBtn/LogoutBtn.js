@@ -1,12 +1,15 @@
 import s from './LogoutBtn.module.css';
 import logoutIcon from '../../images/icons/logout.svg';
-import authOperations from '../../redux/login/auth-operations';
+// import authOperations from '../../redux/login/auth-operations';
 import Modal from '../Modal/Modal';
 import React, { useState } from 'react';
 import { getToken } from '../../redux/login/auth-selectors';
 import { getUserEmail } from '../../redux/login/auth-selectors';
 
-import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchLogout } from '../../redux/login/auth-operations';
+import { useDispatch } from 'react-redux';
+
 
 const LogoutBtn = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +19,9 @@ const LogoutBtn = () => {
   const userName = email[0].toUpperCase()+ email.slice(1).split('@')[0]
 
   const logout = () => {
-    dispatch(authOperations.fetchLogout(token));
+
+    dispatch(fetchLogout());
+
   };
 
   return (

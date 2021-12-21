@@ -17,11 +17,6 @@ export async function fetchSignup({ name, email, password }) {
   return data;
 }
 
-export async function fetchUser(token) {
-  const data = await axios.get(`/auth/users/${token}`);
-  return data;
-}
-
 export async function fetchGoogleAuth() {
   const { data } = await axios.get(`/auth/google`);
   return data;
@@ -47,9 +42,9 @@ export async function fetchSignin({ email, password }) {
 }
 
 export async function fetchLogout() {
-  const { data } = await axios.post(`/auth/logout`);
+  await axios.post(`/auth/logout`);
   token.unset();
-  return data;
+  return {};
 }
 
 export async function fetchUpdBalance(balance) {

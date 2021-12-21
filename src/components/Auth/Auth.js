@@ -7,13 +7,10 @@ import {
 import googleIcon from '../../images/icons/google.svg';
 import style from './Auth.module.css';
 import { useState, useEffect } from 'react';
-import {
-  fetchSignup,
-  fetchSignin,
-  fetchUser,
-} from '../../redux/login/auth-operations';
+import { fetchSignup, fetchSignin } from '../../redux/login/auth-operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStatus } from '../../redux/login/auth-selectors';
+import { fetchCurrentUser } from '../../redux/login/auth-operations';
 
 const inputStyle = {
   width: '250px',
@@ -53,7 +50,7 @@ function Auth() {
   useEffect(() => {
     const token = window.location.search.split('=')[1];
     if (token) {
-      dispatch(fetchUser(token));
+      dispatch(fetchCurrentUser(token));
     }
   }, []);
 
