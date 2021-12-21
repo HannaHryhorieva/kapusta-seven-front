@@ -23,76 +23,35 @@ const CategoriesList = ({ type, onClick, transactions, handleClick }) => {
 
   return (
     <>
-      {transactions.length > 0 ? (
-        <>
-          {!isMobile ? (
-            <Paper sx={paperStyles}>
-              <div style={{ maxWidth: '630px', margin: '0 auto' }}>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <ArrowLeft height={15} width={15} onClick={onClick} />
-                  <Typography variant="h2">
-                    {type === 'expense' ? (
-                      <p
-                        style={{
-                          textTransform: 'uppercase',
-                          padding: '0 15px',
-                        }}
-                      >
-                        расходы
-                      </p>
-                    ) : (
-                      <p
-                        style={{
-                          textTransform: 'uppercase',
-                          padding: '0 15px',
-                        }}
-                      >
-                        доходы
-                      </p>
-                    )}
-                  </Typography>
-                  <ArrowRight height={15} width={15} onClick={onClick} />
-                </div>
-                <ul className={isMobile ? s.expenseListMobile : s.expenseList}>
-                  {transactions.map((el, index) => (
-                    <CategoriesItem
-                      key={index}
-                      category={el.category}
-                      amount={el.amount}
-                      Icon={el.icon}
-                      handleClick={handleClick}
-                    />
-                  ))}
-                </ul>
-              </div>
-            </Paper>
-          ) : (
-            <div
-              style={{
-                maxWidth: '630px',
-                margin: '0 auto',
-                padding: '40px 10px 0 10px',
-              }}
-            >
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <ArrowLeft height={15} width={15} onClick={onClick} />
-                <Typography variant="h2">
-                  {type === 'expense' ? (
-                    <p
-                      style={{ textTransform: 'uppercase', padding: '0 15px' }}
-                    >
-                      расходы
-                    </p>
-                  ) : (
-                    <p
-                      style={{ textTransform: 'uppercase', padding: '0 15px' }}
-                    >
-                      доходы
-                    </p>
-                  )}
-                </Typography>
-                <ArrowRight height={15} width={15} onClick={onClick} />
-              </div>
+      {!isMobile ? (
+        <Paper sx={paperStyles}>
+          <div style={{ maxWidth: '630px', margin: '0 auto' }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <ArrowLeft height={15} width={15} onClick={onClick} />
+              <Typography variant="h2">
+                {type === 'expense' ? (
+                  <p
+                    style={{
+                      textTransform: 'uppercase',
+                      padding: '0 15px',
+                    }}
+                  >
+                    расходы
+                  </p>
+                ) : (
+                  <p
+                    style={{
+                      textTransform: 'uppercase',
+                      padding: '0 15px',
+                    }}
+                  >
+                    доходы
+                  </p>
+                )}
+              </Typography>
+              <ArrowRight height={15} width={15} onClick={onClick} />
+            </div>
+            {transactions.length > 0 ? (
               <ul className={isMobile ? s.expenseListMobile : s.expenseList}>
                 {transactions.map((el, index) => (
                   <CategoriesItem
@@ -104,14 +63,56 @@ const CategoriesList = ({ type, onClick, transactions, handleClick }) => {
                   />
                 ))}
               </ul>
-            </div>
-          )}
-        </>
+            ) : (
+              <h3 style={{ padding: '50px 20px' }}>
+                Для просмотра статистики внесите, пожалуйста, данные о расходах
+                и доходах
+              </h3>
+            )}
+          </div>
+        </Paper>
       ) : (
-        <h3 style={{ padding: '50px 20px' }}>
-          Для просмотра статистики внесите, пожалуйста, данные о расходах и
-          доходах
-        </h3>
+        <div
+          style={{
+            maxWidth: '630px',
+            margin: '0 auto',
+            padding: '40px 10px 0 10px',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <ArrowLeft height={15} width={15} onClick={onClick} />
+            <Typography variant="h2">
+              {type === 'expense' ? (
+                <p style={{ textTransform: 'uppercase', padding: '0 15px' }}>
+                  расходы
+                </p>
+              ) : (
+                <p style={{ textTransform: 'uppercase', padding: '0 15px' }}>
+                  доходы
+                </p>
+              )}
+            </Typography>
+            <ArrowRight height={15} width={15} onClick={onClick} />
+          </div>
+          {transactions.length > 0 ? (
+            <ul className={isMobile ? s.expenseListMobile : s.expenseList}>
+              {transactions.map((el, index) => (
+                <CategoriesItem
+                  key={index}
+                  category={el.category}
+                  amount={el.amount}
+                  Icon={el.icon}
+                  handleClick={handleClick}
+                />
+              ))}
+            </ul>
+          ) : (
+            <h3 style={{ padding: '50px 20px' }}>
+              Для просмотра статистики внесите, пожалуйста, данные о расходах и
+              доходах
+            </h3>
+          )}
+        </div>
       )}
     </>
   );

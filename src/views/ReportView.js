@@ -64,6 +64,7 @@ export default function ReportPage() {
       setMonth(1);
       setYear(prev => (prev += 1));
     }
+    setCurrentCategory('');
   };
   const onHandleClickLeft = () => {
     if (month <= 1) {
@@ -72,6 +73,7 @@ export default function ReportPage() {
     } else {
       setMonth(prev => (prev -= 1));
     }
+    setCurrentCategory('');
   };
   const onHandleChangeCategory = e => {
     setCurrentCategory(e.currentTarget.attributes.title.nodeValue);
