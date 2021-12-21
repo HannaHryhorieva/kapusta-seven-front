@@ -4,6 +4,7 @@ import authOperations from '../../redux/login/auth-operations';
 import Modal from '../Modal/Modal';
 import React, { useState } from 'react';
 import { getToken } from '../../redux/login/auth-selectors';
+import { getUserEmail } from '../../redux/login/auth-selectors';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,7 +12,8 @@ const LogoutBtn = () => {
   const [showModal, setShowModal] = useState(false);
   const token = useSelector(getToken);
   const dispatch = useDispatch();
-  // const id = useSelector(getUserId());
+  const email = useSelector(getUserEmail)
+  const userName = email[0].toUpperCase()+ email.slice(1).split('@')[0]
 
   const logout = () => {
     dispatch(authOperations.fetchLogout(token));
@@ -26,14 +28,11 @@ const LogoutBtn = () => {
           }}
           handleAgreeButtonClick={logout}
           question="Вы действительно хотите выйти?"
-
-          //           onApprove={() => dispatch(authOperations.fetchLogout) }
-          //           question='Вы действительно хотите выйти?'
         />
       )}
-      <span className={s.avatar}>U</span>
+      <span className={s.avatar}>{ email[0]}</span>
 
-      <p className={s.name}>Name</p>
+      <p className={s.name}>{userName}</p>
       <button
         onClick={() => {
           setShowModal(true);
