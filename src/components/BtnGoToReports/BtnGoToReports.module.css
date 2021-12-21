@@ -1,7 +1,7 @@
 .link {
   display: flex;
   align-items: center;
-
+  margin-bottom: 45px;
   font-size: 12px;
 
   text-align: right;
@@ -16,8 +16,15 @@
   height: 14px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 767px) {
   .link {
-    margin-bottom: 45px;
+    margin-bottom: 0;
+    margin-left: 100px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .link {
+    margin-left: 270px;
   }
 }
