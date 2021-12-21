@@ -22,7 +22,7 @@ function DeleteModal({ isOpen = true, transactionId, onClose, transactions }) {
     
     const selectTransaction = transactions.filter(item => item._id === transactionId)
    
-    if (selectTransaction[0].isIncome === false) {
+    if (selectTransaction[0].isIncome === true) {
       dispatch(expenseToBalance(Number(selectTransaction[0].amount)))
     } else { dispatch(incomeToBalance(Number(selectTransaction[0].amount)))}
     onClose();
