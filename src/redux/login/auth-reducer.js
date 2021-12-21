@@ -9,7 +9,6 @@ import {
 
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import { logoutUser } from './auth-actions';
 
 const initialUserState = { name: null, email: null };
 
