@@ -18,10 +18,7 @@ import calc from '../../images/icons/calculator.svg';
 import calendar from '../../images/icons/calendar.svg';
 import expenseCategories from './expenseCategories.json';
 import { expenseToBalance } from '../../redux/balance/balance-actions';
-import {
-  fetchAddTransaction,
-  fetchTransactionsSummaryByYear,
-} from '../../redux/transaction/transactions-operations';
+import { fetchAddTransaction } from '../../redux/transaction/transactions-operations';
 import { getSelectedDate } from '../../redux/transaction/transactions-selectors';
 import s from './Transaction.module.css';
 import { selectStyles } from './selectStyles';
@@ -79,7 +76,6 @@ function Transaction({ categories, isIncome, placeholder, toBalance }) {
       }),
     );
     dispatch(toBalance(Number(amount)));
-    dispatch(fetchTransactionsSummaryByYear(year));
     reset();
   };
 

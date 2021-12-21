@@ -13,7 +13,9 @@ import { useTheme } from '@mui/material/styles';
 function TransactionTabs({ deleteDialogHandler }) {
   const [value, setValue] = useState('expense');
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.down('desktop'));
+  const isDesktop = useMediaQuery(theme.breakpoints.only('desktop'));
+
+  console.log(isDesktop);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -41,11 +43,11 @@ function TransactionTabs({ deleteDialogHandler }) {
     borderBottomRightRadius: 30,
     borderBottomLeftRadius: 30,
     boxShadow: '0px 10px 60px rgba(170, 178, 197, 0.2)',
-    p: '30px 20px 60px',
+    p: '30px 20px',
   };
 
   const tableBox = {};
-  if (!isDesktop) {
+  if (isDesktop) {
     tableBox.display = 'flex';
   }
 

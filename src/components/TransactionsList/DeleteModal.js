@@ -1,30 +1,31 @@
-import React from 'react';
 import {
+  Button,
   Dialog,
   DialogContent,
-  Typography,
-  Button,
   IconButton,
+  Typography,
 } from '@mui/material';
 import {
   expenseToBalance,
   incomeToBalance,
 } from '../../redux/balance/balance-actions';
-import { ReactComponent as CloseIcon } from '../../images/icons/close.svg';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   transactionsOperations,
   transactionsSelectors,
 } from '../../redux/transaction';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { ReactComponent as CloseIcon } from '../../images/icons/close.svg';
+import React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 function DeleteModal({ isOpen = true, transactionId, onClose, transactions }) {
   const dispatch = useDispatch();
   const isNarrowMobile = useMediaQuery('(max-width:435px)');
   const year = useSelector(transactionsSelectors.getSelectedYear);
+
   function submitHandler() {
     dispatch(transactionsOperations.fetchDeleteTransaction(transactionId));
-    dispatch(transactionsOperations.fetchTransactionsSummaryByYear(year));
     const selectTransaction = transactions.filter(
       item => item._id === transactionId,
     );
