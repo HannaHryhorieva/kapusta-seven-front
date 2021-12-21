@@ -84,7 +84,9 @@ export default function ReportChart({ transactions, category }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
   const transactionsData = transactions[category];
-  const data = getDataForReportChart(transactionsData?.data);
+  const data = [...getDataForReportChart(transactionsData?.data)].sort(
+    (firstItem, secondItem) => secondItem.sum - firstItem.sum,
+  );
   return (
     <>
       {isMobile ? (
