@@ -18,6 +18,7 @@
 .form {
   display: flex;
   align-items: center;
+  margin-bottom: 45px;
 }
 
 .button {
@@ -80,6 +81,7 @@
   display: flex;
   align-items: center;
   padding: 12px 20px;
+  margin-bottom: 45px;
   max-height: 42px;
 
   /*for mobile*/
@@ -103,6 +105,7 @@
   }
   .form {
     margin-right: 90px;
+    margin-bottom: 0;
   }
   .input {
     margin-right: 15px;
@@ -113,23 +116,6 @@
     border-left: 2px solid #fff;
   }
   .balance {
-    margin-right: 110px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .balance {
-    margin-right: 310px;
-  }
-  .form {
-    margin-right: 205px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .form {
-    margin-bottom: 45px;
-  }
-  .balance {
-    margin-bottom: 45px;
+    margin-bottom: 0;
   }
 }

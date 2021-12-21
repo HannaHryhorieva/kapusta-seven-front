@@ -110,7 +110,7 @@ export default function ReportPage() {
                 />
               </Box>
               <Box sx={{ textAlign: 'center' }}>
-                <BalanceView />
+                <BalanceView/>
               </Box>
             </Box>
           </>
@@ -121,10 +121,11 @@ export default function ReportPage() {
               marginTop: '40px',
               marginBottom: '30px',
               alignItems: 'center',
+              justifyContent: 'space-between'
             }}
           >
             <BtnGoToMain />
-            <Box sx={{ textAlign: 'center', marginLeft: '40px' }}>
+            <Box sx={{ textAlign: 'center'}}>
               <BalanceView />
             </Box>
             <Box>
