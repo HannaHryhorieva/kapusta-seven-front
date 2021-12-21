@@ -122,7 +122,7 @@ export default function ReportPage() {
             }}
           >
             <BtnGoToMain />
-            <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
+            <Box sx={{ textAlign: 'center', marginLeft: '40px' }}>
               <BalanceView />
             </Box>
             <Box>
