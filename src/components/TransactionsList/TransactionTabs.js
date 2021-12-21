@@ -2,7 +2,7 @@ import { Box, Paper, Tab } from '@mui/material';
 import React, { useState } from 'react';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 
-import Summary from '../Summary/Summary';
+import Summary from '../summary/Summary';
 import Transaction from '../TransactionForm/Transaction';
 import TransactionTable from './TransactionTable';
 import incomeCategories from '../TransactionForm/incomeCategories.json';
@@ -73,7 +73,7 @@ function TransactionTabs({ deleteDialogHandler }) {
           </TabPanel>
           <TabPanel value="income" sx={{ padding: 0 }}>
             <Transaction
-             isIncome={true}
+              isIncome={true}
               categories={incomeCategories}
               toBalance={incomeToBalance}
               placeholder="Описание дохода"
