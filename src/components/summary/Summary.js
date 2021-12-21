@@ -11,9 +11,6 @@ import monthWord from './monthWord';
 
 const Summary = ({ value }) => {
   const dispatch = useDispatch();
-  const changeTransaction = useSelector(
-    transactionsSelectors.getChangeTransaction,
-  );
   const date = useSelector(transactionsSelectors.getSelectedDate);
   const year = date.year;
   useEffect(
@@ -40,6 +37,7 @@ const Summary = ({ value }) => {
   }
 
   let arrSummary = [];
+
   for (const key in summary) {
     const total = Math.round(summary[`${key}`]['total'] * 100) / 100;
     arrSummary.push({
@@ -48,6 +46,7 @@ const Summary = ({ value }) => {
       id: +key,
     });
   }
+
   arrSummary = arrSummary.sort((a, b) => b.id - a.id);
   if (arrSummary.length > 6) {
     arrSummary = arrSummary.slice(0, 6);

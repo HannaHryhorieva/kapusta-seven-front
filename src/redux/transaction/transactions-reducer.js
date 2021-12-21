@@ -11,11 +11,6 @@ import {
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
-const changeTransaction = createReducer([], {
-  [fetchAddTransaction.fulfilled]: (_, { payload }) => payload.data,
-  [fetchDeleteTransaction.fulfilled]: (_, { payload }) => payload.data,
-});
-
 const transactionsByMonth = createReducer([], {
   [fetchAllTransactionsByMonth.fulfilled]: (_, { payload }) =>
     payload.map(item => ({
@@ -107,7 +102,6 @@ const error = createReducer(null, {
 });
 
 export default combineReducers({
-  changeTransaction,
   transactionsByMonth,
   transactionsByCategory,
   summaryByYear,

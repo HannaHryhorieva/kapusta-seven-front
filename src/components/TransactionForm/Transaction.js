@@ -18,7 +18,10 @@ import calc from '../../images/icons/calculator.svg';
 import calendar from '../../images/icons/calendar.svg';
 import expenseCategories from './expenseCategories.json';
 import { expenseToBalance } from '../../redux/balance/balance-actions';
-import { fetchAddTransaction } from '../../redux/transaction/transactions-operations';
+import {
+  fetchAddTransaction,
+  fetchTransactionsSummaryByYear,
+} from '../../redux/transaction/transactions-operations';
 import { getSelectedDate } from '../../redux/transaction/transactions-selectors';
 import s from './Transaction.module.css';
 import { selectStyles } from './selectStyles';
@@ -26,12 +29,7 @@ import { transactionsActions } from '../../redux/transaction';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-function Transaction({
-  categories,
-  isIncome,
-  placeholder,
-  toBalance,
-}) {
+function Transaction({ categories, isIncome, placeholder, toBalance }) {
   const selectedDate = useSelector(getSelectedDate);
   const [date, setDate] = useState(
     new Date(selectedDate.year, selectedDate.month - 1, selectedDate.day),
@@ -81,12 +79,9 @@ function Transaction({
       }),
     );
     dispatch(toBalance(Number(amount)));
+    dispatch(fetchTransactionsSummaryByYear(year));
     reset();
   };
-
-
- 
-
 
   const reset = () => {
     setDate(new Date());
