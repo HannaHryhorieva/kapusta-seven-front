@@ -36,17 +36,17 @@ export default function ReportPage() {
   const isLoading = useSelector(transactionsSelectors.getTransactionsIsLoading);
 
   const transactions = getDataByCategory(type, transactionsByCategory);
-
-  const [currentCategory, setCurrentCategory] = useState('1');
+  //let initialCategory = transactions[0].numberOfCategory;
+  const [currentCategory, setCurrentCategory] = useState('');
 
   const onHandleChangeType = () => {
     if (type === 'expense') {
       setType('income');
-      setCurrentCategory('0');
+      setCurrentCategory('');
     }
     if (type === 'income') {
       setType('expense');
-      setCurrentCategory('1');
+      setCurrentCategory('');
     }
   };
 
@@ -104,7 +104,7 @@ export default function ReportPage() {
               onClick={() => onHandleChangeType()}
               handleClick={onHandleChangeCategory}
             />
-            {transactions.length > 0 && (
+            {transactions.length > 0 && currentCategory !== '' && (
               <ReportChart
                 category={currentCategory}
                 transactions={transactionsByCategory[type]}
