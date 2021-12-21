@@ -6,17 +6,25 @@ import {
   Button,
   IconButton,
 } from '@mui/material';
+import { expenseToBalance, incomeToBalance } from '../../redux/balance/balance-actions';
 import { ReactComponent as CloseIcon } from '../../images/icons/close.svg';
 import { useDispatch } from 'react-redux';
 import { transactionsOperations } from '../../redux/transaction';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-function DeleteModal({ isOpen = true, transactionId, onClose }) {
+function DeleteModal({ isOpen = true, transactionId, onClose, transactions }) {
   const dispatch = useDispatch();
   const isNarrowMobile = useMediaQuery('(max-width:435px)');
+ 
 
   function submitHandler() {
     dispatch(transactionsOperations.fetchDeleteTransaction(transactionId));
+    
+    const selectTransaction = transactions.filter(item => item._id === transactionId)
+   
+    if (selectTransaction[0].isIncome === false) {
+      dispatch(expenseToBalance(Number(selectTransaction[0].amount)))
+    } else { dispatch(incomeToBalance(Number(selectTransaction[0].amount)))}
     onClose();
   }
 

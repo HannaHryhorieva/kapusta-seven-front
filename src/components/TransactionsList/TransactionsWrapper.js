@@ -45,6 +45,7 @@ function TransactionsWrapper() {
         isOpen={isModalOpen}
         onClose={closeModal}
         transactionId={selectedTransaction}
+        transactions={transactions }
       />
       {isMobile ? (
         <TransactionList
