@@ -1,30 +1,47 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import s from './reportList.module.css';
+import formatterForAmount from '../../helpers/formatterForAmount';
 
-const CategoriesItem = ({ category, amount, Icon }) => {
-  const formattedAmount = amount.toFixed(2);
+const CategoriesItem = ({
+  category,
+  numberOfCategory,
+  amount,
+  Icon,
+  handleClick,
+}) => {
+  const formattedAmount = formatterForAmount(amount);
+
   return (
-    <li key={category}>
-      <Typography
-        variant="body1"
-        textAlign={'center'}
-        fontSize={12}
-        color={'#52555F'}
-      >
-        <span>{formattedAmount}</span>
+    <li
+      tabIndex={1}
+      style={{ maxWidth: '90px', align: 'center' }}
+      onClick={handleClick}
+      title={numberOfCategory}
+    >
+      <Typography variant="body" fontSize={12} color={'#52555F'}>
+        <p style={{ paddingTop: '5px', textAlign: 'center' }}>
+          {formattedAmount}
+        </p>
       </Typography>
       <div className={s.iconWrap}>
         <div className={s.iconEllipse}>{Icon}</div>
       </div>
       <Typography
         variant="body"
-        align={'center'}
         fontSize={12}
         color={'#52555F'}
         transform={'uppercase'}
       >
-        <span style={{ textTransform: 'uppercase' }}>{category}</span>
+        <p
+          style={{
+            textTransform: 'uppercase',
+            paddingTop: '5px',
+            textAlign: 'center',
+          }}
+        >
+          {category}
+        </p>
       </Typography>
     </li>
   );

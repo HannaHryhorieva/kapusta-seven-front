@@ -4,8 +4,7 @@ axios.defaults.baseURL = 'http://localhost:3001';
 //todo remove after adding login functionality
 axios.defaults.headers.common[
   'Authorization'
-] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmRhODk4YzMyMzdhZTM3NTEzYTY5OSIsImlhdCI6MTYzOTg1NTI3NCwiZXhwIjoxNjM5ODYyNDc0fQ.CKrZLaVLfBke2r-EsKq8qtnDaOjjDZLDmQgLxJp92mI`;
-
+] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYmM2ZGFkZjNmNmY2ZWViZjRkZjgzMSIsImlhdCI6MTY0MDAzODQzMCwiZXhwIjoxNjQwMDQ1NjMwfQ.PW-ddsMr2OZhgkeDTssSe40htqap2Wt3Nnwcv-v94Lw`;
 
 // /api/transactions
 
@@ -18,7 +17,7 @@ export async function allTransactionsByYear(year) {
   return data;
 }
 
-export async function allTransactionsByCategory({ year, month }) {
+export async function allTransactionsByCategory(year, month) {
   const { data } = await axios.get(
     `/api/transactions/byCategory/${year}/${month}`,
   );

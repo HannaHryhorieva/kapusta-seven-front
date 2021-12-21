@@ -25,9 +25,17 @@ const paperStyles1 = {
 const ReportSummary = ({ transactions }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
-  // const {income, expense} = transactions;
-  // const incomeForMonth = income.reduce((sum, category) => sum + category.total, 0);
-  // const expensesForMonth = expense.reduce((sum, category) => sum + category.total, 0);
+
+  const { income, expense } = transactions;
+  const incomeForMonth = Object.entries(income).reduce(
+    (totalSum, el) => totalSum + el[1].total,
+    0,
+  );
+  const expensesForMonth = Object.entries(expense).reduce(
+    (totalSum, el) => totalSum + el[1].total,
+    0,
+  );
+
   return (
     <>
       {isMobile ? (
@@ -63,8 +71,9 @@ const ReportSummary = ({ transactions }) => {
                       marginTop: '5px',
                     }}
                   >
-                    {/* {expensesForMonth > 0 ? - formatterForAmount(expensesForMonth) : formatterForAmount(0)} */}
-                    {formatterForAmount(0)}
+                    {expensesForMonth > 0
+                      ? `- ${formatterForAmount(expensesForMonth)}`
+                      : formatterForAmount(0)}
                   </span>
                 </p>
               </div>
@@ -90,8 +99,9 @@ const ReportSummary = ({ transactions }) => {
                       color: '#407946',
                     }}
                   >
-                    {/* {incomeForMonth > 0 ? + formatterForAmount(incomeForMonth) : formatterForAmount(0)} */}
-                    {formatterForAmount(0)}
+                    {incomeForMonth > 0
+                      ? `+ ${formatterForAmount(incomeForMonth)}`
+                      : formatterForAmount(0)}
                   </span>
                 </p>
               </div>
@@ -122,8 +132,9 @@ const ReportSummary = ({ transactions }) => {
                     color: '#E7192E',
                   }}
                 >
-                  {/* {expensesForMonth > 0 ? - formatterForAmount(expensesForMonth) : formatterForAmount(0)} */}
-                  {formatterForAmount(0)}
+                  {expensesForMonth > 0
+                    ? `- ${formatterForAmount(expensesForMonth)}`
+                    : formatterForAmount(0)}
                 </span>
               </p>
               <p style={{ padding: '15px 0 15px 20px' }}>
@@ -135,8 +146,9 @@ const ReportSummary = ({ transactions }) => {
                     color: '#407946',
                   }}
                 >
-                  {/* {incomeForMonth > 0 ? + formatterForAmount(incomeForMonth) : formatterForAmount(0)} */}
-                  {formatterForAmount(0)}
+                  {incomeForMonth > 0
+                    ? `+ ${formatterForAmount(incomeForMonth)}`
+                    : formatterForAmount(0)}
                 </span>
               </p>
             </div>

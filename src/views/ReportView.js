@@ -7,50 +7,46 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import BalanceView from './../components/BalanceView/BalanceView';
 import BaseView from './BaseView';
-import { Box } from '@mui/material';
+import { Box, LinearProgress } from '@mui/material';
 import BtnGoToMain from '../components/BtnGoToMain/BtnGoToMain';
 import CategoriesList from '../components/ReportList/CategoriesList';
 import CurrentMonth from '../components/CurrentMonth/CurrentMonth';
 import ReportChart from '../components/ReportChart/ReportChart';
 import ReportSummary from '../components/ReportSummary/ReportSummary';
+import getDataByCategory from '../helpers/getDataByCategory';
 
 export default function ReportPage() {
   const dispatch = useDispatch();
-  const { selectedYear, selectedMonth } = useSelector(
+  const { year: selectedYear, month: selectedMonth } = useSelector(
     transactionsSelectors.getSelectedDate,
   );
-  let date = new Date();
-  let todayMonth = date.getMonth() + 1;
-  let todayYear = date.getFullYear();
+
   const [type, setType] = useState('expense');
-  const [month, setMonth] = useState(selectedMonth || todayMonth);
-  const [year, setYear] = useState(selectedYear || todayYear);
+  const [month, setMonth] = useState(selectedMonth);
+  const [year, setYear] = useState(selectedYear);
 
-  useEffect(
-    () =>
-      dispatch(
-        transactionsOperations.fetchAllTransactionsByCategory({ month, year }),
-      ),
-    [dispatch, month, year],
-  );
+  useEffect(() => {
+    dispatch(
+      transactionsOperations.fetchAllTransactionsByCategory({ year, month }),
+    );
+  }, [dispatch, month, year]);
 
-  const transactions = useSelector(
-    transactionsSelectors.getTransactionsByCategory,
-  );
+  const transactionsByCategory =
+    useSelector(transactionsSelectors.getTransactionsByCategory) || {};
+  const isLoading = useSelector(transactionsSelectors.getTransactionsIsLoading);
 
-  // const transactions = {
-  //   income: [{ category: { data: [], total: 0 } }],
-  //   expense: [{ category: { data: [], total: 0 } }],
-  // };
+  const transactions = getDataByCategory(type, transactionsByCategory);
 
-  console.log(transactions);
+  const [currentCategory, setCurrentCategory] = useState('1');
 
   const onHandleChangeType = () => {
     if (type === 'expense') {
       setType('income');
+      setCurrentCategory('0');
     }
     if (type === 'income') {
       setType('expense');
+      setCurrentCategory('1');
     }
   };
 
@@ -69,6 +65,9 @@ export default function ReportPage() {
     } else {
       setMonth(prev => (prev -= 1));
     }
+  };
+  const onHandleChangeCategory = e => {
+    setCurrentCategory(e.currentTarget.attributes.title.nodeValue);
   };
 
   return (
@@ -95,10 +94,26 @@ export default function ReportPage() {
             />
           </Box>
         </Box>
-
-        <ReportSummary transactions={transactions} />
-        <CategoriesList type={type} onClick={() => onHandleChangeType()} />
-        <ReportChart />
+        {isLoading && <LinearProgress />}
+        {transactionsByCategory.hasOwnProperty('income' || 'expense') ? (
+          <>
+            <ReportSummary transactions={transactionsByCategory} />
+            <CategoriesList
+              transactions={transactions}
+              type={type}
+              onClick={() => onHandleChangeType()}
+              handleClick={onHandleChangeCategory}
+            />
+            {transactions.length > 0 && (
+              <ReportChart
+                category={currentCategory}
+                transactions={transactionsByCategory[type]}
+              />
+            )}
+          </>
+        ) : (
+          <h2>Пожалуйста, введите данные о расходах и доходах</h2>
+        )}
       </BaseView>
     </>
   );
