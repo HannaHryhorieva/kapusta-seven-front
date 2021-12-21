@@ -30,7 +30,10 @@ export const fetchAllTransactionsByCategory = createAsyncThunk(
   'transactions/fetchAllTransactionsByCategory',
   async (date, { rejectWithValue }) => {
     try {
-      const data = await transactionsApi.allTransactionsByCategory(date);
+      const data = await transactionsApi.allTransactionsByCategory(
+        date.year,
+        date.month,
+      );
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
