@@ -14,6 +14,9 @@ import { Switch } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import authOperations from './redux/login/auth-operations';
 import theme from './styles/theme';
+import { getToken } from './redux/login/auth-selectors';
+import Loader from './components/Loader/Loader';
+
 
 const HomeView = lazy(() => import('./views/HomeView'));
 const AuthView = lazy(() => import('./views/AuthView/AuthView'));
@@ -42,7 +45,7 @@ function App() {
         <div>
           <AppBar position="fixed" />
           <Switch>
-            <Suspense fallback={<LinearProgress />}>
+            <Suspense fallback={<Loader />}>
               <PublicRoute path="/auth" redirectTo="/" restricted>
                 <AuthView />
               </PublicRoute>
