@@ -11,6 +11,7 @@ import PublicRoute from './components/RoutePrivatPublic/PublicRoute';
 import NotFound from './components/NotFound/NotFound';
 import authOperations from './redux/login/auth-operations';
 import { getToken } from './redux/login/auth-selectors';
+import Loader from './components/Loader/Loader';
 
 const HomeView = lazy(() => import('./views/HomeView'));
 const AuthView = lazy(() => import('./views/AuthView/AuthView'));
@@ -35,7 +36,7 @@ function App() {
       <div>
         <AppBar position="fixed" />
         <Switch>
-          <Suspense fallback={<p>Загружаем...</p>}>
+          <Suspense fallback={<Loader />}>
             <PublicRoute path="/auth" redirectTo="/" restricted>
               <AuthView />
             </PublicRoute>
