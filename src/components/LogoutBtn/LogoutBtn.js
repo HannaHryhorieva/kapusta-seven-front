@@ -3,18 +3,18 @@ import logoutIcon from '../../images/icons/logout.svg';
 import authOperations from '../../redux/login/auth-operations';
 import Modal from '../Modal/Modal';
 import React, { useState } from 'react';
+import { getToken } from '../../redux/login/auth-selectors';
 
-import { logoutUser } from '../../redux/login/auth-actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const LogoutBtn = () => {
   const [showModal, setShowModal] = useState(false);
-
+  const token = useSelector(getToken);
   const dispatch = useDispatch();
   // const id = useSelector(getUserId());
 
   const logout = () => {
-    dispatch(logoutUser());
+    dispatch(authOperations.fetchLogout(token));
   };
 
   return (

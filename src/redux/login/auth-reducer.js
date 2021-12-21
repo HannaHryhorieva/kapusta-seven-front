@@ -4,6 +4,7 @@ import {
   fetchSignin,
   fetchSignup,
   fetchCurrentUser,
+  fetchLogout,
 } from './auth-operations';
 import { logoutUser } from './auth-actions';
 
@@ -14,19 +15,16 @@ const initialUserState = { name: null, email: null };
 
 const user = createReducer(initialUserState, {
   [fetchCurrentUser.fulfilled]: (_, { payload }) => payload,
-  //[fetchSignup.fulfilled]: (_, { payload }) => payload.user,
-
   [fetchSignup.fulfilled]: (_, { payload }) => payload.data,
-
   [fetchSignin.fulfilled]: (_, { payload }) => payload.user,
   [fetchGoogleAuth.fulfilled]: (_, { payload }) => payload.user,
   [fetchGoogleRedirect.fulfilled]: (_, { payload }) => payload,
-  [logoutUser]: () => initialUserState,
+  [fetchLogout.fulfilled]: () => initialUserState,
 });
 
 const token = createReducer(null, {
   [fetchSignin.fulfilled]: (_, { payload }) => payload.token,
-  [logoutUser]: () => null,
+  [fetchLogout.fulfilled]: () => null,
 });
 
 const setError = (_, { payload }) => payload;
@@ -39,11 +37,13 @@ const status = createReducer(null, {
   [fetchGoogleRedirect.rejected]: setError,
   [fetchSignin.rejected]: setError,
   [fetchCurrentUser.rejected]: setError,
+  [fetchLogout.rejected]: () => setError,
   [logoutUser]: null,
 });
 
 const isLoggedIn = createReducer(false, {
   [fetchCurrentUser.fulfilled]: () => true,
+  [fetchLogout.fulfilled]: () => false,
   // [fetchSignup.fulfilled]: () => true,
   [fetchGoogleAuth.fulfilled]: () => true,
   [fetchGoogleRedirect.fulfilled]: () => true,
