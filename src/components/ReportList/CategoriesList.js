@@ -68,7 +68,13 @@ const CategoriesList = ({ type, onClick, transactions, handleClick }) => {
               </div>
             </Paper>
           ) : (
-            <div style={{ maxWidth: '630px', margin: '0 auto' }}>
+            <div
+              style={{
+                maxWidth: '630px',
+                margin: '0 auto',
+                padding: '40px 10px 0 10px',
+              }}
+            >
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <ArrowLeft height={15} width={15} onClick={onClick} />
                 <Typography variant="h2">

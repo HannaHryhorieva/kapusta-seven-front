@@ -103,7 +103,7 @@ export default function ReportChart({ transactions, category }) {
             data={data}
             margin={{
               top: 30,
-              right: 20,
+              right: 30,
               bottom: 5,
               left: 15,
             }}
