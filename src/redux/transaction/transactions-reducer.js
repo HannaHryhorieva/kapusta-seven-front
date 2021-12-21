@@ -36,9 +36,12 @@ const transactionsByMonth = createReducer([], {
     ].sort((a, b) => b.day - a.day),
 });
 
-const transactionsByCategory = createReducer([], {
-  [fetchAllTransactionsByCategory.fulfilled]: (_, { payload }) => payload,
-});
+const transactionsByCategory = createReducer(
+  {},
+  {
+    [fetchAllTransactionsByCategory.fulfilled]: (_, { payload }) => payload,
+  },
+);
 
 const summaryByYear = createReducer([], {
   //todo check and fix summary
@@ -60,6 +63,10 @@ const isLoading = createReducer(false, {
   [fetchAllTransactionsByMonth.pending]: () => true,
   [fetchAllTransactionsByMonth.fulfilled]: () => false,
   [fetchAllTransactionsByMonth.rejected]: () => false,
+
+  // [fetchAllTransactions.pending]: () => true,
+  // [fetchAllTransactions.fulfilled]: () => false,
+  // [fetchAllTransactions.rejected]: () => false,
 
   [fetchAllTransactionsByCategory.pending]: () => true,
   [fetchAllTransactionsByCategory.fulfilled]: () => false,

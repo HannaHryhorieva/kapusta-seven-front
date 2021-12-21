@@ -31,7 +31,7 @@ function TransactionRow({ transaction, deleteDialogHandler }) {
         <IconButton
           sx={{ padding: '3px' }}
           aria-label="Удалить транзакцию"
-          onClick={() => deleteDialogHandler(transaction._id)}
+          onClick={()=> deleteDialogHandler(transaction._id)}
         >
           <DeleteIcon />
         </IconButton>
