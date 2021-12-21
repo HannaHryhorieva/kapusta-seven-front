@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import {
+  transactionsActions,
   transactionsOperations,
   transactionsSelectors,
 } from '../redux/transaction';
 import { useDispatch, useSelector } from 'react-redux';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 import BalanceView from './../components/BalanceView/BalanceView';
 import BaseView from './BaseView';
+import ErrorNotification from '../components/ErrorNotification/ErrorNotification';
 import { Box, LinearProgress } from '@mui/material';
 import BtnGoToMain from '../components/BtnGoToMain/BtnGoToMain';
 import CategoriesList from '../components/ReportList/CategoriesList';
@@ -16,6 +20,8 @@ import ReportSummary from '../components/ReportSummary/ReportSummary';
 import getDataByCategory from '../helpers/getDataByCategory';
 
 export default function ReportPage() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
   const dispatch = useDispatch();
   const { year: selectedYear, month: selectedMonth } = useSelector(
     transactionsSelectors.getSelectedDate,
@@ -34,6 +40,7 @@ export default function ReportPage() {
   const transactionsByCategory =
     useSelector(transactionsSelectors.getTransactionsByCategory) || {};
   const isLoading = useSelector(transactionsSelectors.getTransactionsIsLoading);
+  const error = useSelector(transactionsSelectors.getTransactionsError);
 
   const transactions = getDataByCategory(transactionsByCategory[type]);
 
@@ -73,27 +80,61 @@ export default function ReportPage() {
   return (
     <>
       <BaseView>
-        <Box
-          sx={{
-            display: 'flex',
-            marginTop: '40px',
-            marginBottom: '30px',
-            alignItems: 'center',
-          }}
-        >
-          <BtnGoToMain />
-          <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
-            <BalanceView />
+        {error && (
+          <ErrorNotification
+            message={error}
+            action={transactionsActions.resetError}
+          />
+        )}
+        {isMobile ? (
+          <>
+            <Box sx={{ margin: '20px 0 15px 20px', width: '280px' }}>
+              <BtnGoToMain />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: '40px',
+                alignItems: 'center',
+              }}
+            >
+              <Box sx={{ marginBottom: '30px' }}>
+                <CurrentMonth
+                  year={year}
+                  month={month}
+                  onHandleClickLeft={onHandleClickLeft}
+                  onHandleClickRight={onHandleClickRight}
+                />
+              </Box>
+              <Box sx={{ textAlign: 'center' }}>
+                <BalanceView />
+              </Box>
+            </Box>
+          </>
+        ) : (
+          <Box
+            sx={{
+              display: 'flex',
+              marginTop: '40px',
+              marginBottom: '30px',
+              alignItems: 'center',
+            }}
+          >
+            <BtnGoToMain />
+            <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
+              <BalanceView />
+            </Box>
+            <Box>
+              <CurrentMonth
+                year={year}
+                month={month}
+                onHandleClickLeft={onHandleClickLeft}
+                onHandleClickRight={onHandleClickRight}
+              />
+            </Box>
           </Box>
-          <Box>
-            <CurrentMonth
-              year={year}
-              month={month}
-              onHandleClickLeft={onHandleClickLeft}
-              onHandleClickRight={onHandleClickRight}
-            />
-          </Box>
-        </Box>
+        )}
         {isLoading && <LinearProgress />}
         {transactionsByCategory.hasOwnProperty('income' || 'expense') ? (
           <>
