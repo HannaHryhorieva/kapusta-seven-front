@@ -11,7 +11,9 @@ import monthWord from './monthWord';
 
 const Summary = ({ value }) => {
   const dispatch = useDispatch();
-
+  const changeTransaction = useSelector(
+    transactionsSelectors.getChangeTransaction,
+  );
   const date = useSelector(transactionsSelectors.getSelectedDate);
   const year = date.year;
   useEffect(

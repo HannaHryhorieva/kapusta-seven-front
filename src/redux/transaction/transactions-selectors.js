@@ -25,3 +25,5 @@ export const getTransactionsError = state => state.transactions.error;
 export const getSelectedDate = state => state.transactions.selectedDate;
 export const getSelectedMonth = state => state.transactions.selectedDate.month;
 export const getSelectedYear = state => state.transactions.selectedDate.year;
+export const getChangeTransaction = state =>
+  state.transactions.changeTransaction;
