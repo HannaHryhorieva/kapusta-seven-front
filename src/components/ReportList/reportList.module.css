@@ -19,6 +19,8 @@ li:focus svg {
 }
 
 .iconWrap {
+  display: flex;
+  justify-content: center;
   box-sizing: border-box;
   width: 100%;
   margin-top: 17px;
@@ -40,14 +42,11 @@ li:focus svg {
   margin-bottom: 40px;
 }
 
-.expenseList > li {
-  padding: 0 5px;
-}
-
 .expenseListMobile {
   display: flex;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: -20px;
   width: 300px;
   flex-wrap: wrap;
   justify-content: center;
@@ -55,11 +54,9 @@ li:focus svg {
 }
 
 .expenseListMobile > li {
-  width: 100px;
-  padding: 15px;
-  border-bottom: 1px solid #e0e5eb;
-}
-
-.expenseListMobile > li:not(:nth-last-child(-n + 2)) {
+  flex-basis: calc(100% / 3);
+  padding: 5px;
+  padding-bottom: 20px;
   margin-bottom: 20px;
+  border-bottom: 1px solid #e0e5eb;
 }

@@ -6,7 +6,6 @@ import {
 import BalanceView from '../components/BalanceView/BalanceView';
 import BaseView from './BaseView';
 import { DatePick } from '../components/DatePiker/DatePick';
-import { Box } from '@mui/material';
 import BtnGoToReports from '../components/BtnGoToReports/BtnGoToReports';
 import ErrorNotification from '../components/ErrorNotification/ErrorNotification';
 import React from 'react';
@@ -29,22 +28,11 @@ function HomeView() {
             action={transactionsActions.resetError}
           />
         )}
-        <Box
-          sx={{
-            display: 'flex',
-            marginTop: '40px',
-            marginBottom: '10px',
-            alignItems: 'center',
-          }}
-        >
-          <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
-            <BalanceView />
-          </Box>
-          <Box>
+        <div className='home-mob-wrap'>
+         {isMobile && <DatePick />}
+          <BalanceView />
             <BtnGoToReports />
-          </Box>
-          {isMobile && <DatePick />}
-        </Box>
+        </div>
         <TransactionsWrapper />
       </BaseView>
     </>

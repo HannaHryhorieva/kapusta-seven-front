@@ -1,4 +1,5 @@
 import {
+  LinearProgress,
   Paper,
   Table,
   TableBody,
@@ -7,14 +8,13 @@ import {
   TableHead,
   TableRow,
   Typography,
-  LinearProgress,
 } from '@mui/material';
-import React from 'react';
 
-import TransactionRow from './TransactionRow';
-import { useSelector } from 'react-redux';
-import { transactionsSelectors } from '../../redux/transaction';
 import EmptyRow from './EmptyRow';
+import React from 'react';
+import TransactionRow from './TransactionRow';
+import { transactionsSelectors } from '../../redux/transaction';
+import { useSelector } from 'react-redux';
 
 function TransactionTable({ type, deleteDialogHandler }) {
   const selectorType =
@@ -34,6 +34,7 @@ function TransactionTable({ type, deleteDialogHandler }) {
         sx={{
           height: '437px',
           maxWidth: '760px',
+          marginBottom: '40px',
         }}
       >
         <Table stickyHeader>

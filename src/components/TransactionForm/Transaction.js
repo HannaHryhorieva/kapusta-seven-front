@@ -26,12 +26,7 @@ import { transactionsActions } from '../../redux/transaction';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-function Transaction({
-  categories,
-  isIncome,
-  placeholder,
-  toBalance,
-}) {
+function Transaction({ categories, isIncome, placeholder, toBalance }) {
   const selectedDate = useSelector(getSelectedDate);
   const [date, setDate] = useState(
     new Date(selectedDate.year, selectedDate.month - 1, selectedDate.day),
@@ -83,10 +78,6 @@ function Transaction({
     dispatch(toBalance(Number(amount)));
     reset();
   };
-
-
- 
-
 
   const reset = () => {
     setDate(new Date());

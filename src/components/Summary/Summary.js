@@ -1,36 +1,38 @@
-import s from './Summary.module.css';
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-// import { getToken } from '../../redux/login/auth-selectors';
 import {
   transactionsOperations,
   transactionsSelectors,
 } from '../../redux/transaction';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { getBalance } from '../../redux/balance/balance-selectors';
 import monthWord from './monthWord';
+import s from './Summary.module.css';
+
+// import { getToken } from '../../redux/login/auth-selectors';
 
 const Summary = ({ value }) => {
   const dispatch = useDispatch();
-
-  const date = useSelector(transactionsSelectors.getSelectedDate);
-  const year = date.year;
-  useEffect(
-    () => dispatch(transactionsOperations.fetchTransactionsSummaryByYear(year)),
-    [dispatch, year],
-  );
-
+  const year = useSelector(transactionsSelectors.getSelectedYear);
+  const balance = useSelector(getBalance);
   const transactionsByYear = useSelector(
     transactionsSelectors.getSummaryByYear,
   );
+
+  useEffect(() => {
+    // console.log(balance);
+    dispatch(transactionsOperations.fetchTransactionsSummaryByYear(year));
+  }, [dispatch, year, balance]);
+
   let summary = {};
-  const summaryByYear = transactionsByYear['data'];
-  if (summaryByYear) {
+  // const summaryByYear = transactionsByYear['data'];
+  if (transactionsByYear) {
     switch (value) {
       case 'expense':
-        summary = summaryByYear['expense'];
+        summary = transactionsByYear['expense'];
         break;
       case 'income':
-        summary = summaryByYear['income'];
+        summary = transactionsByYear['income'];
         break;
       default:
         summary = {};
@@ -38,6 +40,7 @@ const Summary = ({ value }) => {
   }
 
   let arrSummary = [];
+
   for (const key in summary) {
     const total = Math.round(summary[`${key}`]['total'] * 100) / 100;
     arrSummary.push({
@@ -46,6 +49,7 @@ const Summary = ({ value }) => {
       id: +key,
     });
   }
+
   arrSummary = arrSummary.sort((a, b) => b.id - a.id);
   if (arrSummary.length > 6) {
     arrSummary = arrSummary.slice(0, 6);
@@ -53,7 +57,7 @@ const Summary = ({ value }) => {
   return (
     <div className={s.summaryBox}>
       <h3 className={s.title}>сводка</h3>
-      {arrSummary.length > 0 && (
+      {arrSummary.length > 0 ? (
         <ul>
           {arrSummary.map(item => (
             <li key={item.id} className={s.item}>
@@ -63,6 +67,12 @@ const Summary = ({ value }) => {
               </div>
             </li>
           ))}
+        </ul>
+      ) : (
+        <ul>
+          <li className={s.item}>
+            <div className={s.itemBox} style={{ height: '231px' }}></div>
+          </li>
         </ul>
       )}
     </div>

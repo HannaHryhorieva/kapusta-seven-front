@@ -12,7 +12,7 @@ export async function allTransactionsByYear(year) {
   return data;
 }
 
-export async function allTransactionsByCategory({ year, month }) {
+export async function allTransactionsByCategory(year, month) {
   const { data } = await axios.get(
     `/api/transactions/byCategory/${year}/${month}`,
   );

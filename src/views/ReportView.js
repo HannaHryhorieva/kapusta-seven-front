@@ -1,56 +1,59 @@
 import React, { useEffect, useState } from 'react';
 import {
+  transactionsActions,
   transactionsOperations,
   transactionsSelectors,
 } from '../redux/transaction';
 import { useDispatch, useSelector } from 'react-redux';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 import BalanceView from './../components/BalanceView/BalanceView';
 import BaseView from './BaseView';
-import { Box } from '@mui/material';
+import ErrorNotification from '../components/ErrorNotification/ErrorNotification';
+import { Box, LinearProgress } from '@mui/material';
 import BtnGoToMain from '../components/BtnGoToMain/BtnGoToMain';
 import CategoriesList from '../components/ReportList/CategoriesList';
 import CurrentMonth from '../components/CurrentMonth/CurrentMonth';
 import ReportChart from '../components/ReportChart/ReportChart';
 import ReportSummary from '../components/ReportSummary/ReportSummary';
+import getDataByCategory from '../helpers/getDataByCategory';
 
 export default function ReportPage() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
   const dispatch = useDispatch();
-  const { selectedYear, selectedMonth } = useSelector(
+  const { year: selectedYear, month: selectedMonth } = useSelector(
     transactionsSelectors.getSelectedDate,
   );
-  let date = new Date();
-  let todayMonth = date.getMonth() + 1;
-  let todayYear = date.getFullYear();
+
   const [type, setType] = useState('expense');
-  const [month, setMonth] = useState(selectedMonth || todayMonth);
-  const [year, setYear] = useState(selectedYear || todayYear);
+  const [month, setMonth] = useState(selectedMonth);
+  const [year, setYear] = useState(selectedYear);
 
-  useEffect(
-    () =>
-      dispatch(
-        transactionsOperations.fetchAllTransactionsByCategory({ month, year }),
-      ),
-    [dispatch, month, year],
-  );
+  useEffect(() => {
+    dispatch(
+      transactionsOperations.fetchAllTransactionsByCategory({ year, month }),
+    );
+  }, [dispatch, month, year]);
 
-  const transactions = useSelector(
-    transactionsSelectors.getTransactionsByCategory,
-  );
+  const transactionsByCategory =
+    useSelector(transactionsSelectors.getTransactionsByCategory) || {};
+  const isLoading = useSelector(transactionsSelectors.getTransactionsIsLoading);
+  const error = useSelector(transactionsSelectors.getTransactionsError);
 
-  // const transactions = {
-  //   income: [{ category: { data: [], total: 0 } }],
-  //   expense: [{ category: { data: [], total: 0 } }],
-  // };
+  const transactions = getDataByCategory(transactionsByCategory[type]);
 
-  console.log(transactions);
+  const [currentCategory, setCurrentCategory] = useState('');
 
   const onHandleChangeType = () => {
     if (type === 'expense') {
       setType('income');
+      setCurrentCategory('');
     }
     if (type === 'income') {
       setType('expense');
+      setCurrentCategory('');
     }
   };
 
@@ -61,6 +64,7 @@ export default function ReportPage() {
       setMonth(1);
       setYear(prev => (prev += 1));
     }
+    setCurrentCategory('');
   };
   const onHandleClickLeft = () => {
     if (month <= 1) {
@@ -69,36 +73,91 @@ export default function ReportPage() {
     } else {
       setMonth(prev => (prev -= 1));
     }
+    setCurrentCategory('');
+  };
+  const onHandleChangeCategory = e => {
+    setCurrentCategory(e.currentTarget.attributes.title.nodeValue);
   };
 
   return (
     <>
       <BaseView>
-        <Box
-          sx={{
-            display: 'flex',
-            marginTop: '40px',
-            marginBottom: '30px',
-            alignItems: 'center',
-          }}
-        >
-          <BtnGoToMain />
-          <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
-            <BalanceView />
+        {error && (
+          <ErrorNotification
+            message={error}
+            action={transactionsActions.resetError}
+          />
+        )}
+        {isMobile ? (
+          <>
+            <Box sx={{ margin: '20px 0 15px 20px', width: '280px' }}>
+              <BtnGoToMain />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: '40px',
+                alignItems: 'center',
+              }}
+            >
+              <Box sx={{ marginBottom: '30px' }}>
+                <CurrentMonth
+                  year={year}
+                  month={month}
+                  onHandleClickLeft={onHandleClickLeft}
+                  onHandleClickRight={onHandleClickRight}
+                />
+              </Box>
+              <Box sx={{ textAlign: 'center' }}>
+                <BalanceView/>
+              </Box>
+            </Box>
+          </>
+        ) : (
+          <Box
+            sx={{
+              display: 'flex',
+              marginTop: '40px',
+              marginBottom: '30px',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}
+          >
+            <BtnGoToMain />
+            <Box sx={{ textAlign: 'center'}}>
+              <BalanceView />
+            </Box>
+            <Box>
+              <CurrentMonth
+                year={year}
+                month={month}
+                onHandleClickLeft={onHandleClickLeft}
+                onHandleClickRight={onHandleClickRight}
+              />
+            </Box>
           </Box>
-          <Box>
-            <CurrentMonth
-              year={year}
-              month={month}
-              onHandleClickLeft={onHandleClickLeft}
-              onHandleClickRight={onHandleClickRight}
+        )}
+        {isLoading && <LinearProgress />}
+        {transactionsByCategory.hasOwnProperty('income' || 'expense') ? (
+          <>
+            <ReportSummary transactions={transactionsByCategory} />
+            <CategoriesList
+              transactions={transactions}
+              type={type}
+              onClick={() => onHandleChangeType()}
+              handleClick={onHandleChangeCategory}
             />
-          </Box>
-        </Box>
-
-        <ReportSummary transactions={transactions} />
-        <CategoriesList type={type} onClick={() => onHandleChangeType()} />
-        <ReportChart />
+            {transactions.length > 0 && currentCategory !== '' && (
+              <ReportChart
+                category={currentCategory}
+                transactions={transactionsByCategory[type]}
+              />
+            )}
+          </>
+        ) : (
+          <h2>Пожалуйста, введите данные о расходах и доходах</h2>
+        )}
       </BaseView>
     </>
   );

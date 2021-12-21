@@ -12,7 +12,8 @@ function AuthView() {
       <div className={s.container}>
         <div className={s.wrapper}>
           <div className={s.header}>
-            <h1 className={s.logo}>Kapu$ta</h1>
+            <div className={s.logoName}></div>
+            {/* <h1 className={s.logo}>Kapu$ta</h1> */}
             <p className={s.slogan}>smart finance</p>
           </div>
           <div className={s.form}>

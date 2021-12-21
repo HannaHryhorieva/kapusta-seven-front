@@ -14,6 +14,8 @@ import {
 import { Paper } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import getDataForReportChart from '../../helpers/getDataForReportChart';
+import formatterForAmount from '../../helpers/formatterForAmount';
 
 const COLORS = ['#FF751D', '#FFDAC0', '#FFDAC0'];
 const paperStyles = {
@@ -25,40 +27,9 @@ const paperStyles = {
   margin: '40px 0',
 };
 
-const data = [
-  {
-    name: 'Page A',
-    pv: 2400,
-  },
-  {
-    name: 'Page B',
-    pv: 1398,
-  },
-  {
-    name: 'Page C',
-    pv: 1800,
-  },
-  {
-    name: 'Page D',
-    pv: 3908,
-  },
-  {
-    name: 'Page E',
-    pv: 4800,
-  },
-  {
-    name: 'Page F',
-    pv: 3800,
-  },
-  {
-    name: 'Page G',
-    pv: 4300,
-  },
-];
-
 const renderCustomizedLabel = props => {
   const { x, y, width, value } = props;
-
+  const formattedValue = formatterForAmount(value);
   return (
     <g>
       <text
@@ -68,7 +39,7 @@ const renderCustomizedLabel = props => {
         textAnchor="middle"
         fontSize={12}
       >
-        {value}
+        {formattedValue}
       </text>
     </g>
   );
@@ -76,25 +47,53 @@ const renderCustomizedLabel = props => {
 
 const renderCustomizedLabel1 = props => {
   const { y, x, value } = props;
-
   return (
     <g>
-      <text y={y - 5} x={x + 1} fill="#071F41" textAnchor="start" fontSize={10}>
+      <text
+        y={y + 14}
+        x={x + 3}
+        fill="#071F41"
+        textAnchor="start"
+        fontSize={10}
+      >
         {value}
       </text>
     </g>
   );
 };
 
-export default function ReportChart() {
+const renderCustomizedLabel2 = props => {
+  const { y, x, width, value } = props;
+  const formattedValue = formatterForAmount(value);
+  return (
+    <g>
+      <text
+        y={y - 5}
+        x={x + width - 25}
+        fill="#071F41"
+        textAnchor="start"
+        fontSize={10}
+      >
+        {formattedValue}
+      </text>
+    </g>
+  );
+};
+
+export default function ReportChart({ transactions, category }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
+  const transactionsData = transactions[category];
+  const data = [...getDataForReportChart(transactionsData?.data)].sort(
+    (firstItem, secondItem) => secondItem.sum - firstItem.sum,
+  );
   return (
     <>
       {isMobile ? (
         <div
           style={{
-            margin: '35 auto 0 auto',
+            paddingTop: '15px',
+            margin: '0 auto',
             display: 'flex',
             justifyContent: 'center',
           }}
@@ -102,21 +101,21 @@ export default function ReportChart() {
           <BarChart
             layout="vertical"
             width={300}
-            height={400}
+            height={300}
             data={data}
             margin={{
               top: 30,
-              right: 5,
+              right: 30,
               bottom: 5,
-              left: 5,
+              left: 15,
             }}
           >
             <XAxis type="number" hide />
             <YAxis dataKey="name" hide type="category" />
             <Tooltip />
             <Bar
-              dataKey="pv"
-              barSize={15}
+              dataKey="sum"
+              barSize={20}
               radius={[0, 10, 10, 0]}
               isAnimationActive={true}
             >
@@ -127,17 +126,15 @@ export default function ReportChart() {
                 />
               ))}
               <LabelList
-                dataKey="pv"
+                dataKey="sum"
                 position="insideTopRight"
-                offset={-12}
                 fill="#071F41"
-                fontSize={10}
+                content={renderCustomizedLabel2}
               />
               <LabelList
                 dataKey="name"
                 content={renderCustomizedLabel1}
                 position="insideTopLeft"
-                offset={-12}
               />
             </Bar>
           </BarChart>
@@ -146,21 +143,21 @@ export default function ReportChart() {
         <Paper sx={paperStyles}>
           <div
             style={{
-              maxWidth: '600px',
+              maxWidth: '630px',
               margin: '0 auto',
               display: 'flex',
               justifyContent: 'center',
             }}
           >
-            <ResponsiveContainer width="100%" height={330}>
+            <ResponsiveContainer width="100%" height={430}>
               <BarChart
                 maxWidth="100%"
-                height={330}
+                height={430}
                 data={data}
                 maxBarSize={40}
                 barCategoryGap="1%"
                 margin={{
-                  top: 0,
+                  top: 25,
                   bottom: 5,
                 }}
               >
@@ -168,14 +165,14 @@ export default function ReportChart() {
                 <CartesianAxis width={10} height={10} />
                 <XAxis dataKey="name" />
                 <Tooltip />
-                <Bar dataKey="pv" minPointSize={5} radius={[10, 10, 0, 0]}>
+                <Bar dataKey="sum" minPointSize={5} radius={[10, 10, 0, 0]}>
                   {data.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
                       fill={COLORS[index % COLORS.length]}
                     />
                   ))}
-                  <LabelList dataKey="pv" content={renderCustomizedLabel} />
+                  <LabelList dataKey="sum" content={renderCustomizedLabel} />
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
