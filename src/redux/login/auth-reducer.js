@@ -1,15 +1,15 @@
 import {
+  fetchCurrentUser,
   fetchGoogleAuth,
   fetchGoogleRedirect,
+  fetchLogout,
   fetchSignin,
   fetchSignup,
-  fetchCurrentUser,
-  fetchLogout,
 } from './auth-operations';
-// import { logoutUser } from './auth-actions';
 
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
+import { logoutUser } from './auth-actions';
 
 const initialUserState = { name: null, email: null };
 
@@ -57,9 +57,16 @@ const isLoggedIn = createReducer(false, {
   [fetchCurrentUser.rejected]: () => false,
 });
 
+const isLogging = createReducer(false, {
+  [fetchCurrentUser.pending]: () => true,
+  [fetchCurrentUser.fulfilled]: () => false,
+  [fetchCurrentUser.rejected]: () => false,
+});
+
 export default combineReducers({
   user,
   isLoggedIn,
   token,
   status,
+  isLogging,
 });

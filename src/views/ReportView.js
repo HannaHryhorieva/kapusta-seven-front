@@ -148,9 +148,9 @@ export default function ReportPage() {
               onClick={() => onHandleChangeType()}
               handleClick={onHandleChangeCategory}
             />
-            {transactions.length > 0 && currentCategory !== '' && (
+            {transactions.length > 0 && (
               <ReportChart
-                category={currentCategory}
+                category={currentCategory || transactions[0].category}
                 transactions={transactionsByCategory[type]}
               />
             )}
