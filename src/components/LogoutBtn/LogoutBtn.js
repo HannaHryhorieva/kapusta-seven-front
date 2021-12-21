@@ -17,19 +17,18 @@ const LogoutBtn = () => {
     dispatch(logoutUser());
   };
 
-
   return (
     <div className={s.container}>
       {showModal && (
         <Modal
           onDeny={() => {
-            setShowModal(false)
+            setShowModal(false);
           }}
           handleAgreeButtonClick={logout}
+          question="Вы действительно хотите выйти?"
 
-//           onApprove={() => dispatch(authOperations.fetchLogout) } 
-//           question='Вы действительно хотите выйти?'
-
+          //           onApprove={() => dispatch(authOperations.fetchLogout) }
+          //           question='Вы действительно хотите выйти?'
         />
       )}
       <span className={s.avatar}>U</span>
