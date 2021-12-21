@@ -14,6 +14,18 @@ export const fetchSignup = createAsyncThunk(
   },
 );
 
+export const fetchUser = createAsyncThunk(
+  'auth/fetchUser',
+  async (token, { rejectWithValue }) => {
+    try {
+      const data = await authApi.fetchUser(token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
 export const fetchGoogleAuth = createAsyncThunk(
   'auth/fetchGoogleAuth',
   async (_, { rejectWithValue }) => {
@@ -60,6 +72,20 @@ export const fetchSignin = createAsyncThunk(
     }
   },
 );
+
+// export const fetchLogout = createAsyncThunk(
+//   'auth/fetchLogout',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       console.log(1);
+//       const data = await authApi.fetchLogout();
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error);
+//     }
+//   },
+// );
+
 export const fetchLogout = createAsyncThunk(
   'auth/fetchLogout',
   async (token, { rejectWithValue }) => {
