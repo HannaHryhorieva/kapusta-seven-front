@@ -37,7 +37,8 @@ const transactionsByCategory = createReducer([], {
 
 const summaryByYear = createReducer([], {
   //todo check and fix summary
-  [fetchTransactionsSummaryByYear.fulfilled]: (_, { payload }) => payload,
+  [fetchTransactionsSummaryByYear.fulfilled]: (_, { payload }) => payload.data,
+  // [fetchAddTransaction.fulfilled]: (state, { payload }) => if(payload['data'])
 });
 
 const initialDate = {

@@ -23,14 +23,14 @@ const Summary = ({ value }) => {
     transactionsSelectors.getSummaryByYear,
   );
   let summary = {};
-  const summaryByYear = transactionsByYear['data'];
-  if (summaryByYear) {
+  // const summaryByYear = transactionsByYear['data'];
+  if (transactionsByYear) {
     switch (value) {
       case 'expense':
-        summary = summaryByYear['expense'];
+        summary = transactionsByYear['expense'];
         break;
       case 'income':
-        summary = summaryByYear['income'];
+        summary = transactionsByYear['income'];
         break;
       default:
         summary = {};
