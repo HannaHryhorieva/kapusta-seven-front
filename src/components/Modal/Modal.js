@@ -3,10 +3,11 @@ import { useEffect } from 'react';
 import s from './Modal.module.css';
 
 import { Button } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
 const modalRoot = document.querySelector('#modal-root');
 
-function Modal({ onDeny, onApprove, question }) {
+function Modal({ onDeny, handleAgreeButtonClick, question }) {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
@@ -21,13 +22,19 @@ function Modal({ onDeny, onApprove, question }) {
   };
 
   const handleBackdropClick = e => {
-    if (e.currentTarget=== e.target) {
+    if (e.currentTarget === e.target) {
       onDeny();
     }
   };
+
+  const handleButtonClick = () => {
+    handleAgreeButtonClick();
+    onDeny();
+  };
+
   return createPortal(
     <div className={s.Overlay} onClick={handleBackdropClick}>
-      <div className={s.Modal} >
+      <div className={s.Modal}>
         <span className={s.modalClose} onClick={onDeny}>
           &#10005;
         </span>
@@ -41,13 +48,17 @@ function Modal({ onDeny, onApprove, question }) {
               <Button
                 color="primary"
                 variant="contained"
-                onClick={onApprove}
+                onClick={handleButtonClick}
               >
                 Да
               </Button>
             </li>
             <li>
-              <Button color="info" variant="outlined" onClick={onDeny}>
+              <Button
+                color="info"
+                variant="outlined"
+                onClick={handleBackdropClick}
+              >
                 Нет
               </Button>
             </li>

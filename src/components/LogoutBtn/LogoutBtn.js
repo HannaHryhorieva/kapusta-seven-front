@@ -1,24 +1,34 @@
 import s from './LogoutBtn.module.css';
-import logout from '../../images/icons/logout.svg';
-
+import logoutIcon from '../../images/icons/logout.svg';
+import authOperations from '../../redux/login/auth-operations';
 import Modal from '../Modal/Modal';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import authOperations from '../../redux/login/auth-operations';
+import { getToken } from '../../redux/login/auth-selectors';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 const LogoutBtn = () => {
   const [showModal, setShowModal] = useState(false);
-  const dispatch = useDispatch()
- 
+  const token = useSelector(getToken);
+  const dispatch = useDispatch();
+  // const id = useSelector(getUserId());
+
+  const logout = () => {
+    dispatch(authOperations.fetchLogout(token));
+  };
+
   return (
     <div className={s.container}>
       {showModal && (
         <Modal
           onDeny={() => {
-            setShowModal(false)
+            setShowModal(false);
           }}
-          onApprove={() => dispatch(authOperations.fetchLogout) } 
-          question='Вы действительно хотите выйти?'
+          handleAgreeButtonClick={logout}
+          question="Вы действительно хотите выйти?"
+
+          //           onApprove={() => dispatch(authOperations.fetchLogout) }
+          //           question='Вы действительно хотите выйти?'
         />
       )}
       <span className={s.avatar}>U</span>
@@ -32,7 +42,7 @@ const LogoutBtn = () => {
         type="button"
       >
         <span className={s.logout}>Выйти</span>
-        <img src={logout} alt="logout button" className={s.logoutIcon} />
+        <img src={logoutIcon} alt="logout button" className={s.logoutIcon} />
       </button>
     </div>
   );
