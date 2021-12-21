@@ -1,10 +1,10 @@
 import s from './LogoutBtn.module.css';
 import logoutIcon from '../../images/icons/logout.svg';
-import authOperations from '../../redux/login/auth-operations';
+// import authOperations from '../../redux/login/auth-operations';
 import Modal from '../Modal/Modal';
 import React, { useState } from 'react';
 
-import { logoutUser } from '../../redux/login/auth-actions';
+import { fetchLogout } from '../../redux/login/auth-operations';
 import { useDispatch } from 'react-redux';
 
 const LogoutBtn = () => {
@@ -14,7 +14,7 @@ const LogoutBtn = () => {
   // const id = useSelector(getUserId());
 
   const logout = () => {
-    dispatch(logoutUser());
+    dispatch(fetchLogout());
   };
 
   return (
