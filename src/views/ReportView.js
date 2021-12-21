@@ -35,8 +35,8 @@ export default function ReportPage() {
     useSelector(transactionsSelectors.getTransactionsByCategory) || {};
   const isLoading = useSelector(transactionsSelectors.getTransactionsIsLoading);
 
-  const transactions = getDataByCategory(type, transactionsByCategory);
-  //let initialCategory = transactions[0].numberOfCategory;
+  const transactions = getDataByCategory(transactionsByCategory[type]);
+
   const [currentCategory, setCurrentCategory] = useState('');
 
   const onHandleChangeType = () => {

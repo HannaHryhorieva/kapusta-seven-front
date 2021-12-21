@@ -3,13 +3,7 @@ import { Typography } from '@mui/material';
 import s from './reportList.module.css';
 import formatterForAmount from '../../helpers/formatterForAmount';
 
-const CategoriesItem = ({
-  category,
-  numberOfCategory,
-  amount,
-  Icon,
-  handleClick,
-}) => {
+const CategoriesItem = ({ category, amount, Icon, handleClick }) => {
   const formattedAmount = formatterForAmount(amount);
 
   return (
@@ -17,7 +11,7 @@ const CategoriesItem = ({
       tabIndex={1}
       style={{ maxWidth: '90px', align: 'center' }}
       onClick={handleClick}
-      title={numberOfCategory}
+      title={category}
     >
       <Typography variant="body" fontSize={12} color={'#52555F'}>
         <p style={{ paddingTop: '5px', textAlign: 'center' }}>

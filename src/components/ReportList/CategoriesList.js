@@ -57,7 +57,6 @@ const CategoriesList = ({ type, onClick, transactions, handleClick }) => {
                   {transactions.map((el, index) => (
                     <CategoriesItem
                       key={index}
-                      numberOfCategory={el.numberOfCategory}
                       category={el.category}
                       amount={el.amount}
                       Icon={el.icon}
@@ -99,7 +98,6 @@ const CategoriesList = ({ type, onClick, transactions, handleClick }) => {
                   <CategoriesItem
                     key={index}
                     category={el.category}
-                    numberOfCategory={el.numberOfCategory}
                     amount={el.amount}
                     Icon={el.icon}
                     handleClick={handleClick}
