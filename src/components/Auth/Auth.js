@@ -95,7 +95,14 @@ function Auth() {
         setIsSubmitting(false);
       }
     }
-  }, [formErrors]);
+  }, [
+    dispatch,
+    formErrors,
+    formValues.email,
+    formValues.password,
+    isSubmitting,
+    formValues.type,
+  ]);
 
   const validate = values => {
     setFormMessage('');

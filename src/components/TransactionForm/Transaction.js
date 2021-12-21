@@ -31,7 +31,6 @@ function Transaction({
   isIncome,
   placeholder,
   toBalance,
-  selectLabel,
 }) {
   const selectedDate = useSelector(getSelectedDate);
   const [date, setDate] = useState(
@@ -39,7 +38,7 @@ function Transaction({
   );
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState({});
   const dispatch = useDispatch();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));
@@ -81,9 +80,13 @@ function Transaction({
         isIncome,
       }),
     );
-    dispatch(toBalance(amount));
+    dispatch(toBalance(Number(amount)));
     reset();
   };
+
+
+ 
+
 
   const reset = () => {
     setDate(new Date());
@@ -110,11 +113,11 @@ function Transaction({
           <img src={calendar} style={{ marginRight: '10px' }} alt="calendar" />
           <DatePicker
             id="date"
-            className={s.date}
             name="date"
             dateFormat="dd.MM.yyyy"
             selected={date}
             onChange={handleChangeDate}
+            maxDate={new Date()}
             required
           />
         </label>
@@ -151,7 +154,6 @@ function Transaction({
             }
             id="select"
             name="category"
-            label={selectLabel}
             value={category}
             onChange={handleChange}
             required
