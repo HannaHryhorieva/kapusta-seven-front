@@ -13,7 +13,6 @@ import { createReducer } from '@reduxjs/toolkit';
 const initialUserState = { name: null, email: null };
 
 const user = createReducer(initialUserState, {
-
   [fetchCurrentUser.fulfilled]: (_, { payload }) => payload,
   //[fetchSignup.fulfilled]: (_, { payload }) => payload.user,
 
@@ -39,19 +38,13 @@ const status = createReducer(null, {
   [fetchGoogleAuth.rejected]: setError,
   [fetchGoogleRedirect.rejected]: setError,
   [fetchSignin.rejected]: setError,
-  [fetchLogout.rejected]: setError,
   [fetchCurrentUser.rejected]: setError,
+  [logoutUser]: null,
 });
-  
-
-
-
-
-
 
 const isLoggedIn = createReducer(false, {
   [fetchCurrentUser.fulfilled]: () => true,
-  [fetchSignup.fulfilled]: () => true,
+  // [fetchSignup.fulfilled]: () => true,
   [fetchGoogleAuth.fulfilled]: () => true,
   [fetchGoogleRedirect.fulfilled]: () => true,
   [fetchSignin.fulfilled]: () => true,

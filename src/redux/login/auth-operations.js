@@ -7,7 +7,6 @@ export const fetchSignup = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const data = await authApi.fetchSignup(user);
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.status);
@@ -123,6 +122,5 @@ const authOperations = {
   fetchLogout,
   fetchCurrentUser,
 };
-
 
 export default authOperations;

@@ -18,9 +18,7 @@ export async function fetchSignup({ name, email, password }) {
 }
 
 export async function fetchUser(token) {
-  console.log(token);
   const data = await axios.get(`/auth/users/${token}`);
-  console.log(data);
   return data;
 }
 
@@ -48,16 +46,15 @@ export async function fetchSignin({ email, password }) {
   return data.data;
 }
 
-
 export async function fetchLogout() {
   const { data } = await axios.post(`/auth/logout`);
   token.unset();
   return data;
 }
 
-export async function fetchUpdBalance( balance ) {
+export async function fetchUpdBalance(balance) {
   const { data } = await axios.patch(`/auth/balance`, {
-    balance
+    balance,
   });
   return data.data;
 }

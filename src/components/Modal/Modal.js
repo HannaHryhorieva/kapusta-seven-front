@@ -7,9 +7,7 @@ import { useDispatch } from 'react-redux';
 
 const modalRoot = document.querySelector('#modal-root');
 
-
-function Modal({ onClose, handleAgreeButtonClick }) {
-
+function Modal({ onDeny, handleAgreeButtonClick, question }) {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
@@ -24,19 +22,19 @@ function Modal({ onClose, handleAgreeButtonClick }) {
   };
 
   const handleBackdropClick = e => {
-    if (e.currentTarget=== e.target) {
+    if (e.currentTarget === e.target) {
       onDeny();
     }
   };
 
   const handleButtonClick = () => {
     handleAgreeButtonClick();
-    onClose();
+    onDeny();
   };
 
   return createPortal(
     <div className={s.Overlay} onClick={handleBackdropClick}>
-      <div className={s.Modal} >
+      <div className={s.Modal}>
         <span className={s.modalClose} onClick={onDeny}>
           &#10005;
         </span>
@@ -50,21 +48,17 @@ function Modal({ onClose, handleAgreeButtonClick }) {
               <Button
                 color="primary"
                 variant="contained"
-
                 onClick={handleButtonClick}
-
               >
                 Да
               </Button>
             </li>
             <li>
-
               <Button
                 color="info"
                 variant="outlined"
                 onClick={handleBackdropClick}
               >
-
                 Нет
               </Button>
             </li>
