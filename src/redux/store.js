@@ -12,7 +12,7 @@ import {
 import authReducer from './login/auth-reducer';
 import balanceReducer from './balance/balance-reducer';
 import { configureStore } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
+
 import storage from 'redux-persist/lib/storage';
 import transactionsReducer from './transaction/transactions-reducer';
 
@@ -34,7 +34,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }), //.concat(logger),
+    }),
 });
 
 export const persistor = persistStore(store);
