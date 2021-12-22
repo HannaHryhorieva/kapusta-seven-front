@@ -28,8 +28,8 @@ const helperText = {
 
 const helperMessage = {
   color: '#287233',
-  fontSize: '16px',
-  lineHeight: '18px',
+  fontSize: '12px',
+  lineHeight: '14px',
   letterSpacing: '0.04em',
 };
 
