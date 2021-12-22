@@ -17,7 +17,6 @@ import { buttonGroupStyles } from './buttonStyles';
 import calc from '../../images/icons/calculator.svg';
 import calendar from '../../images/icons/calendar.svg';
 import expenseCategories from './expenseCategories.json';
-import { expenseToBalance } from '../../redux/balance/balance-actions';
 import { fetchAddTransaction } from '../../redux/transaction/transactions-operations';
 import { getSelectedDate } from '../../redux/transaction/transactions-selectors';
 import s from './Transaction.module.css';
@@ -26,7 +25,7 @@ import { transactionsActions } from '../../redux/transaction';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-function Transaction({ categories, isIncome, placeholder, toBalance }) {
+function Transaction({ categories, isIncome, placeholder }) {
   const selectedDate = useSelector(getSelectedDate);
   const [date, setDate] = useState(
     new Date(selectedDate.year, selectedDate.month - 1, selectedDate.day),
@@ -75,7 +74,6 @@ function Transaction({ categories, isIncome, placeholder, toBalance }) {
         isIncome,
       }),
     );
-    dispatch(toBalance(Number(amount)));
     reset();
   };
 
@@ -190,7 +188,6 @@ Transaction.defaultProps = {
   isIncome: false,
   categories: expenseCategories,
   placeholder: 'Описание расхода',
-  toBalance: expenseToBalance,
   selectLabel: 'Категория товара',
 };
 

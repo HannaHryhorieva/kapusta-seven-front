@@ -7,7 +7,7 @@ import s from './BalanceView.module.css';
 import { useState } from 'react';
 
 const BalanceView = () => {
-  const [inputValue, setInputValue] = useState({});
+  const [inputValue, setInputValue] = useState(0);
 
   const formatter = new Intl.NumberFormat('uk-UA', {
     style: 'currency',

@@ -5,10 +5,6 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import {
-  expenseToBalance,
-  incomeToBalance,
-} from '../../redux/balance/balance-actions';
 
 import { ReactComponent as CloseIcon } from '../../images/icons/close.svg';
 import React from 'react';
@@ -22,15 +18,6 @@ function DeleteModal({ isOpen = true, transactionId, onClose, transactions }) {
 
   function submitHandler() {
     dispatch(transactionsOperations.fetchDeleteTransaction(transactionId));
-    const selectTransaction = transactions.filter(
-      item => item._id === transactionId,
-    );
-
-    if (selectTransaction[0].isIncome === true) {
-      dispatch(expenseToBalance(Number(selectTransaction[0].amount)));
-    } else {
-      dispatch(incomeToBalance(Number(selectTransaction[0].amount)));
-    }
     onClose();
   }
 
