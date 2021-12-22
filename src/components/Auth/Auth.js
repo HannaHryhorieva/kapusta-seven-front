@@ -27,8 +27,9 @@ const helperText = {
 };
 
 const helperMessage = {
-  fontSize: '10px',
-  lineHeight: '12px',
+  color: '#287233',
+  fontSize: '16px',
+  lineHeight: '18px',
   letterSpacing: '0.04em',
 };
 
