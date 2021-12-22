@@ -1,9 +1,7 @@
-import { createPortal } from 'react-dom';
-import { useEffect } from 'react';
-import s from './Modal.module.css';
-
 import { Button } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { createPortal } from 'react-dom';
+import s from './Modal.module.css';
+import { useEffect } from 'react';
 
 const modalRoot = document.querySelector('#modal-root');
 

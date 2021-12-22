@@ -33,7 +33,7 @@ function Transaction({ categories, isIncome, placeholder, toBalance }) {
   );
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
-  const [amount, setAmount] = useState({});
+  const [amount, setAmount] = useState(0);
   const dispatch = useDispatch();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('tablet'));

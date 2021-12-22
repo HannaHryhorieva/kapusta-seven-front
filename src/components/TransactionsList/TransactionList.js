@@ -1,6 +1,4 @@
-import { Button, ButtonGroup, LinearProgress } from '@mui/material';
-
-import { NavLink } from 'react-router-dom';
+import { LinearProgress } from '@mui/material';
 import React from 'react';
 import TransactionItem from './TransactionItem';
 import TransactionsButtons from './TransactionsButtons';

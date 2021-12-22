@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppBar } from './components/AppBar/AppBar';
 import { LinearProgress } from '@mui/material';
+import Loader from './components/Loader/Loader';
 import NotFound from './components/NotFound/NotFound';
 import PrivateRoute from './components/RoutePrivatPublic/PrivateRoute';
 import PublicRoute from './components/RoutePrivatPublic/PublicRoute';
@@ -14,8 +15,6 @@ import { Switch } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import authOperations from './redux/login/auth-operations';
 import theme from './styles/theme';
-
-import Loader from './components/Loader/Loader';
 
 const HomeView = lazy(() => import('./views/HomeView'));
 const AuthView = lazy(() => import('./views/AuthView/AuthView'));
