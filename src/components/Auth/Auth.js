@@ -147,7 +147,7 @@ function Auth() {
         Вы можете авторизироваться с помощью Google Account:
       </p>
       <a
-        href="http://localhost:3001/auth/google"
+        href="https://kapusta-seven.herokuapp.com/auth/google"
         className={style.googleButton}
       >
         <img src={googleIcon} alt="google icon" className={style.icon}></img>
