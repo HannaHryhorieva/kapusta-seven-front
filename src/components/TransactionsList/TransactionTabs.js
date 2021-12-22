@@ -15,7 +15,7 @@ function TransactionTabs({ deleteDialogHandler }) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.only('desktop'));
 
-  console.log(isDesktop);
+  // console.log(isDesktop);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
