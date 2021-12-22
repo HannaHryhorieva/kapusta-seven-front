@@ -6,7 +6,6 @@ import Summary from '../Summary/Summary';
 import Transaction from '../TransactionForm/Transaction';
 import TransactionTable from './TransactionTable';
 import incomeCategories from '../TransactionForm/incomeCategories.json';
-import { incomeToBalance } from '../../redux/balance/balance-actions';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
@@ -15,7 +14,6 @@ function TransactionTabs({ deleteDialogHandler }) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.only('desktop'));
 
-  // console.log(isDesktop);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -77,7 +75,6 @@ function TransactionTabs({ deleteDialogHandler }) {
             <Transaction
               isIncome={true}
               categories={incomeCategories}
-              toBalance={incomeToBalance}
               placeholder="Описание дохода"
             />
             <div style={tableBox}>
