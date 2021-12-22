@@ -22,6 +22,7 @@ const user = createReducer(initialUserState, {
 });
 
 const token = createReducer(null, {
+  [fetchCurrentUser.fulfilled]: (_, { payload }) => payload.token,
   [fetchSignin.fulfilled]: (_, { payload }) => payload.token,
   [fetchLogout.fulfilled]: () => null,
 });
