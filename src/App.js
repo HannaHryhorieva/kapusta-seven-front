@@ -42,8 +42,8 @@ function App() {
       ) : (
         <div>
           <AppBar position="fixed" />
-          <Switch>
-            <Suspense fallback={<Loader />}>
+          <Suspense fallback={<Loader />}>
+            <Switch>
               <PublicRoute path="/auth" redirectTo="/" restricted>
                 <AuthView />
               </PublicRoute>
@@ -59,11 +59,11 @@ function App() {
               <PrivateRoute path="/expenseform" redirectTo="/auth">
                 <FormExpenseForMob />
               </PrivateRoute>
-            </Suspense>
-            <Route>
-              <NotFound />
-            </Route>
-          </Switch>
+              <Route>
+                <NotFound />
+              </Route>
+            </Switch>
+          </Suspense>
         </div>
       )}
     </ThemeProvider>
